@@ -8,7 +8,6 @@
 
 User.create(email: 'admin@admin.com', password:'password', address:'asd', name: 'admin', phone_number: '08191940123', role: 1)
 User.create(email: 'cs@cs.com', password:'password', address:'asdasd', name: 'cust', phone_number: '08191940121', role: 0)
-
 ["ACEH",
     "SUMATERA UTARA",
     "SUMATERA BARAT",

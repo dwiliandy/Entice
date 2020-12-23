@@ -1,0 +1,33 @@
+
+<p id="notice"><%= notice %></p>
+<h1>Product</h1>
+<table id="dtBasicExample" class="table table-striped table-bordered" cellspacing="0" width="100%">
+  <thead>
+    <tr>
+      <th class="th-sm">Name</th>
+      <th class="th-sm">Price</th>
+      <th class="th-sm">Stock</th>
+      <th class="th-sm">Region</th>
+      <th class="th-sm"><%= link_to 'Add New Product', new_admins_product_path, class: "btn btn-sm btn-success", style: "color:white"%></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= link_to product.name, edit_admins_product_path(product)%></td>
+        <td><%= product.price %></td>
+        <td><%= product.stock %></td>
+        <td><%= product.region.name %></td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+<script>
+$(document).ready(function () {
+$('#dtBasicExample').DataTable();
+$('.dataTables_length').addClass('bs-select');
+});
+</script>
