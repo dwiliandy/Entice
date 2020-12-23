@@ -19,4 +19,5 @@
 #
 class Product < ApplicationRecord
     belongs_to :region
+    mount_uploader :image, ImageUploader
 end
