@@ -27,5 +27,7 @@
       <p class="alert alert-danger"><%= alert %></p>
     <% end %>
     <%= yield %>
+     <%= javascript_pack_tag 'mdb' %>
+    <%= javascript_pack_tag 'popper' %>
   </body>
 </html>
