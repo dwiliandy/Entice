@@ -1,4 +1,4 @@
-<div class="login d-flex justify-content-center">
+
   <!-- Material form login -->
   <div class="card">
 
@@ -9,24 +9,15 @@
     <!--Card content-->
     <div class="card-body px-lg-5 pt-0">
       <!-- Form -->
-      <form class="text-center" style="color: #757575;">
-          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="text-center">
+          <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <%= render "devise/shared/error_messages", resource: resource %>
-            <div class="md-form">
-              <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "Email"%>
-            </div>
-
-            <div class="md-form">
-              <%= f.password_field :password, autocomplete: "current-password", placeholder: "Password"%>
-            </div>
+            
+              <%= f.input :email,autofocus: true, autocomplete: "email",placeholder: "Email"%>
+              <%= f.input :password, autocomplete: "current-password", placeholder: "Password"%>
 
             <% if devise_mapping.rememberable? %>
-              <fieldset data-role="fieldcontain" class="field form-check">
-                
-                  <%= f.check_box :remember_me%> 
-                  <%= f.label :remember_me%>
-          
-              </fieldset>
+              <%= f.input :remember_me, as: :boolean,inline_label:true%>
             <% end %>
 
            <div class="actions">
@@ -35,8 +26,6 @@
 
           <% end %>
           <div><%= render "devise/shared/links" %></div>
-        </div>
-      </form>
+      </div>
     </div>
   </div>
-</div>

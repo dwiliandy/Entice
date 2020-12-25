@@ -10,7 +10,6 @@ require("channels")
 
 require("jquery")
 
-import "bootstrap"
 import "../stylesheets/application"
 
 var jQuery = require('jquery')

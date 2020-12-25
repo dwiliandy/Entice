@@ -1,17 +1,20 @@
-<div class ="card">
-  <h5 class="card-header info-color white-text text-center py-3">Sign Up</h5>
-  <div class="card-body px-lg-5 pt-0">
-    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
-        <%= f.input :name, required: true, autofocus: true %>
-        <%= f.input :email, required: true %>
-        <%= f.input :password, required: true, hint: 'Minimum 6 Characters'%>
-        <%= f.input :password_confirmation, required: true %>
-        <%= f.input :phone_number, required: true %>
-        <%= f.input :address, required: true %>
-        <%= f.button :submit, "Sign Up", class: 'btn btn-sm btn-info' %>
-    <% end %>
+
+  <div class ="card">
+    <h5 class="card-header info-color white-text text-center py-3">Sign Up</h5>
+    <div class="card-body px-lg-5 pt-0">
+      <div class="text-center">
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+          <%= f.input :name, required: true, autofocus: true %>
+          <%= f.input :email, required: true %>
+          <%= f.input :password, required: true, hint: 'Minimum 6 Characters'%>
+          <%= f.input :password_confirmation, required: true %>
+          <%= f.input :phone_number, required: true %>
+          <%= f.input :address, required: true %>
+          <%= f.button :submit, "Sign Up", class: 'btn btn-sm btn-info' %>
+      <% end %>
+    </div>
+    </div>
+  <%= render "devise/shared/links" %>
   </div>
-<%= render "devise/shared/links" %>
-</div>
 
