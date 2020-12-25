@@ -5,12 +5,13 @@
       <div class="text-center">
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
-          <%= f.input :name, required: true, autofocus: true %>
-          <%= f.input :email, required: true %>
-          <%= f.input :password, required: true, hint: 'Minimum 6 Characters'%>
-          <%= f.input :password_confirmation, required: true %>
-          <%= f.input :phone_number, required: true %>
-          <%= f.input :address, required: true %>
+          <%= f.input :name, required: true, autofocus: true, label: false, placeholder: 'Your Name'%>
+          <%= f.input :email, required: true, label: false, placeholder: 'Your Email' %>
+          <%= f.input :password, required: true, label: false, placeholder: 'Password', input_html:{maxlength: 50, size:20}%>
+          <i>(Minimum 6 Characters)</i>
+          <%= f.input :password_confirmation, required: true, label: false, placeholder: 'Password Confirmation'%>
+          <%= f.input :phone_number, required: true, label: false, placeholder: 'Your Phone Number' %>
+          <%= f.input :address, as: :text, required: true, label: false, placeholder: 'Your Address', input_html: {size: "24x2"} %>
           <%= f.button :submit, "Sign Up", class: 'btn btn-sm btn-info' %>
       <% end %>
     </div>

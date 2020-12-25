@@ -12,12 +12,12 @@
       <div class="text-center">
           <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <%= render "devise/shared/error_messages", resource: resource %>
-            
-              <%= f.input :email,autofocus: true, autocomplete: "email",placeholder: "Email"%>
-              <%= f.input :password, autocomplete: "current-password", placeholder: "Password"%>
-
+            <div class="inline-label">
+              <%= f.input :email,autofocus: true, autocomplete: "email",placeholder: "Email", label: false%>
+              <%= f.input :password, autocomplete: "current-password", placeholder: "Password", input_html: {maxlength: 50, size: 20}, label: false%>
+            </div>
             <% if devise_mapping.rememberable? %>
-              <%= f.input :remember_me, as: :boolean,inline_label:true%>
+              <%= f.input :remember_me, as: :boolean,input_html:{value: f.object[:rememberable]}%>
             <% end %>
 
            <div class="actions">
