@@ -24,6 +24,7 @@ class Cart < ApplicationRecord
 
 	class << self
 		def total_price
-			price = products.map do {|p| p.price}.sum
+			price = products.each {|p| p.price}.sum
 		end
+	end
 end

@@ -29,4 +29,5 @@ class Transaction < ApplicationRecord
   	def final_price
   		total_price = cart.price + postal_fee.price
   	end
+  end
 end
