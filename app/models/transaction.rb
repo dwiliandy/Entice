@@ -20,7 +20,13 @@
 #  fk_rails_...  (postal_fee_id => postal_fees.id)
 #
 class Transaction < ApplicationRecord
-  belongs_to :order_status
-  belongs_to :postal_fee
-  belongs_to :order_status
+  belongs_to :postal_fee, dependent: :nullify
+  belongs_to :order_status, dependent: :nullify
+  has_one :cart
+
+
+  class <<self 
+  	def final_price
+  		total_price = cart.price + postal_fee.price
+  	end
 end

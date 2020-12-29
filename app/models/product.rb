@@ -18,6 +18,9 @@
 #  index_products_on_region_id  (region_id)
 #
 class Product < ApplicationRecord
-    belongs_to :region
+    belongs_to :region, dependent: :destroy
+
+    has_many :cart_products
+    has_many :carts, through: :cart_products
     mount_uploader :image, ImageUploader
 end
