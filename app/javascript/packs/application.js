@@ -1,5 +1,5 @@
-import 'core-js/stable'
-import 'regenerator-runtime/runtime'
+// import 'core-js/stable'
+// import 'regenerator-runtime/runtime'
 // This file is automatically compiled by Webpack, along with any other files
 // present in this directory. You're encouraged to place your actual application logic in
 // a relevant structure within app/javascript and only use these pack files to reference
@@ -7,10 +7,11 @@ import 'regenerator-runtime/runtime'
 
 require("@rails/ujs").start()
 require("turbolinks").start()
-require("@rails/activestorage").start()
+// require("@rails/activestorage").start()
 require("channels")
 require("jquery")
-import {} from 'jquery-ujs'
+// import {} from 'jquery-ujs'
+
 
 // import "../stylesheets/application"
 // import 'core-js/stable'
@@ -22,3 +23,7 @@ import {} from 'jquery-ujs'
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+import 'bootstrap/dist/js/bootstrap'
+import 'bootstrap/dist/css/bootstrap'
+import 'owl.carousel'
+import "@fortawesome/fontawesome-free/js/all"

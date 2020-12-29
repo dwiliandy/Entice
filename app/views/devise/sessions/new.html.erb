@@ -1,32 +1,38 @@
-<div class="d-flex justify-content-center">
-  <!-- Material form login -->
-  <div class="card">
-
-    <h5 class="card-header info-color white-text text-center py-3">
-      <strong>Login</strong>
-    </h5>
-
-    <!--Card content-->
-    <div class="card-body px-lg-5 pt-0">
-      <!-- Form -->
-      <div class="text-center">
-          <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<section class="featured spad">
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+            <h5 class="card-title text-center">Login</h5>
+            <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <%= render "devise/shared/error_messages", resource: resource %>
-            <div class="inline-label">
-              <%= f.input :email,autofocus: true, autocomplete: "email",placeholder: "Email", label: false%>
-              <%= f.input :password, autocomplete: "current-password", placeholder: "Password", input_html: {maxlength: 50, size: 20}, label: false%>
+
+                  <div class="form-group">
+                    <%= f.input :email,autofocus: true, autocomplete: "email",placeholder: "Email", label: false, input_html: {class: "form-control"} %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.input :password, autocomplete: "current-password", placeholder: "Password", input_html: {class: "form-control"}, label: false%>
+                  </div>
+
+                <% if devise_mapping.rememberable? %>
+                <div class="form-group form-check">
+                  <%= f.check_box :remember_me, class: 'chk-remember form-check-input' %>
+                  <label class="form-check-label" for="exampleCheck1">Remember Me</label>
+                </div>
+
+                  <% end %>
+
+                <div class="actions">
+                  <%= f.submit "Login", class: 'btn btn-sm btn-info' %>
+                </div>
+
+                <%= render "devise/shared/links" %>
+                <% end %>
             </div>
-            <% if devise_mapping.rememberable? %>
-              <%= f.input :remember_me, as: :boolean,input_html:{value: f.object[:rememberable]}%>
-            <% end %>
-
-           <div class="actions">
-            <%= f.submit "Login", class: 'btn btn-sm btn-info' %>
           </div>
-
-          <% end %>
-          <div><%= render "devise/shared/links" %></div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>

@@ -13,5 +13,8 @@
  *= require_tree .
  *= require_self
  */
+@import '@fortawesome/fontawesome-free';
 @import "bootstrap";
-@import"./css/mdb.min";
+@import "mixitup.min";
+@import "owl.carousel.min";
+@import "custom";
