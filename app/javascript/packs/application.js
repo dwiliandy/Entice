@@ -4,13 +4,12 @@
 // present in this directory. You're encouraged to place your actual application logic in
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
-
+// import {} from 'jquery-ujs'
 require("@rails/ujs").start()
 require("turbolinks").start()
-// require("@rails/activestorage").start()
+require("@rails/activestorage").start()
 require("channels")
-require("jquery")
-// import {} from 'jquery-ujs'
+
 
 
 // import "../stylesheets/application"
@@ -23,7 +22,13 @@ require("jquery")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+require("css/application")
 import 'bootstrap/dist/js/bootstrap'
 import 'bootstrap/dist/css/bootstrap'
-import 'owl.carousel'
 import "@fortawesome/fontawesome-free/js/all"
+require('./owl.carousel.min')
+require('./jquery.nice-select')
+require('./jquery-ui.min')
+require('./jquery.slicknav')
+require('./main')
+
