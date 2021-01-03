@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
-
+  before action :set_product, only: [:create]
   # GET /carts
   # GET /carts.json
   def index
@@ -25,9 +25,9 @@ class CartsController < ApplicationController
   # POST /carts.json
   def create
     @cart = Cart.new(cart_params)
-
     respond_to do |format|
       if @cart.save
+        @cp = CartProduct.new(cart_id: @cart.id, product_id: @product.id)
         format.html { redirect_to @cart, notice: 'Cart was successfully created.' }
         format.json { render :show, status: :created, location: @cart }
       else
@@ -65,6 +65,10 @@ class CartsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_cart
       @cart = Cart.find(params[:id])
+    end
+
+    def set_product
+      @product = Product.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

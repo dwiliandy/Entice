@@ -20,7 +20,9 @@
 class Product < ApplicationRecord
     belongs_to :region, dependent: :destroy
 
-    has_many :cart_products
-    has_many :carts, through: :cart_products
+    has_many :cart_products, dependent: :nullify
+    has_many :carts, :through => :cart_products
     mount_uploader :image, ImageUploader
+
+    enum status: {available: 0, out_of_stock: 1}
 end
