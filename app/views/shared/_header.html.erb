@@ -5,9 +5,11 @@
             <a href="#"><img src="" alt=""></a>
         </div>
         <div class="humberger__menu__cart">
+          <% if user_signed_in? %>
             <ul>
                 <li><a href="#"><i class="fa fa-shopping-bag"></i> <span><%=current_user.carts.count%></span></a></li>
             </ul>
+          <%end%>
         </div>
         <div class="humberger__menu__widget">
             <div class="header__top__right__auth">
@@ -105,9 +107,11 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="header__cart">
+                      <% if user_signed_in? %>
                         <ul>
                             <li><a href="#"><i class="fa fa-shopping-bag"></i> <span><%=current_user.carts.count%></span></a></li>
                         </ul>
+                      <%end%>
                     </div>
                 </div>
             </div>
