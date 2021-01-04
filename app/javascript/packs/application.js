@@ -31,4 +31,5 @@ require('./jquery.nice-select')
 require('./jquery-ui.min')
 require('./jquery.slicknav')
 require('./main')
-
+require("chartkick")
+require("chart.js")

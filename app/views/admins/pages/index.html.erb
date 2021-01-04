@@ -6,7 +6,8 @@
 	<title>Document</title>
 </head>
 <body>
-	<h1>ini admins pages</h1>
+	<h1>Dashboard</h1>
+	<%= pie_chart Transaction.joins(:order_status).group("order_statuses.name").count %>
 </p>
 </body>
 </html>
