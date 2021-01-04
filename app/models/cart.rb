@@ -2,10 +2,19 @@
 #
 # Table name: carts
 #
-#  id         :bigint           not null, primary key
-#  price      :float
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id             :bigint           not null, primary key
+#  price          :float
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  transaction_id :bigint           not null
+#
+# Indexes
+#
+#  index_carts_on_transaction_id  (transaction_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (transaction_id => transactions.id)
 #
 class Cart < ApplicationRecord
 	has_many :cart_products
