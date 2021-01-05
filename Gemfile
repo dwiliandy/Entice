@@ -60,4 +60,5 @@ gem 'carrierwave'
 
 #front end gem
 gem 'simple_form'
-gem "chartkick"
+gem 'chartkick'
+gem 'groupdate'
