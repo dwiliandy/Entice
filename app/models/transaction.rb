@@ -54,6 +54,19 @@ class Transaction < ApplicationRecord
 #     	transitions from: :finished, to: :reviewed
 #     end
 #   end
+
+STATUS_OPTIONS = [
+    ["Active", :active],
+    ["Processed", :processed],
+    ["Delivery", :delivery],
+    ["Delivered", :delivered],
+    ["Finished", :finished].
+    ["Cancelled", :cancelled]
+  ]
+
+  scope :status_active, -> { where(status: "active") }
+  scope :status_ongoing, -> { where(status: ["processed", "delivery", "delivered"]) }
+  scope :status_completed, -> { where(status: ["finished", "cancelled"]) }
   
   class <<self 
   	def final_price
