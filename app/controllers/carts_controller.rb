@@ -1,4 +1,4 @@
-# class CartsController < ApplicationController
+class CartsController < ApplicationController
 #   before_action :set_cart, only: [:show, :edit, :update, :destroy]
 #   # before action :set_product, only: [:create]
 #   # GET /carts
@@ -75,4 +75,4 @@
 #     def cart_params
 #       params.require(:cart).permit(:price)
 #     end
-# end
+end
