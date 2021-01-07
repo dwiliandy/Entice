@@ -21,8 +21,8 @@
 #  fk_rails_...  (postal_fee_id => postal_fees.id)
 #
 class Transaction < ApplicationRecord
+	include AASM
   belongs_to :postal_fee
-  belongs_to :order_status
   belongs_to :cart, dependent: :destroy
 
 

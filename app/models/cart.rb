@@ -18,8 +18,13 @@
 #
 class Cart < ApplicationRecord
 	has_many :cart_products
+	accepts_nested_attributes_for :cart_products
+
 	has_many :products, :through => :cart_products
-	has_one :trans, foreign_key: "transaction_id", class_name: "Transaction"
+
+	has_one :trans, class_name: "Transaction"
+	accepts_nested_attributes_for :trans
+	
   	belongs_to :user
 
 	class << self
