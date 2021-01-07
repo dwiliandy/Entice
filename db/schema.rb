@@ -63,8 +63,8 @@ ActiveRecord::Schema.define(version: 2021_01_07_114100) do
     t.bigint "postal_fee_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "status"
     t.bigint "cart_id"
+    t.string "status"
     t.index ["cart_id"], name: "index_transactions_on_cart_id"
     t.index ["postal_fee_id"], name: "index_transactions_on_postal_fee_id"
   end
