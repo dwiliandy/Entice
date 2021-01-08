@@ -15,7 +15,7 @@
         <td><%= link_to t.cart.user.name, admins_transaction_path(t)%></td>
         <td><%= t.total_price %></td>
         <td><%= t.cart.cart_products.count.to_i  %></td>
-        <td><%= t.status %></td>
+        <td><%= t.status.capitalize %></td>
         </tr>
     <% end %>
   </tbody>

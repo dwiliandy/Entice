@@ -1,13 +1,20 @@
-<%= form_for [:admins, @product] do |f| %>
-  <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
- 
-  <div>
-    <%= f.label :image %>
-    <%= f.file_field :image %>
-  </div>
- 
-  <%= f.submit %>
-<% end %>
+<div class="container">
+	<div class="row">
+        <div class="col-lg-6 col-md-6">
+			<%= simple_form_for [:admins, @product] do |f| %>			  
+        		
+			    <%= f.input :name %>
+			    <%= f.input :price %>
+			    <%= f.input :description %>
+			    <%= f.input :status, collection: Product.statuses.keys, label_method: lambda{|k| k.to_s.titleize}, prompt: :translate %>
+			    <%= f.input :stock %>
+			    <%= f.input :region_id, collection: Region.all.order(name: :asc), label_method: lambda{|r| r.name.titleize}, prompt: :translate%>
+			    <%= f.input :image, as: :file %>
+				</br>
+				<%= f.button :submit, class: "btn btn-info" %>
+				<%= link_to "Cancel", admins_products_path, class: "btn btn-danger" %>
+
+			<% end %>
+		</div>
+	</div>
+</div>
