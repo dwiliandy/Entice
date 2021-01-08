@@ -21,10 +21,7 @@
 #  fk_rails_...  (postal_fee_id => postal_fees.id)
 #
 class Transaction < ApplicationRecord
-  belongs_to :postal_fee
-  belongs_to :order_status
-  belongs_to :cart, dependent: :destroy
-
+	include AASM
 
 # aasm column: :status do
 #     state :active, initial: true
@@ -54,6 +51,22 @@ class Transaction < ApplicationRecord
 #     	transitions from: :finished, to: :reviewed
 #     end
 #   end
+
+STATUS_OPTIONS = [
+    ["Active", :active],
+    ["Processed", :processed],
+    ["Delivery", :delivery],
+    ["Delivered", :delivered],
+    ["Finished", :finished],
+    ["Cancelled", :cancelled]
+  ]
+
+  scope :status_active, -> { where(status: "active") }
+  scope :status_ongoing, -> { where(status: ["processed", "delivery", "delivered"]) }
+  scope :status_completed, -> { where(status: ["finished", "cancelled"]) }
+
+  belongs_to :postal_fee
+  belongs_to :cart, dependent: :destroy
   
   class <<self 
   	def final_price
