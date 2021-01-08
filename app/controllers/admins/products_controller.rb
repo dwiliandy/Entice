@@ -20,15 +20,10 @@ class Admins::ProductsController < AdminsController
     
     def create
       @product = Product.new(product_params)
-
-      respond_to do |format|
-        if @product.save
-          format.html { redirect_to @product, notice: "Product #{@product.name} was successfully created." }
-          format.json { render :show, status: :created, location: @product }
-        else
-          format.html { render :new }
-          format.json { render json: @product.errors, status: :unprocessable_entity }
-        end
+      if @product.save
+        redirect_to admins_products_path, notice: "Product #{@product.name} was successfully created."
+      else
+        render 'new'
       end
     end
 
