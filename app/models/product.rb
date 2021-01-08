@@ -25,4 +25,9 @@ class Product < ApplicationRecord
     mount_uploader :image, ImageUploader
 
     enum status: {available: 0, out_of_stock: 1}
+
+    STATUS_OPTIONS=[
+    	["Available", 0],
+    	["Out of Stock", 1]
+    ]
 end

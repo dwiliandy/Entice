@@ -16,7 +16,7 @@
         <td><%= link_to product.name, edit_admins_product_path(product)%></td>
         <td><%= product.price %></td>
         <td><%= product.stock %></td>
-        <td><%= product.region.name %></td>
+        <td><%= product.region.name.titleize %></td>
         </tr>
     <% end %>
   </tbody>
