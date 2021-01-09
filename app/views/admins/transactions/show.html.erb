@@ -1,4 +1,5 @@
 <div class="container">
+	<h3>Transaction Detail</h3>
 	<div class="row">
         <div class="col-lg-6 col-md-6">
 			<p>
@@ -7,7 +8,7 @@
 			</p>
 			<p>
 			  <strong>Total Price:</strong>
-			  <%= @transaction.total_price %>
+			  <%= number_to_currency(@transaction.total_price, unit: "Rp", delimiter: ".", separator: ",") %>
 			</p>
 			<p>
 			  <strong>Status:</strong>
@@ -28,7 +29,7 @@
 					  	<% @transaction.cart.products.group_by(&:itself).uniq.each do |tp,v| %>
 					  	<tr>
 					  		<td><%= tp.name %></td>
-					  		<td><%= tp.price %></td>
+					  		<td><%= number_to_currency(tp.price, unit: "Rp", delimiter: ".", separator: ",") %></td>
 					  		<td><%= v.count %></td>
 					  		<td><%= tp.image %></td>
 					  	</tr>

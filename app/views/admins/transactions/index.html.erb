@@ -13,8 +13,8 @@
     <% @transactions.each do |t| %>
       <tr>
         <td><%= link_to t.cart.user.name, admins_transaction_path(t)%></td>
-        <td><%= t.total_price %></td>
-        <td><%= t.cart.cart_products.count.to_i  %></td>
+        <td><%= number_to_currency(t.total_price, unit: "Rp", delimiter: ".", separator: ",") %></td>
+        <td><%= t.cart.cart_products.count  %></td>
         <td><%= t.status.capitalize %></td>
         </tr>
     <% end %>
