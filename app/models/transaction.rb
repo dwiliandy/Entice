@@ -8,16 +8,19 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  cart_id       :bigint
+#  coupon_id     :bigint
 #  postal_fee_id :bigint           not null
 #
 # Indexes
 #
 #  index_transactions_on_cart_id        (cart_id)
+#  index_transactions_on_coupon_id      (coupon_id)
 #  index_transactions_on_postal_fee_id  (postal_fee_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (cart_id => carts.id)
+#  fk_rails_...  (coupon_id => coupons.id)
 #  fk_rails_...  (postal_fee_id => postal_fees.id)
 #
 class Transaction < ApplicationRecord
@@ -67,6 +70,8 @@ STATUS_OPTIONS = [
 
   belongs_to :postal_fee
   belongs_to :cart, dependent: :destroy
+
+  belongs_to :coupon
   
   class <<self 
   	def final_price
