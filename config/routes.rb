@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   resources :transactions
   devise_for :users
 	root to: 'pages#index'
-	resources :products
+  resources :products
+  resources :cart_products
 
 	#ADMIN
 	namespace :admins do
