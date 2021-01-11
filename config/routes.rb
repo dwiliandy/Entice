@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   
-  resources :carts
+  resources :carts do
+  	member do
+  		post 'create_cart_product'
+  	end
+  end
   resources :transactions
   devise_for :users
 	root to: 'pages#index'

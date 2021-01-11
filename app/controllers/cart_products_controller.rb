@@ -1,7 +1,6 @@
 class CartProductsController < ApplicationController
 
   def new
-    byebug
     @cart_product = CartProduct.new
   end
 
@@ -16,6 +15,7 @@ class CartProductsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
 
   # Only allow a list of trusted parameters through.
-
-
+    def cart_product_params
+      params.require(:cart_product).permit(:cart_id, :product_id)
+    end
 end
