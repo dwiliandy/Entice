@@ -14,7 +14,7 @@
 
 <body class="container-body">
   <% unless devise_controller? %>
-    <%= render 'layouts/header' %>
+    <%= render 'shared/header' %>
   <% end %>
   <%= yield %>
   <% unless devise_controller? %>
