@@ -13,9 +13,13 @@
 </head>
 
 <body class="container-body">
-  <%= render 'shared/header' %>
+  <% unless devise_controller? %>
+    <%= render 'layouts/header' %>
+  <% end %>
   <%= yield %>
-  <%= render 'shared/footer' %>
+  <% unless devise_controller? %>
+    <%= render 'shared/footer' %>
+  <% end %>
 
 </body>
 </html>
