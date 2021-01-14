@@ -33,6 +33,16 @@ ActiveRecord::Schema.define(version: 2021_01_11_112758) do
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.string "content"
+    t.bigint "user_id", null: false
+    t.bigint "product_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_comments_on_product_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
   create_table "coupons", force: :cascade do |t|
     t.boolean "disable", default: false
     t.integer "qty"
@@ -100,6 +110,8 @@ ActiveRecord::Schema.define(version: 2021_01_11_112758) do
   add_foreign_key "cart_products", "carts"
   add_foreign_key "cart_products", "products"
   add_foreign_key "carts", "users"
+  add_foreign_key "comments", "products"
+  add_foreign_key "comments", "users"
   add_foreign_key "transactions", "carts"
   add_foreign_key "transactions", "coupons"
   add_foreign_key "transactions", "postal_fees"
