@@ -23,7 +23,7 @@ class Product < ApplicationRecord
     has_many :cart_products, dependent: :nullify
     has_many :carts, :through => :cart_products
 
-    has_many :comments
+    has_many :conversations
     mount_uploader :image, ImageUploader
 
     enum status: {available: 0, out_of_stock: 1}
