@@ -17,8 +17,8 @@
         <td><%= number_to_currency(product.price, unit: "Rp", delimiter: ".", separator: ",") %></td>
         <td><%= product.stock %></td>
         <td><%= product.region.name.titleize %></td>
-        <td><%= image_tag product.image_url %></td>
-        </tr>
+        <td><img src=<%= product.image.thumb %> alt=""></td>
+      </tr>
     <% end %>
   </tbody>
 </table>
