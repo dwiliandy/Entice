@@ -22,4 +22,12 @@
 class CartProduct < ApplicationRecord
   belongs_to :cart
   belongs_to :product
+
+  after_create  :update_price
+  after_update :update_price
+  after_destroy :update_price
+
+  def update_price
+    cart.sum
+  end
 end

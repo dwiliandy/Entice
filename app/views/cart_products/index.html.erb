@@ -97,7 +97,7 @@
                         <ul>
                           <%if @cart_products.present?%>
                             <li>Subtotal <span><%=number_to_currency(@cart_products.first.cart.price, :locale => :id)%></span></li>
-                            <li>Total <span><%=number_to_currency(Cart.last.sum, :locale => :id)%></span></li>
+                            <li>Total <span><%=number_to_currency(@cart_products.first.cart.price, :locale => :id)%></span></li>
                           <%else%>
                              <li>Subtotal <span><%=number_to_currency(0, :locale => :id)%></span></li>
                             <li>Total <span><%=number_to_currency(0, :locale => :id)%></span></li>
