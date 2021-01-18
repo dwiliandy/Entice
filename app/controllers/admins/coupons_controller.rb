@@ -68,6 +68,6 @@ class Admins::CouponsController < AdminsController
 
     # Only allow a list of trusted parameters through.
     def coupon_params
-      params.require(:coupon).permit(:disable, :discount, :qty, :variety)
+      params.require(:coupon).permit(:name, :disable, :discount, :qty, :variety)
     end
 end

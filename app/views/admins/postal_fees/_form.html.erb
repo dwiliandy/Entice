@@ -1,0 +1,15 @@
+<div class="container">
+	<div class="row">
+        <div class="col-lg-6 col-md-6">
+			<%= simple_form_for [:admins, @posfee] do |f| %>			  
+        		
+			    <%= f.input :name %>
+			    <%= f.input :price %>
+				</br>
+				<%= f.button :submit, class: "btn btn-info" %>
+				<%= link_to "Cancel", admins_postal_fees_path, class: "btn btn-danger" %>
+
+			<% end %>
+		</div>
+	</div>
+</div>

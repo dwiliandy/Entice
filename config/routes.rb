@@ -27,6 +27,7 @@ end
 		resources :products
 		resources :transactions
 		resources :coupons
+    resources :postal_fees
 	end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
