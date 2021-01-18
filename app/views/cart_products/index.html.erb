@@ -94,16 +94,20 @@
                 <div class="col-lg-6">
                     <div class="shoping__checkout">
                         <h5>Cart Total</h5>
-                        <ul>
-                          <%if @cart_products.present?%>
-                            <li>Subtotal <span><%=number_to_currency(@cart_products.first.cart.price, :locale => :id)%></span></li>
-                            <li>Total <span><%=number_to_currency(@cart_products.first.cart.price, :locale => :id)%></span></li>
+                        <%if @cart_products.present?%>
+                          <ul>
+                              <li>Subtotal <span><%=number_to_currency(@cart_products.first.cart.price, :locale => :id)%></span></li>
+                              <li>Total <span><%=number_to_currency(@cart_products.first.cart.price, :locale => :id)%></span></li>
+                           </ul> 
+                            <%= form_tag create_transaction_cart_path(@cart_products.first.cart), remote: true do %>              
+                              <button class="primary-btn">PROCEED TO CHECKOUT</button>   
+                            <%end%>
                           <%else%>
-                             <li>Subtotal <span><%=number_to_currency(0, :locale => :id)%></span></li>
-                            <li>Total <span><%=number_to_currency(0, :locale => :id)%></span></li>
+                            <ul>
+                              <li>Subtotal <span><%=number_to_currency(0, :locale => :id)%></span></li>
+                              <li>Total <span><%=number_to_currency(0, :locale => :id)%></span></li>
+                            </ul>
                           <%end%>
-                        </ul>
-                        <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
                     </div>
                 </div>
             </div>

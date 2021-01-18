@@ -8,12 +8,12 @@ class CartProductsController < ApplicationController
     @cart_product = CartProduct.new
   end
 
-  def create
-    @cart_product = CartProduct.new(cart_product_params)
-    if @cart_product.save
-      redirect_to carts_path, notice: "successfully created."
-    end
-  end
+  # def create
+  #   @cart_product = CartProduct.new(cart_product_params)
+  #   if @cart_product.save
+  #     redirect_to carts_path, notice: "successfully created."
+  #   end
+  # end
 
   def destroy
     @cart_product.destroy
@@ -22,6 +22,17 @@ class CartProductsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  # def check
+	# 	@code = Coupon.where(disable: false, variety: params[:code])
+	# 	if @code.present?
+	# 		flash[:notice] = "Code Has Been Submitted"
+	# 	else
+	# 		flash[:notice] = "Code not Valid"
+	# 	end
+  #   redirect_to cart_products_path
+    
+	# end
   
   private
   # Use callbacks to share common setup or constraints between actions.

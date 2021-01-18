@@ -1,29 +1,16 @@
 class CartsController < ApplicationController
-before_action :set_product, only: [:create_cart_product]
+before_action :set_cart, only: [:create_transaction]
 
-  def index
-    @carts = current_user.carts.all
-  end
-
-
-  def create_cart_product
-  	@cart = Cart.new(cart_params)
-  	if @cart.save
-  		@cart_product = CartProduct.create(cart_id: @cart.id, product_id: @product.id)
-  	end
+  def create_transaction
+    Transaction.create(status:'active', cart: @cart, postal_fee:PostalFee.first)
+    @cart.update(active:false)
+    flash[:notice] = 'Berhasil menambahkan product'
+      redirect_to root_path
   end
 
   private
 	  def set_cart
 	  	@cart = Cart.find(params[:id])
-	  end
-
-	  def set_products
-	  	@product = Product.find(params[:id])
-	  end
-
-	  def cart_product_params
-	    params.require(:cart_product).permit(:cart_id, :product_id)
 	  end
 
 	  def cart_params

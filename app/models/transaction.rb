@@ -71,7 +71,7 @@ STATUS_OPTIONS = [
   belongs_to :postal_fee
   belongs_to :cart, dependent: :destroy
 
-  belongs_to :coupon
+  # belongs_to :coupon
   
   class <<self 
   	def final_price
