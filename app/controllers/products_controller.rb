@@ -6,7 +6,11 @@ class ProductsController < ApplicationController
   end
 
   def add_cart_product
+    if params[:product].present?
       @cart.cart_products.create(product:@product, quantity:params[:product][:qty])
+    else
+      @cart.cart_products.create(product:@product, quantity:1)
+    end  
       flash[:notice] = 'Berhasil dimasukkan dalam cart'
       redirect_to cart_products_path
   end
@@ -20,7 +24,7 @@ class ProductsController < ApplicationController
       if current_user.carts.where(active:true).last.present?
         @cart = current_user.carts.where(active:true).last
       else
-        @cart = current_user.carts.create(active:true, user:current_user)
+         @cart = current_user.carts.create(active:true, user:current_user)
       end
     end
 

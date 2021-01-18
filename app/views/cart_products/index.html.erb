@@ -53,10 +53,12 @@
                                       </div>
                                   </td>
                                   <td class="shoping__cart__total">
-                                      110.000
+                                      <%=product.quantity * product.product.price%>
                                   </td>
                                   <td class="shoping__cart__item__close">
-                                      <span class="icon_close"></span>
+                                    <%= link_to cart_product_path(product), method: :delete, data: {confirm: "Are you sure?"} do%>
+                                    <i class="fa fa-times"></i> 
+                                  <%end%>
                                   </td>
                               </tr>
                               <%end%>

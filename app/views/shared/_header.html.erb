@@ -87,7 +87,14 @@
                     <div class="header__cart">
                       <% if user_signed_in? %>
                         <ul>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span><%=current_user.carts.count%></span></a></li>
+                            <li><a href="<%=cart_products_path%>"><i class="fa fa-shopping-bag"></i> 
+                            <span>
+                              <%if current_user.carts.where(active:true).exists?%>
+                                <%=current_user.carts.where(active:true).last.cart_products.count%>
+                              <%else%>
+                                0
+                              <%end%>
+                            </span></a></li>
                         </ul>
                       <%end%>
                     </div>

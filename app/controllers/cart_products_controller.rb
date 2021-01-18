@@ -1,6 +1,6 @@
 class CartProductsController < ApplicationController
-  before_action :set_cart_product
-
+  before_action :set_cart_products
+  before_action :set_cart_product, only: [:destroy, :edit, :update]
   def index
   end
 
@@ -14,16 +14,28 @@ class CartProductsController < ApplicationController
       redirect_to carts_path, notice: "successfully created."
     end
   end
+
+  def destroy
+    @cart_product.destroy
+    respond_to do |format|
+      format.html { redirect_to cart_products_path, notice: "Product was successfully destroyed." }
+      format.json { head :no_content }
+    end
+  end
   
   private
   # Use callbacks to share common setup or constraints between actions.
 
   # Only allow a list of trusted parameters through.
+    def set_cart_product
+      @cart_product = CartProduct.find(params[:id])
+    end
+  
     def cart_product_params
-      params.require(:cart_product).permit(:cart_id, :product_id)
+      params.require(:cart_product).permit(:cart_id, :product_id, :quantity)
     end
 
-    def set_cart_product
+    def set_cart_products
       if current_user.carts.where(active:true).last.present?
         @cart_products = current_user.carts.where(active:true).last.cart_products
       else
