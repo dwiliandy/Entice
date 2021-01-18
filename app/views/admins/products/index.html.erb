@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<div class="alert alert-info"><%= notice %></div>
 <h1>Product</h1>
 <table id="dtBasicExample" class="table table-striped table-bordered" cellspacing="0" width="100%">
   <thead>
@@ -17,6 +17,7 @@
         <td><%= product.price %></td>
         <td><%= product.stock %></td>
         <td><%= product.region.name.titleize %></td>
+        <td><%= image_tag product.image_url %></td>
         </tr>
     <% end %>
   </tbody>
