@@ -29,5 +29,4 @@ before_action :set_product, only: [:create_cart_product]
 	  def cart_params
 	  	params.require(:cart).permit(:user_id, :price)
 	  end
-	end
 end

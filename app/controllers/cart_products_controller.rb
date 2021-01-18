@@ -1,4 +1,8 @@
 class CartProductsController < ApplicationController
+  before_action :set_cart_product
+
+  def index
+  end
 
   def new
     @cart_product = CartProduct.new
@@ -17,5 +21,13 @@ class CartProductsController < ApplicationController
   # Only allow a list of trusted parameters through.
     def cart_product_params
       params.require(:cart_product).permit(:cart_id, :product_id)
+    end
+
+    def set_cart_product
+      if current_user.carts.where(active:true).last.present?
+        @cart_products = current_user.carts.where(active:true).last.cart_products
+      else
+        @cart_products = []
+      end
     end
 end

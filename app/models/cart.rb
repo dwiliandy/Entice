@@ -3,6 +3,7 @@
 # Table name: carts
 #
 #  id         :bigint           not null, primary key
+#  active     :boolean
 #  price      :float
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

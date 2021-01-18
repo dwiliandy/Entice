@@ -25,14 +25,17 @@
                         <h3><%=@product.name.capitalize%></h3>
                         <div class="product__details__price"><%=number_to_currency(@product.price, :locale => :id)%></div>
                         <h4><%=@product.region.name%></h4>
-                        <div class="product__details__quantity">
-                            <div class="quantity">
-                                <div class="pro-qty">
-                                    <input type="text" value="1">
-                                </div>
-                            </div>
-                        </div>                    
-                        <a href="<%=new_cart_product_path%>" class="primary-btn">ADD TO CART</a>
+
+                        <%= form_tag add_cart_product_product_path, remote: true do %>
+                          <div class="product__details__quantity">
+                              <div class="quantity">
+                                  <div class="pro-qty">
+                                      <input type="text" value="1" id="product_qty" name="product[qty]">
+                                  </div>
+                              </div>
+                          </div>                 
+                          <button class="primary-btn">ADD TO CART</button>   
+                        <%end%>
                         <ul>
                             <li><b>Availability</b> <span>In Stock</span></li>
                             <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>

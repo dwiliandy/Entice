@@ -1,15 +1,16 @@
 Rails.application.routes.draw do
   
-  resources :carts do
-  	member do
-  		post 'create_cart_product'
-  	end
-  end
+  resources :carts
   resources :transactions
   devise_for :users
 	root to: 'pages#index'
-  resources :products
+  resources :products do
+    member do
+        post 'add_cart_product'
+      end
+    end
   resources :cart_products
+  post 'add_product_cart', to: 'products#check'
 
 	#ADMIN
 	namespace :admins do
