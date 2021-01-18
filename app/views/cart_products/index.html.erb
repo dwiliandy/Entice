@@ -39,11 +39,15 @@
                               <%@cart_products.each do |product|%>
                               <tr>
                                 <td class="shoping__cart__item">
+                                <%if product.product.image.present?%>
+                                  <img src=<%= product.product.image.thumb %> alt="">
+                                <%else%>
                                   <img src=<%= asset_url('feature-4.jpg') %> alt="">
-                                      <h5><%=product.product.name%></h5>
+                                <%end%>
+                                  <h5><%=product.product.name.capitalize%></h5>
                                 </td>
                                 <td class="shoping__cart__price">
-                                    <%=product.product.price%>
+                                    <%=number_to_currency(product.product.price, :locale => :id)%>
                                 </td>
                                   <td class="shoping__cart__quantity">
                                       <div class="quantity">
@@ -53,7 +57,7 @@
                                       </div>
                                   </td>
                                   <td class="shoping__cart__total">
-                                      <%=product.quantity * product.product.price%>
+                                      <%=number_to_currency(product.quantity * product.product.price , :locale => :id)%>
                                   </td>
                                   <td class="shoping__cart__item__close">
                                     <%= link_to cart_product_path(product), method: :delete, data: {confirm: "Are you sure?"} do%>
@@ -91,8 +95,13 @@
                     <div class="shoping__checkout">
                         <h5>Cart Total</h5>
                         <ul>
-                            <li>Subtotal <span>$454.98</span></li>
-                            <li>Total <span>$454.98</span></li>
+                          <%if @cart_products.present?%>
+                            <li>Subtotal <span><%=number_to_currency(@cart_products.first.cart.price, :locale => :id)%></span></li>
+                            <li>Total <span><%=number_to_currency(Cart.last.sum, :locale => :id)%></span></li>
+                          <%else%>
+                             <li>Subtotal <span><%=number_to_currency(0, :locale => :id)%></span></li>
+                            <li>Total <span><%=number_to_currency(0, :locale => :id)%></span></li>
+                          <%end%>
                         </ul>
                         <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
                     </div>

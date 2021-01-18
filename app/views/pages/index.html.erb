@@ -6,8 +6,12 @@
         <%@products.each do |product|%>
           <div class="col-lg-3 col-md-4 col-sm-6">
             <div class="featured__item">
-              <div class="featured__item__pic set-bg" data-setbg="<%= asset_url('feature-4.jpg') %>">
-                <ul class="featured__item__pic__hover">
+              <%if product.image.present?%>
+                <div class="featured__item__pic set-bg" data-setbg="<%= product.image.thumb %>">
+              <%else%>
+                <div class="featured__item__pic set-bg" data-setbg="<%= asset_url('feature-4.jpg') %>">
+              <%end%>
+                              <ul class="featured__item__pic__hover">
                   <li><%= link_to add_cart_product_product_path(product), method: :post do%>
                     <i class="fa fa-shopping-cart"></i> 
                   <%end%>

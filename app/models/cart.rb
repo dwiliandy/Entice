@@ -28,9 +28,8 @@ class Cart < ApplicationRecord
 	
   	belongs_to :user
 
-	class << self
-		def sum_price
-			price = products.map {|p| p.price}.sum
-		end
-	end
+  
+  def sum
+    cart_products.map {|p| p.product.price * p.quantity}.sum
+  end
 end

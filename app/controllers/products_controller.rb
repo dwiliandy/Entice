@@ -19,6 +19,7 @@ class ProductsController < ApplicationController
         @cart.cart_products.create(product:@product, quantity:1)
       end
     end
+      @cart.update(price: @cart.sum)
       flash[:notice] = 'Berhasil dimasukkan dalam cart'
       redirect_to cart_products_path
   end
