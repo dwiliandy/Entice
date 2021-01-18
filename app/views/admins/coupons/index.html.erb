@@ -7,16 +7,16 @@
       <th class="th-sm">Discount</th>
       <th class="th-sm">Quantity</th>
       <th class="th-sm">Status</th>
-      <th class="th-sm"><%= link_to 'Add New Product', new_admins_product_path, class: "btn btn-sm btn-success", style: "color:white"%></th>
+      <th class="th-sm"><%= link_to 'Add New Coupon', new_admins_coupon_path, class: "btn btn-sm btn-success", style: "color:white"%></th>
     </tr>
   </thead>
   <tbody>
-    <% @coupon.each do |coupon| %>
+    <% @coupons.each do |coupon| %>
       <tr>
         <td><%= link_to coupon.name, edit_admins_coupon_path(coupon)%></td>
         <td><%= number_to_currency(coupon.discount, unit: "Rp", delimiter: ".", separator: ",") %></td>
         <td><%= coupon.qty %></td>
-        <td><%= coupon.disabled %></td>
+        <td><%= coupon.status %></td>
         </tr>
     <% end %>
   </tbody>

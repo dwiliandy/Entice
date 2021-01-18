@@ -1,10 +1,14 @@
 <div class="container">
 	<div class="row">
         <div class="col-lg-6 col-md-6">
-			<%= simple_form_for [:admins, @posfee] do |f| %>			  
+			<%= simple_form_for [:admins, @coupon] do |f| %>			  
         		
 			    <%= f.input :name %>
-			    <%= f.input :price %>
+			    <%= f.input :discount %>
+			    <%= f.input :qty, label: 'Quantity' %>
+				<%= f.input :variety, collection: Coupon.varieties.keys, label_method: lambda{|k| k.to_s.titleize}, prompt: :translate %>
+			</br>
+				<%= f.input :disable %>
 				</br>
 				<%= f.button :submit, class: "btn btn-info" %>
 				<%= link_to "Cancel", admins_postal_fees_path, class: "btn btn-danger" %>

@@ -25,15 +25,11 @@ class Admins::PostalFeesController < AdminsController
   # POST /posfees.json
   def create
     @posfee = PostalFee.new(posfee_params)
-
-    respond_to do |format|
       if @posfee.save
-      	redirect_to admins_postal_fees_path, notice: 'posfee was successfully created.'
+      	redirect_to admins_postal_fees_path, notice: 'Postal Fee was successfully created.'
       else
-        format.html { render :new }
-        format.json { render json: @posfee.errors, status: :unprocessable_entity }
+        render 'new'
       end
-    end
   end
 
   # PATCH/PUT /posfees/1
@@ -41,7 +37,7 @@ class Admins::PostalFeesController < AdminsController
   def update
     respond_to do |format|
       if @posfee.update(posfee_params)
-        format.html { redirect_to @posfee, notice: 'posfee was successfully updated.' }
+        format.html { redirect_to admins_postal_fees_path, notice: 'Postal Fee was successfully updated.' }
         format.json { render :show, status: :ok, location: @posfee }
       else
         format.html { render :edit }
@@ -55,7 +51,7 @@ class Admins::PostalFeesController < AdminsController
   def destroy
     @posfee.destroy
     respond_to do |format|
-      format.html { redirect_to postal_fee_url, notice: 'posfee was successfully destroyed.' }
+      format.html { redirect_to admins_postal_fees_path, notice: 'Postal Fee was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -31,7 +31,7 @@
 					  		<td><%= tp.name %></td>
 					  		<td><%= number_to_currency(tp.price, unit: "Rp", delimiter: ".", separator: ",") %></td>
 					  		<td><%= v.count %></td>
-					  		<td><%= tp.image %></td>
+					  		<td><%= image_tag tp.image_url %></td>
 					  	</tr>
 					  	<% end %>
 					</tbody>

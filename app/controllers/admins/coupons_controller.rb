@@ -26,14 +26,11 @@ class Admins::CouponsController < AdminsController
   def create
     @coupon = Coupon.new(coupon_params)
 
-    respond_to do |format|
       if @coupon.save
       	redirect_to admins_coupons_path, notice: 'Coupon was successfully created.'
       else
-        format.html { render :new }
-        format.json { render json: @coupon.errors, status: :unprocessable_entity }
+        render 'new'
       end
-    end
   end
 
   # PATCH/PUT /coupons/1
@@ -41,7 +38,7 @@ class Admins::CouponsController < AdminsController
   def update
     respond_to do |format|
       if @coupon.update(coupon_params)
-        format.html { redirect_to @coupon, notice: 'Coupon was successfully updated.' }
+        format.html { redirect_to admins_coupons_path, notice: 'Coupon was successfully updated.' }
         format.json { render :show, status: :ok, location: @coupon }
       else
         format.html { render :edit }
@@ -55,7 +52,7 @@ class Admins::CouponsController < AdminsController
   def destroy
     @coupon.destroy
     respond_to do |format|
-      format.html { redirect_to coupons_url, notice: 'Coupon was successfully destroyed.' }
+      format.html { redirect_to admins_coupons_path, notice: 'Coupon was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

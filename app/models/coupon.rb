@@ -14,4 +14,14 @@
 class Coupon < ApplicationRecord
 
 	has_many :transactions
+
+	enum variety: {postal: 0, price: 1}
+
+		def status
+			if disable == true
+				'Not Available'
+			else
+				'Available'
+			end
+		end
 end
