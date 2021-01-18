@@ -1,21 +1,37 @@
 
-  <div class ="card">
-    <h5 class="card-header info-color white-text text-center py-3">Sign Up</h5>
-    <div class="card-body px-lg-5 pt-0">
-      <div class="text-center">
+  <section class="featured spad">
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+            <h5 class="card-title text-center">Sign Up</h5>
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
+        <div class="form-group">
           <%= f.input :name, required: true, autofocus: true, label: false, placeholder: 'Your Name'%>
+        </div>
+
+        <div class="form-group">
           <%= f.input :email, required: true, label: false, placeholder: 'Your Email' %>
+        </div>
+        <div class="form-group">
           <%= f.input :password, required: true, label: false, placeholder: 'Password', input_html:{maxlength: 50, size:20}%>
           <i>(Minimum 6 Characters)</i>
+        </div>
+        <div class="form-group">
           <%= f.input :password_confirmation, required: true, label: false, placeholder: 'Password Confirmation'%>
+        </div>
           <%= f.input :phone_number, required: true, label: false, placeholder: 'Your Phone Number' %>
+        <div class="form-group">
           <%= f.input :address, as: :text, required: true, label: false, placeholder: 'Your Address', input_html: {size: "24x2"} %>
+        </div>
           <%= f.button :submit, "Sign Up", class: 'btn btn-sm btn-info' %>
+     <%= render "devise/shared/links" %>
       <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    </div>
-  <%= render "devise/shared/links" %>
-  </div>
-
+</section>
