@@ -6,11 +6,19 @@ class ProductsController < ApplicationController
   end
 
   def add_cart_product
-    if params[:product].present?
-      @cart.cart_products.create(product:@product, quantity:params[:product][:qty])
+    if @cart.products.ids.include? params[:id].to_i
+      if params[:product].present?
+        @cart.cart_products.find_by(product_id: params[:id]).update(product:@product, quantity:params[:product][:qty])
+      else
+        @cart.cart_products.find_by(product_id: params[:id]).update(product:@product, quantity:1)
+      end
     else
-      @cart.cart_products.create(product:@product, quantity:1)
-    end  
+      if params[:product].present?
+        @cart.cart_products.create(product:@product, quantity:params[:product][:qty])
+      else
+        @cart.cart_products.create(product:@product, quantity:1)
+      end
+    end
       flash[:notice] = 'Berhasil dimasukkan dalam cart'
       redirect_to cart_products_path
   end
