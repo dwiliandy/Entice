@@ -20,7 +20,7 @@ end
     end
   resources :cart_products 
   post 'cekstatus', to: 'cart_products#check'
-
+  resource :conversations
 	#ADMIN
 	namespace :admins do
 		get 'pages/index' => 'pages#index'
