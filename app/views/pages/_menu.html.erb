@@ -10,7 +10,7 @@
           <div class="hero__search__form">
            <%= search_form_for @q, url: root_url do |f| %> 
            <div class="hero__search__categories">
-            <%= f.select :region_id_eq, options_from_collection_for_select(Region.all, "id", "name"), :include_blank => true %>
+            <%= f.select :region_id_eq, options_from_collection_for_select(Region.all, "id", "name"), prompt: 'All Region' %>
             <span class="arrow_carrot-down"></span>
            </div>
               <%= f.search_field :name_cont, class: 'form-control' %>
