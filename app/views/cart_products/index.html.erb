@@ -138,7 +138,7 @@
             $('.product-qty').on('change', function(){
                 var parent = $(this).parentsUntil(".product")[3];
                 var id = parent.id;
-                var qty = $(parent).find('input').val();
+                var qty = $(this).val();
                 updateQuantity(id, qty);
             });
 
