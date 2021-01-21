@@ -30,4 +30,27 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            first_name:
+              blank: "Your First Name is Required"
+            last_name:
+              blank: "Your Last Name is Required"
+            email:
+              blank: "Please enter an email address"
+              taken: "That email is already taken"
+              invalid: "Please enter a valid email address"
+            password:
+              blank: "Please Specify a Password"
+              too_short: "Password must be at least %{count} characters long"
+            country:
+              blank: "Please Select Your Country of Residence"
+            gender:
+              blank: "Please Select Your Gender"
+            goal:
+              blank: "Please describe a goal you would like to achieve"
+              too_long: "Your goal must be shorter than %{count} characters long"
+              too_short: "Your goal must be longer than %{count} characters long"

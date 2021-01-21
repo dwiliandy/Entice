@@ -59,6 +59,7 @@ gem 'devise'
 gem 'annotate'
 gem 'carrierwave'
 gem 'aasm'
+gem 'ransack'
 
 #front end gem
 gem 'simple_form'
