@@ -33,3 +33,7 @@ require('./jquery.slicknav')
 require('./main')
 require("chartkick")
 require("chart.js")
+
+var jQuery = require('jquery')
+global.$ = global.jQuery = jQuery;
+window.$ = window.jQuery = jQuery;

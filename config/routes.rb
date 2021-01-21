@@ -1,27 +1,31 @@
 Rails.application.routes.draw do
-  
+
   root to: 'pages#index'
   get 'about', to: 'pages#about'
-  
-  resources :coupons do 
-    collection do 
+
+  resources :coupons do
+    collection do
       get 'checking/:code', action: :checking
     end
   end
   resources :carts do
   member do
     post 'create_transaction'
+    post 'change_quantity'
   end
-end 
+end
   resources :transactions
   devise_for :users
   resources :products do
     member do
         post 'add_cart_product'
-        post 'create_comment'
       end
     end
-  resources :cart_products 
+  resources :cart_products do
+    member do
+      post :change_quantity
+    end
+  end
   post 'cekstatus', to: 'cart_products#check'
   resource :conversations
 	#ADMIN

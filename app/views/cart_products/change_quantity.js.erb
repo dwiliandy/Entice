@@ -1,0 +1,3 @@
+$('#product_total_<%= @cart_product.id %>').html("<%= number_to_currency(@cart_product.quantity * @cart_product.product.price , :locale => :id) %>");
+$('#cart-subtotal').text("<%=number_to_currency(@cart_product.cart.price, :locale => :id) %>");
+$('#cart-total').text("<%=number_to_currency(@cart_product.cart.price, :locale => :id) %>");
