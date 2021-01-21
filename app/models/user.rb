@@ -23,9 +23,17 @@
 class User < ApplicationRecord
   has_many :carts
   has_many :conversations
+
+  has_one :wallet
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   enum role: {customer: 0, admin: 1}
+
+  after_create :made_wallet
+
+  def made_wallet
+  	Wallet.create(nominal: 0, user: self)
+  end
 end

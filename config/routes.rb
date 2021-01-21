@@ -22,7 +22,7 @@ end
     end
   resources :cart_products 
   post 'cekstatus', to: 'cart_products#check'
-
+  resource :conversations
 	#ADMIN
 	namespace :admins do
 		get 'pages/index' => 'pages#index'
@@ -30,6 +30,7 @@ end
 		resources :transactions
 		resources :coupons
     resources :postal_fees
+    resources :wallets
 	end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
