@@ -25,9 +25,9 @@ class Cart < ApplicationRecord
 
 	has_one :trans, class_name: "Transaction"
 	accepts_nested_attributes_for :trans
-	
+
   belongs_to :user
-  
+
   def sum
     price = cart_products.map {|p| p.product.price * p.quantity}.sum
     self.update(price: price)

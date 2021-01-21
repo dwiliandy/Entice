@@ -20,6 +20,6 @@
   <% unless devise_controller? %>
     <%= render 'shared/footer' %>
   <% end %>
-
+  <%= yield(:script) %>
 </body>
 </html>

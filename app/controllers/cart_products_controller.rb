@@ -1,6 +1,6 @@
 class CartProductsController < ApplicationController
   before_action :set_cart_products
-  before_action :set_cart_product, only: [:destroy, :edit, :update]
+  before_action :set_cart_product, only: [:destroy, :edit, :update, :change_quantity]
   def index
   end
 
@@ -23,6 +23,11 @@ class CartProductsController < ApplicationController
     end
   end
 
+  def change_quantity
+    qty = params[:qty]
+    @cart_product.update(quantity: qty)
+  end
+
   # def check
 	# 	@code = Coupon.where(disable: false, variety: params[:code])
 	# 	if @code.present?
@@ -31,9 +36,9 @@ class CartProductsController < ApplicationController
 	# 		flash[:notice] = "Code not Valid"
 	# 	end
   #   redirect_to cart_products_path
-    
+
 	# end
-  
+
   private
   # Use callbacks to share common setup or constraints between actions.
 
@@ -41,7 +46,7 @@ class CartProductsController < ApplicationController
     def set_cart_product
       @cart_product = CartProduct.find(params[:id])
     end
-  
+
     def cart_product_params
       params.require(:cart_product).permit(:cart_id, :product_id, :quantity)
     end

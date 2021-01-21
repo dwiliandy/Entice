@@ -37,7 +37,7 @@
                             </thead>
                             <tbody>
                               <%@cart_products.each do |product|%>
-                              <tr>
+                              <tr id="<%= product.id %>" data-price="<%= product.product.price %>" class=".product">
                                 <td class="shoping__cart__item">
                                 <%if product.product.image.present?%>
                                   <img src=<%= product.product.image.thumb %> alt="">
@@ -52,16 +52,16 @@
                                   <td class="shoping__cart__quantity">
                                       <div class="quantity">
                                           <div class="pro-qty">
-                                              <input type="text" value="<%=product.quantity%>">
+                                              <input type="text" class="product-qty" value="<%=product.quantity%>">
                                           </div>
                                       </div>
                                   </td>
-                                  <td class="shoping__cart__total">
+                                  <td class="shoping__cart__total" id="product_total_<%= product.id %>">
                                       <%=number_to_currency(product.quantity * product.product.price , :locale => :id)%>
                                   </td>
                                   <td class="shoping__cart__item__close">
                                     <%= link_to cart_product_path(product), method: :delete, data: {confirm: "Are you sure?"} do%>
-                                    <i class="fa fa-times"></i> 
+                                    <i class="fa fa-times"></i>
                                   <%end%>
                                   </td>
                               </tr>
@@ -96,11 +96,11 @@
                         <h5>Cart Total</h5>
                         <%if @cart_products.present?%>
                           <ul>
-                              <li>Subtotal <span><%=number_to_currency(@cart_products.first.cart.price, :locale => :id)%></span></li>
-                              <li>Total <span><%=number_to_currency(@cart_products.first.cart.price, :locale => :id)%></span></li>
-                           </ul> 
-                            <%= form_tag create_transaction_cart_path(@cart_products.first.cart), remote: true do %>              
-                              <button class="primary-btn">PROCEED TO CHECKOUT</button>   
+                              <li>Subtotal <span id="cart-subtotal"><%=number_to_currency(@cart_products.first.cart.price, :locale => :id)%></span></li>
+                              <li>Total <span id="cart-total"><%=number_to_currency(@cart_products.first.cart.price, :locale => :id)%></span></li>
+                           </ul>
+                            <%= form_tag create_transaction_cart_path(@cart_products.first.cart), remote: true do %>
+                              <button class="primary-btn">PROCEED TO CHECKOUT</button>
                             <%end%>
                           <%else%>
                             <ul>
@@ -113,5 +113,47 @@
             </div>
         </div>
     </section>
-  </body>
-</html>
+
+<%= content_for :script do %>
+    <script>
+        $(document).on('turbolinks:load', function(){
+            $('.qtybtn').on('click', function(){
+                var parent = $(this).parentsUntil(".product")[3];
+                var $button = $(this);
+                var id = parent.id;
+                var oldValue = $button.parent().find('input').val();
+                if ($button.hasClass('inc')) {
+                    var newVal = parseFloat(oldValue) + 1;
+                } else {
+                    // Don't allow decrementing below zero
+                    if (oldValue > 0) {
+                        var newVal = parseFloat(oldValue) - 1;
+                    } else {
+                        newVal = 0;
+                    }
+                }
+                updateQuantity(id, newVal);
+            });
+
+            $('.product-qty').on('change', function(){
+                var parent = $(this).parentsUntil(".product")[3];
+                var id = parent.id;
+                var qty = $(this).val();
+                updateQuantity(id, qty);
+            });
+
+            function updateQuantity(id, qty){
+                var path = "<%= change_quantity_cart_product_path(":id") %>";
+                var token = $( 'meta[name="csrf-token"]' ).attr( 'content' );
+                $.ajax({
+                    method: "POST",
+                    url: path.replace(":id", id),
+                    data: {qty: qty},
+                    beforeSend: function ( xhr ) {
+                        xhr.setRequestHeader( 'X-CSRF-Token', token );
+                    }
+                });
+            }
+        });
+    </script>
+<% end %>
