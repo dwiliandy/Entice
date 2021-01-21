@@ -18,6 +18,7 @@ end
   resources :products do
     member do
         post 'add_cart_product'
+        post 'create_comment'
       end
     end
   resources :cart_products 

@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
   before_action :set_cart, only: [:add_cart_product]
 
   def show
+    @conversations = Conversation.where(product: @product).order(created_at: :desc)
   end
 
   def add_cart_product
@@ -21,6 +22,15 @@ class ProductsController < ApplicationController
     end
       flash[:notice] = 'Berhasil dimasukkan dalam cart'
       redirect_to cart_products_path
+  end
+
+  def create_comment
+    if params[:content][:message].present?
+      Conversation.create(content: params[:content][:message], user: current_user, product: @product)
+      redirect_to product_path(@product), notice: "Comment has been posted"
+    else
+      redirect_to product_path(@product)
+    end
   end
 
   private

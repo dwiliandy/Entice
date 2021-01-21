@@ -4,7 +4,7 @@
     <%= search_form_for @q, url: root_url do |f| %> 
     <div class="row">
     <div class="col-md-1">
-      <%= f.select :region_id_eq, options_from_collection_for_select(Region.all, "id", "name"), prompt: 'All Region' %>
+      <%= f.select :region_id_eq, options_from_collection_for_select(Region.all, "id", "name"), prompt: 'All Region'%>
     </div>
       <div class="col-md-11">
         <div class="hero__search">
