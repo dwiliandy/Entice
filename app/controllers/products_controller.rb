@@ -1,3 +1,5 @@
+ActionView::Helpers::DateHelper
+
 class ProductsController < ApplicationController
   before_action :set_product
   before_action :set_cart, only: [:add_cart_product]
@@ -25,6 +27,7 @@ class ProductsController < ApplicationController
   end
 
   def create_comment
+    
     if params[:content][:message].present?
       Conversation.create(content: params[:content][:message], user: current_user, product: @product)
       redirect_to product_path(@product), notice: "Comment has been posted"
