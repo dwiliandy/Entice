@@ -13,7 +13,12 @@ Rails.application.routes.draw do
     post 'create_transaction'
   end
 end 
-  resources :transactions
+  resources :transactions do
+    member do
+      patch 'transition'
+      patch 'cancel'
+    end
+  end
   devise_for :users
   resources :products do
     member do
