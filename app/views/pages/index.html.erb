@@ -11,16 +11,16 @@
               <%else%>
                 <div class="featured__item__pic set-bg" data-setbg="<%= asset_url('feature-4.jpg') %>">
               <%end%>
-                              <ul class="featured__item__pic__hover">
+                <ul class="featured__item__pic__hover">
                   <li><%= link_to add_cart_product_product_path(product), method: :post do%>
                     <i class="fa fa-shopping-cart"></i> 
                   <%end%>
                   </li>
-
                 </ul>
               </div>
               <div class="featured__item__text">
-                <h6><%= link_to product.name, product_path(product.id)%></h6>
+                <h6><%= link_to product.name.capitalize, product_path(product.id)%></h6>
+                <h6><%=product.region.name%></h6>
                 <h5><%=product.price%></h5>
               </div>
             </div>
