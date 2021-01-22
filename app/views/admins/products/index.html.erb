@@ -14,7 +14,7 @@
     <% @products.each do |product| %>
       <tr>
         <td><%= link_to product.name, edit_admins_product_path(product)%></td>
-        <td><%= number_to_currency(product.price, unit: "Rp", delimiter: ".", separator: ",") %></td>
+        <td><%= number_to_currency(product.price, :locale => :id) %></td>
         <td><%= product.stock %></td>
         <td><%= product.region.name.titleize %></td>
         <td><img src=<%= product.image.thumb %> alt=""></td>

@@ -29,14 +29,13 @@ class CartProductsController < ApplicationController
   end
 
   # def check
-	# 	@code = Coupon.where(disable: false, variety: params[:code])
+	# 	@code = Coupon.where(disable: false, name: params[:code])
 	# 	if @code.present?
 	# 		flash[:notice] = "Code Has Been Submitted"
 	# 	else
 	# 		flash[:notice] = "Code not Valid"
 	# 	end
   #   redirect_to cart_products_path
-
 	# end
 
   private
