@@ -2,17 +2,18 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user
 
+  def show
+  end
+  
   def edit
   end
 
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        @user.save
-        format.html { redirect_to root_path, notice: "Profile was successfully updated." }
-      else
-        format.html { render :edit }
-      end
+    if @user.update(user_params)
+      sign_in(current_user, :bypass => true)
+      redirect_to profile_path, notice: 'Profile has been updated.'
+    else
+      render 'edit'
     end
   end
 

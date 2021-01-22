@@ -1,0 +1,30 @@
+<div class="container">
+	<h3>Profile</h3>
+	<div class="row">
+        <div class="col-lg-6 col-md-6">
+			<p>
+			  <strong>Name:</strong>
+			  <%= current_user.name %>
+			</p>
+			<p>
+			  <strong>Email:</strong>
+			  <%= current_user.email %>
+			</p>
+			<p>
+			  <strong>Phone Number:</strong>
+			  <%= current_user.phone_number %>
+			</p>
+			<p>
+			  <strong>Address:</strong>
+			  <%= current_user.address %>
+			</p>
+
+			<p>
+			  <strong>Wallet:</strong>
+			  <%= number_to_currency(current_user.wallet.nominal, :locale => :id) %>
+			</p>
+			<%= link_to 'Edit Profile', edit_user_path(current_user), class: 'btn btn-sm btn-success'%>
+			<%= link_to 'Back', root_path, class: 'btn btn-sm btn-danger' %>
+		</div>
+	</div>
+</div>

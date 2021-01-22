@@ -7,4 +7,8 @@ before_action :authenticate_user!, except: [:index, :about]
   
   def about
   end
+
+  def profile
+  end
+  
 end
