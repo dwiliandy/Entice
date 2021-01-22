@@ -22,3 +22,47 @@
 
 <%= link_to 'Edit', edit_transaction_path(@transaction) %> |
 <%= link_to 'Back', transactions_path %>
+
+<div class="container">
+	<h3>Transaction Detail</h3>
+	<div class="row">
+        <div class="col-lg-6 col-md-6">
+			<p>
+			  <strong>Customer:</strong>
+			  <%= @transaction.cart.user.name %>
+			</p>
+			<p>
+			  <strong>Total Price:</strong>
+			  <%= number_to_currency(@transaction.total_price, unit: "Rp", delimiter: ".", separator: ",") %>
+			</p>
+			<p>
+			  <strong>Status:</strong>
+			  <%= @transaction.status %>
+			</p>
+			<p>
+			  <strong>Product:</strong>
+			  	<table id="dtBasicExample" class="table table-striped table-bordered" cellspacing="0" width="100%">
+				  	<thead>
+				    	<tr>
+				      		<th class="th-sm">Name</th>
+						    <th class="th-sm">Price</th>
+						    <th class="th-sm">Total Item</th>
+						    <th class="th-sm">Image</th>
+				    	</tr>
+				  	</thead>
+				  	<tbody>
+					  	<% @transaction.cart.products.group_by(&:itself).uniq.each do |tp,v| %>
+					  	<tr>
+					  		<td><%= tp.name %></td>
+					  		<td><%= number_to_currency(tp.price, unit: "Rp", delimiter: ".", separator: ",") %></td>
+					  		<td><%= v.count %></td>
+					  		<td><%= image_tag tp.image_url %></td>
+					  	</tr>
+					  	<% end %>
+					</tbody>
+				</table>
+			</p>
+			<%= link_to 'Back', admins_transactions_path, class: 'btn btn-sm btn-danger' %>
+		</div>
+	</div>
+</div>

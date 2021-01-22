@@ -4,7 +4,7 @@ class TransactionsController < ApplicationController
   # GET /transactions
   # GET /transactions.json
   def index
-    @transactions = Transaction.all
+    @transactions = current_user.carts.map {|c| c.trans}
   end
 
   # GET /transactions/1
@@ -63,7 +63,8 @@ class TransactionsController < ApplicationController
   end
 
   def cancel
-    @transation.canceling!
+    @transaction.canceling!
+    redirect_to transactions_path, notice: 'Your Transaction Has Been Canceled'
   end
 
   private

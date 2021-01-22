@@ -75,6 +75,7 @@ class Admins::TransactionsController < AdminsController
     elsif @transaction.finished?
       @transaction.review!
     end
+    redirect_to admins_transactions_path
   end
 
   private

@@ -25,6 +25,7 @@ end
   resources :products do
     member do
         post 'add_cart_product'
+        post 'create_comment'
       end
     end
   resources :cart_products do
@@ -38,7 +39,7 @@ end
 	namespace :admins do
 		get 'pages/index' => 'pages#index'
 		resources :products
-    
+
 		resources :transactions do
       member do
         patch 'transition'
