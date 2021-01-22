@@ -13,9 +13,15 @@
   </thead>
 
   <tbody>
-   <% @transactions.each do |transaction| %>
+    <% @transactions.each do |transaction| %>
       <tr>
-       <td><%=transaction.created_at%></td>
+        <td><%= transaction.created_at.strftime("%d-%m-%Y") %></td>
+        <td><%= transaction.cart.products.count %></td>
+        <td><%= number_to_currency(transaction.total_price, unit: "Rp", delimiter: ".", separator: ",")%></td>
+        <td><%= transaction.status.titleize %></td>
+        <%if transaction.active? %>
+          <td><%= link_to 'Cancel', cancel_transaction_path(transaction), :method => :patch, class: 'btn btn-danger'%></td>
+        <%end%>
       </tr>
     <% end %>
   </tbody>

@@ -1,0 +1,35 @@
+<h6>Comments</h6>
+<div class="container mb-5 mt-5">
+  <div class="card">
+    <div class="row">
+      <div class="col-md-12">
+        <h3 class="text-center mb-5"> Comment section </h3>
+          <div class="row">
+            <div class="col-md-12">
+                <% @conversations.each do |c|%>
+                    <div class="media-body">
+                        <div class="row">
+                            <div class="col-8 d-flex">
+                                <h5><%= c.user.name.titleize%></h5> <span>- <%= time_ago_in_words(c.created_at) + ' ago'%></span>
+                            </div>
+                        </div> 
+                        <%= c.content %>
+                    </div>
+                <%end%>
+            </div>
+          </div>
+          <div class="bg-light p-2">
+            <%= form_tag create_comment_product_path, remote: true do %>
+              <div class="content">
+                <input type="text" class="form-control ml-1 shadow-none textarea" id="content_message" name="content[message]"></input>
+              </div>                 
+              <div class="mt-2 text-right">
+                <button class="btn btn-primary btn-sm shadow-none">Post comment</button>
+              </div>
+            <%end%>
+          </div>
+          <!-- -->
+      </div>
+    </div>
+  </div>
+</div>
