@@ -59,6 +59,7 @@
                     <div class="header__cart">
                       <% if user_signed_in? %>
                         <ul>
+                            <li><a href="<%= transactions_path%>"><i class="fas fa-receipt"></i></a></li>
                             <li><a href="<%=cart_products_path%>"><i class="fa fa-shopping-bag"></i> 
                             <span>
                               <%if current_user.carts.where(active:true).exists?%>
