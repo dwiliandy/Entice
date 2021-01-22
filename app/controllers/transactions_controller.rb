@@ -4,7 +4,7 @@ class TransactionsController < ApplicationController
   # GET /transactions
   # GET /transactions.json
   def index
-    @transactions = current_user.carts.map {|c| c.trans}
+    @transactions = current_user.carts.where(active: false).map {|c| c.trans}
   end
 
   # GET /transactions/1
