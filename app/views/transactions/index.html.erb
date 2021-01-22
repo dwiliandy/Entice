@@ -17,7 +17,7 @@
       <tr>
        <td><%= transaction.created_at.strftime("%d-%m-%Y") %></td>
         <td><%= transaction.cart.products.count %></td>
-        <td><%= number_to_currency(transaction.total_price, unit: "Rp", delimiter: ".", separator: ",")%></td>
+        <td><%= number_to_currency(transaction.total_price, locale: :id)%></td>
         <td><%= transaction.status.titleize %></td>
         <%if transaction.active? %>
           <td><%= link_to 'Cancel', cancel_transaction_path(transaction), :method => :patch, class: 'btn btn-danger'%></td>

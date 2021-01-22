@@ -42,7 +42,7 @@
                               <%if product.product.image.present?%>
                                 <img src=<%= product.product.image.thumb %> alt="">
                               <%else%>
-                                <img src=<%= asset_url('feature-4.jpg') %> alt="">
+                                <img src=<%= asset_url('no_image.jpeg') %> alt="">
                               <%end%>
                                 <h5><%=product.product.name.capitalize%></h5>
                               </td>

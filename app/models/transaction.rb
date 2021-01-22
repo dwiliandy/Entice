@@ -71,22 +71,21 @@ STATUS_OPTIONS = [
   belongs_to :postal_fee
   belongs_to :cart, dependent: :destroy
 
-  after_create :retracted_from_wallet
-
+  # after_create :retracted_from_wallet
+    after_create :final_price
   # belongs_to :coupon
   
 
-  def retracted_from_wallet
-    current_user = self.cart.user
+  # def retracted_from_wallet
+  #   current_user = self.cart.user
 
-    wallet = Wallet.find_by(user_id: current_user.id)
+  #   wallet = Wallet.find_by(user_id: current_user.id)
 
-    wallet.update(nominal: wallet.nominal - self.total_price)
-  end
+  #   wallet.update(nominal: wallet.nominal - self.total_price)
+  # end
   
-  class <<self 
   	def final_price
-  		total_price = cart.price + postal_fee.price
+      total_price = cart.price + postal_fee.price
+      self.update(total_price: total_price)
   	end
-  end
 end

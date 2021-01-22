@@ -9,7 +9,7 @@
               <%if product.image.present?%>
                 <div class="featured__item__pic set-bg" data-setbg="<%= product.image.thumb %>">
               <%else%>
-                <div class="featured__item__pic set-bg" data-setbg="<%= asset_url('feature-4.jpg') %>">
+                <div class="featured__item__pic set-bg" data-setbg="<%= asset_url('no_image.jpeg') %>">
               <%end%>
                 <ul class="featured__item__pic__hover">
                   <li><%= link_to add_cart_product_product_path(product), method: :post do%>
