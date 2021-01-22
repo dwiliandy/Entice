@@ -2,8 +2,9 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user
 
-  def edit
+  def profile
   end
+
 
   def update
     respond_to do |format|

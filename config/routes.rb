@@ -2,8 +2,12 @@ Rails.application.routes.draw do
 
   root to: 'pages#index'
   get 'about', to: 'pages#about'
-
-  resources :users, only: [:show, :edit, :update, :new, :create]
+  resources :users, only: :index do
+    collection do
+      get 'profile'
+      put 'update'
+    end
+  end
   resources :coupons do
     collection do
       get 'checking/:code', action: :checking
