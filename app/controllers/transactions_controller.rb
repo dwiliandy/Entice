@@ -64,7 +64,7 @@ class TransactionsController < ApplicationController
 
   def cancel
     @transaction.canceling!
-    redirect_to transactions_path, notice: 'Your Transaction Has Been Canceled'
+    redirect_to transactions_path, notice: 'Your transaction has been canceled'
   end
 
   private

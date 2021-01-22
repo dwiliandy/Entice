@@ -75,7 +75,7 @@ class Admins::TransactionsController < AdminsController
     elsif @transaction.finished?
       @transaction.review!
     end
-    redirect_to admins_transactions_path
+    redirect_to admins_transactions_path, notice: 'Transaction Has Been Updated'
   end
 
   private
