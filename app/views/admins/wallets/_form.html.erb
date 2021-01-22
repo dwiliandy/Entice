@@ -1,0 +1,14 @@
+<div class="container">
+	<div class="row">
+        <div class="col-lg-6 col-md-6">
+			<%= simple_form_for [:admins, @wallet] do |f| %>			  
+        		
+			    <%= f.input :nominal %>
+				</br>
+				<%= f.button :submit, class: "btn btn-info" %>
+				<%= link_to "Cancel", admins_wallets_path, class: "btn btn-danger" %>
+
+			<% end %>
+		</div>
+	</div>
+</div>

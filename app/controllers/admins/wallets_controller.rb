@@ -4,7 +4,7 @@ class Admins::WalletsController < AdminsController
   # GET /coupons
   # GET /coupons.json
   def index
-    @wallets = Wallet.all.order(created_at: :desc)
+    @wallets = Wallet.where(user: User.where(role: 0)).order(created_at: :desc)
   end
 
   # GET /coupons/1
@@ -27,7 +27,7 @@ class Admins::WalletsController < AdminsController
     @wallet = Wallet.new(wallet_params)
 
       if @wallet.save
-      	redirect_to admins_wallets_path, notice: 'Wallet was successfully created.'
+      	redirect_to admins_wallets_path, notice: "#{@wallet.user.name.titleize} wallet was successfully created."
       else
         render 'new'
       end
@@ -37,7 +37,7 @@ class Admins::WalletsController < AdminsController
   # PATCH/PUT /coupons/1.json
   def update
 	  if @wallet.update(wallet_params)
-	    redirect_to admins_wallets_path, notice: 'Wallet was successfully updated.'
+	    redirect_to admins_wallets_path, notice: "#{@wallet.user.name.titleize} wallet was successfully updated."
 	  else
 	    render 'edit'
 	  end
@@ -55,12 +55,12 @@ class Admins::WalletsController < AdminsController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_coupon
+    def set_wallet
       @wallet = Wallet.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
-    def coupon_params
+    def wallet_params
       params.require(:wallet).permit(:nominal)
     end
 end
