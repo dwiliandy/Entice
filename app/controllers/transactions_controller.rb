@@ -1,5 +1,5 @@
 class TransactionsController < ApplicationController
-  before_action :set_transaction, only: [:show, :edit, :update, :destroy, :transition, :cancel]
+  before_action :set_transaction, only: [:show, :edit, :update, :destroy, :cancel]
 
   # GET /transactions
   # GET /transactions.json
@@ -59,20 +59,6 @@ class TransactionsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to transactions_url, notice: 'Transaction was successfully destroyed.' }
       format.json { head :no_content }
-    end
-  end
-
-  def transition
-    if @transaction.ative?
-      @transaction.verified!
-    elsif @transaction.processed?
-      @transaction.ongoing!
-    elsif @transaction.delivery?
-      @transaction.arrived!
-    elsif @transaction.delivered?
-      @transaction.completion!
-    elsif @transaction.finished?
-      @transaction.review!
     end
   end
 

@@ -17,7 +17,6 @@ end
 
   resources :transactions do
     member do
-      patch 'transition'
       patch 'cancel'
     end
   end
@@ -39,7 +38,13 @@ end
 	namespace :admins do
 		get 'pages/index' => 'pages#index'
 		resources :products
-		resources :transactions
+    
+		resources :transactions do
+      member do
+        patch 'transition'
+      end
+    end
+
 		resources :coupons
     resources :postal_fees
     resources :wallets

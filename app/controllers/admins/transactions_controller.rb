@@ -1,5 +1,5 @@
 class Admins::TransactionsController < AdminsController
-	before_action :set_transaction, only: [:show, :edit, :update, :destroy]
+	before_action :set_transaction, only: [:show, :edit, :update, :destroy, :transition]
 
   # GET /transactions
   # GET /transactions.json
@@ -58,6 +58,22 @@ class Admins::TransactionsController < AdminsController
     respond_to do |format|
       format.html { redirect_to admins_transactions_path, notice: 'Transaction was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+
+
+  def transition
+    if @transaction.ative?
+      @transaction.verified!
+    elsif @transaction.processed?
+      @transaction.ongoing!
+    elsif @transaction.delivery?
+      @transaction.arrived!
+    elsif @transaction.delivered?
+      @transaction.completion!
+    elsif @transaction.finished?
+      @transaction.review!
     end
   end
 
