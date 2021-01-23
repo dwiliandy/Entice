@@ -84,7 +84,7 @@
                           <h5>Discount Codes</h5>
                           <%= form_tag cekstatus_path, method: :post, remote: true do %>
                              <div class="form-group">
-                                <input type="text" placeholder="Enter your coupon code">
+                                  <%= text_field_tag :code, "", class: 'form-control'%>
                                 <button type="submit" class="site-btn" id="submit-voucher">APPLY COUPON</button>
                              </div> 
                           <%end%>

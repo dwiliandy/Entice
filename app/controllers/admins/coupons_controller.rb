@@ -57,15 +57,6 @@ class Admins::CouponsController < AdminsController
     end
   end
 
-  # def checking
-  #   @coupons = Coupon.find_by(name: params[:code], disable: false)
-  #   if @coupons.present?
-  #     head :ok
-  #   else
-  #     head :not_found
-  #   end
-  # end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_coupon
