@@ -2,16 +2,9 @@ Rails.application.routes.draw do
 
   root to: 'pages#index'
   get 'about', to: 'pages#about'
+  get 'coupons/checking/:code', action: :checking, controller: 'coupons'
 
   resources :users, only: [:edit, :update]
-
-  get 'profile', to: 'pages#profile'
-
-  resources :coupons do
-    collection do
-      get 'checking/:code', action: :checking
-    end
-  end
   resources :carts do
   member do
     post 'create_transaction'
