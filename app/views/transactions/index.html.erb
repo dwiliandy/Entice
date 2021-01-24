@@ -9,19 +9,18 @@
       <th class="th-sm">Product Purchased</th>
       <th class="th-sm">Total price</th>
       <th class="th-sm">Order status</th>
+      <th class="th-sm">Check Detail<th>
     </tr>
   </thead>
 
   <tbody>
    <% @transactions.each do |transaction| %>
       <tr>
-       <td><%= transaction.created_at.strftime("%d-%m-%Y") %></td>
+       <td><%= transaction.created_at.strftime("%A, %d-%m-%Y") %></td>
         <td><%= transaction.cart.products.count %></td>
         <td><%= number_to_currency(transaction.total_price, locale: :id)%></td>
         <td><%= transaction.status.titleize %></td>
-        <%if transaction.active? %>
-          <td><%= link_to 'Cancel', cancel_transaction_path(transaction), :method => :patch, class: 'btn btn-danger'%></td>
-        <%end%>
+        <td><%= link_to 'Detail', transaction_path(transaction), class: 'btn btn-secondary'%></td>
       </tr>
     <% end %>
   </tbody>

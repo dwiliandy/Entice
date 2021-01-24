@@ -1,43 +1,18 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Total price:</strong>
-  <%= @transaction.total_price %>
-</p>
-
-<p>
-  <strong>Order status:</strong>
-  <%= @transaction.order_status_id %>
-</p>
-
-<p>
-  <strong>Postal fee:</strong>
-  <%= @transaction.postal_fee_id %>
-</p>
-
-<p>
-  <strong>Order status:</strong>
-  <%= @transaction.order_status_id %>
-</p>
-
-<%= link_to 'Edit', edit_transaction_path(@transaction) %> |
-<%= link_to 'Back', transactions_path %>
-
 <div class="container">
 	<h3>Transaction Detail</h3>
 	<div class="row">
         <div class="col-lg-6 col-md-6">
 			<p>
-			  <strong>Customer:</strong>
-			  <%= @transaction.cart.user.name %>
+			  <strong>Order Date:</strong>
+			  <%= @transaction.created_at.strftime("%A, %d-%m-%Y") %>
 			</p>
 			<p>
 			  <strong>Total Price:</strong>
-			  <%= number_to_currency(@transaction.total_price, unit: "Rp", delimiter: ".", separator: ",") %>
+			  <%= number_to_currency(@transaction.total_price, :locale => :id) %>
 			</p>
 			<p>
 			  <strong>Status:</strong>
-			  <%= @transaction.status %>
+			  <%= @transaction.status.titleize %>
 			</p>
 			<p>
 			  <strong>Product:</strong>
@@ -54,7 +29,7 @@
 					  	<% @transaction.cart.products.group_by(&:itself).uniq.each do |tp,v| %>
 					  	<tr>
 					  		<td><%= tp.name %></td>
-					  		<td><%= number_to_currency(tp.price, unit: "Rp", delimiter: ".", separator: ",") %></td>
+					  		<td><%= number_to_currency(tp.price, :locale => :id) %></td>
 					  		<td><%= v.count %></td>
 					  		<td><%= image_tag tp.image_url %></td>
 					  	</tr>
@@ -62,7 +37,9 @@
 					</tbody>
 				</table>
 			</p>
-			<%= link_to 'Back', admins_transactions_path, class: 'btn btn-sm btn-danger' %>
-		</div>
+			<%= link_to 'Back', transactions_path, class: 'btn btn-sm btn-success' %>
+			<%if @transaction.active? %>
+				<%= link_to 'Cancel Transaction', cancel_transaction_path(@transaction), class: 'btn btn-sm btn-danger' %>
+			<%end%>
 	</div>
 </div>
