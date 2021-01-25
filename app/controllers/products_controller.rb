@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   before_action :set_cart, only: [:add_cart_product]
 
   def show
-    @conversations = Conversation.where(product: @product).order(created_at: :desc)
+    @comments = Comment.where(product: @product).order(created_at: :desc)
   end
 
   def add_cart_product

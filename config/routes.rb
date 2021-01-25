@@ -31,7 +31,7 @@ end
     end
   end
   post 'cekstatus', to: 'cart_products#check'
-  resource :conversations
+  resource :comments
 	#ADMIN
 	namespace :admins do
 		get 'pages/index' => 'pages#index'

@@ -22,7 +22,7 @@
 #
 class User < ApplicationRecord
   has_many :carts
-  has_many :conversations
+  has_many :comments
 
   has_one :wallet
   # Include default devise modules. Others available are:

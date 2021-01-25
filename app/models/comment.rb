@@ -1,13 +1,13 @@
 # == Schema Information
 #
-# Table name: conversations
+# Table name: comments
 #
 #  id         :bigint           not null, primary key
 #  content    :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  product_id :bigint           not null
-#  user_id    :bigint           not null
+#  user_id    :bigint
 #
 # Indexes
 #
@@ -19,7 +19,7 @@
 #  fk_rails_...  (product_id => products.id)
 #  fk_rails_...  (user_id => users.id)
 #
-class Conversation < ApplicationRecord
+class Comment < ApplicationRecord
   belongs_to :user, dependent: :destroy
   belongs_to :product, dependent: :destroy
 end
