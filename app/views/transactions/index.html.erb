@@ -1,21 +1,19 @@
 <div class="alert alert-info"><%= notice %></div>
 
 <h1>Transactions</h1>
-<section class="hero">
-  <div class="container">
+</br>
     <%= search_form_for @q, url: transactions_path do |f| %> 
-    <div class="row">
-      <div class="col-md-2">
-        <%= f.select :status_eq, options_for_select([["All", ""], ["Active", "active"], ["Processed", "processed"],["Deliveery", "delivery"],["Delivered", "delivered"], ["Finished", "finished"], ["Cancelled", "cancelled"]], selected: @q.status_eq), {}, { :class => "form-control" }%>
+    <div class="row" style="padding-left: 780px">
+      <div class="col-md-4">
+        <%= f.select :status_eq, options_for_select([["All", ""], ["Active", "active"], ["Processed", "processed"],["Delivery", "delivery"],["Delivered", "delivered"], ["Finished", "finished"], ["Cancelled", "cancelled"]], selected: @q.status_eq), {}, { :class => "form-control" }%>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-2">
         <%= f.button :Search, class: 'site-btn btn-sm', style: 'height:38px'%>     
       </div>
   </div>
     </div>
     <%end%>
-  </div>
-</section>
+  </br>
 
 <table id="dtBasicExample" class="table table-striped table-bordered" cellspacing="0" width="100%">
   <thead>
