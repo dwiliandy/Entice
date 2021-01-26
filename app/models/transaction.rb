@@ -26,15 +26,19 @@
 class Transaction < ApplicationRecord
 	include AASM
 
-aasm column: :status do
-    state :active, initial: true
-    state :processed, :delivery, :delivered, :finished, :cancelled, :reviewed
+  aasm column: :status do
+    state :pending, initial: true
+    state :active, :processed, :delivery, :delivered, :finished, :cancelled, :reviewed
 
     event :verified do
-      transitions from: :active, to: :processed
+      transitions from: :pending, to: :active
     end
 
-    event :ongoing do
+    event :processing do
+      transactions from: :active, to: :processed
+    end
+
+    event :deliver do
       transitions from: :processed, to: :delivery
     end
 

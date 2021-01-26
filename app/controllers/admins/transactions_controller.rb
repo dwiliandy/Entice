@@ -64,10 +64,12 @@ class Admins::TransactionsController < AdminsController
 
 
   def transition
-    if @transaction.ative?
+    if @transaction.pending?
       @transaction.verified!
+    elsif @transaction.active?
+      @transaction.processing!
     elsif @transaction.processed?
-      @transaction.ongoing!
+      @transaction.deliver!
     elsif @transaction.delivery?
       @transaction.arrived!
     elsif @transaction.delivered?
