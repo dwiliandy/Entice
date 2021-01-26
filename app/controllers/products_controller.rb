@@ -42,10 +42,14 @@ class ProductsController < ApplicationController
     end
 
     def set_cart
-      if current_user.carts.where(active:true).last.present?
-        @cart = current_user.carts.where(active:true).last
+      if current_user.present?
+        if current_user.carts.where(active:true).last.present?
+          @cart = current_user.carts.where(active:true).last
+        else
+          @cart = current_user.carts.create(active:true, user:current_user)
+        end
       else
-         @cart = current_user.carts.create(active:true, user:current_user)
+        redirect_to  new_user_session_path 
       end
     end
 

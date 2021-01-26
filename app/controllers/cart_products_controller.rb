@@ -1,13 +1,24 @@
 class CartProductsController < ApplicationController
   before_action :set_cart_products
+  before_action :set_coupon, only: [:index]
   before_action :set_cart_product, only: [:destroy, :edit, :update, :change_quantity]
   def index
+  
   end
 
   def new
     @cart_product = CartProduct.new
   end
 
+  def check
+    	@code = Coupon.where(disable: false, name: params[:code])
+    	if @code.present?
+    		flash[:notice] = "Code Has Been Submitted"
+    	else
+    		flash[:notice] = "Code not Valid"
+    	end
+      redirect_to cart_products_path(coupons: @code.ids)
+    end
   # def create
   #   @cart_product = CartProduct.new(cart_product_params)
   #   if @cart_product.save
@@ -28,20 +39,19 @@ class CartProductsController < ApplicationController
     @cart_product.update(quantity: qty)
   end
 
-  # def check
-	# 	@code = Coupon.where(disable: false, name: params[:code])
-	# 	if @code.present?
-	# 		flash[:notice] = "Code Has Been Submitted"
-	# 	else
-	# 		flash[:notice] = "Code not Valid"
-	# 	end
-  #   redirect_to cart_products_path
-	# end
-
   private
   # Use callbacks to share common setup or constraints between actions.
 
   # Only allow a list of trusted parameters through.
+   
+    def set_coupon
+      if params["coupons"].present?
+        @coupons = params["coupons"].first
+      else
+        @coupons = ""
+      end
+    end
+  
     def set_cart_product
       @cart_product = CartProduct.find(params[:id])
     end

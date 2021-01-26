@@ -6,7 +6,6 @@
 
 # Ignore bundler config.
 /.bundle
-
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
@@ -34,3 +33,11 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+#ignore vendor
+/vendor
+.gitignore
+
+**/*.jpg
+# !/public/uploads/*.jpg
+# !/public/uploads/*.png

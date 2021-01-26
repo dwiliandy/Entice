@@ -73,7 +73,7 @@ STATUS_OPTIONS = [
 
   # after_create :retracted_from_wallet
     after_create :final_price
-  # belongs_to :coupon
+  belongs_to :coupon, optional: true
   
 
   # def retracted_from_wallet
