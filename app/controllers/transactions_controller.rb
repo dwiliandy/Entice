@@ -4,7 +4,9 @@ class TransactionsController < ApplicationController
   # GET /transactions
   # GET /transactions.json
   def index
-    @transactions = current_user.carts.where(active: false).map {|c| c.trans}
+    trans = current_user.carts.where(active: false).map {|c| c.trans.id}
+    @q = Transaction.where(id: trans).ransack(params[:q])
+    @transactions = @q.result(distinct: true)
   end
 
   # GET /transactions/1
