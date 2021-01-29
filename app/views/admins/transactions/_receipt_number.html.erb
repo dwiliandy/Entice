@@ -1,0 +1,13 @@
+<div class="modal-header">
+   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+   <h3 id="myModalLabel">Receipt Number</h3>
+ </div>
+   <%= simple_form_for [:admins, t] do |f| %>
+  <div class="modal-body">
+    <%= f.input :receipt_number%>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+    <%= f.button :submit, :class => 'btn btn-primary' %>
+  </div>
+<% end %>

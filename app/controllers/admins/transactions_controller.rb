@@ -1,5 +1,5 @@
 class Admins::TransactionsController < AdminsController
-	before_action :set_transaction, only: [:show, :edit, :update, :destroy, :transition]
+	before_action :set_transaction, only: [:show, :edit, :update, :destroy, :transition, :input_receiver, :input_receipt]
 
   # GET /transactions
   # GET /transactions.json
@@ -42,7 +42,7 @@ class Admins::TransactionsController < AdminsController
   def update
     respond_to do |format|
       if @transaction.update(transaction_params)
-        format.html { redirect_to admins_transactions_path notice: 'Transaction was successfully updated.' }
+        format.html { redirect_to admins_transactions_path, notice: 'Transaction was successfully updated.' }
         format.json { render :show, status: :ok, location: @transaction }
       else
         format.html { render :edit }
@@ -61,7 +61,29 @@ class Admins::TransactionsController < AdminsController
     end
   end
 
+  def input_receiver
+    respond_to do |format|
+      if @transaction.update(transaction_params)
+        format.html {redirect_to admins_transactions_path, notice: "Receiver on #{@transaction.cart.user.name.titleize} has been inputted"}
+        format.js
+      else
+        format.html { render :edit }
+        format.js
+      end
+    end
+  end
 
+  def input_receipt
+    respond_to do |format|
+      if @transaction.update(transaction_params)
+        format.html {redirect_to admins_transactions_path, notice: "Receipt Number has been inputted"}
+        format.js
+      else
+        format.html { render :edit }
+        format.js
+      end
+    end
+  end
 
   def transition
     if @transaction.pending?
@@ -88,6 +110,6 @@ class Admins::TransactionsController < AdminsController
 
     # Only allow a list of trusted parameters through.
     def transaction_params
-      params.require(:transaction).permit(:total_price, :status, :postal_fee_id, :cart_id)
+      params.require(:transaction).permit(:receiver, :receipt_number)
     end
 end

@@ -33,6 +33,7 @@ require('./jquery.slicknav')
 require('./main')
 require("chartkick")
 require("chart.js")
+require("bootstrap-modal")
 
 var jQuery = require('jquery')
 global.$ = global.jQuery = jQuery;

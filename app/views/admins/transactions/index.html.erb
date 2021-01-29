@@ -7,6 +7,8 @@
       <th class="th-sm">Total Price</th>
       <th class="th-sm">Total Item</th>
       <th class="th-sm">Status</th>
+      <th class="th-sm">Receiver</th>
+      <th class="th-sm">Receipt Number</th>
     </tr>
   </thead>
   <tbody>
@@ -16,6 +18,20 @@
         <td><%= number_to_currency(t.total_price, locale: :id) %></td>
         <td><%= t.cart.cart_products.count  %></td>
         <td><%= t.status.capitalize %></td>
+        <td><%if t.receiver.nil?%>
+          <%= link_to 'Add Receiver', admins_transaction_input_receiver_path(t.id),  {class: 'btn btn-info', :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', data: {id: t.id}}  %>
+          <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+        <%else%>
+          <%= t.receiver.titleze %>
+        <%end%></td>
+
+        <td><%if t.receipt_number.nil?%>
+          <%= link_to 'Add Receipt', admins_transaction_input_receipt_path(t.id),  {class: 'btn btn-info', :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-win', data: {id: t.id}}  %>
+          <div id="modal-win" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+        <%else%>
+          <%= t.receipt_number %>
+        <%end%></td>
+
         </tr>
     <% end %>
   </tbody>

@@ -2,14 +2,16 @@
 #
 # Table name: transactions
 #
-#  id            :bigint           not null, primary key
-#  status        :string
-#  total_price   :float
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  cart_id       :bigint
-#  coupon_id     :bigint
-#  postal_fee_id :bigint           not null
+#  id             :bigint           not null, primary key
+#  receipt_number :string
+#  receiver       :string
+#  status         :string
+#  total_price    :float
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  cart_id        :bigint
+#  coupon_id      :bigint
+#  postal_fee_id  :bigint           not null
 #
 # Indexes
 #
@@ -27,6 +29,7 @@ class Transaction < ApplicationRecord
 	include AASM
 
   aasm column: :status do
+    
     state :pending, initial: true
     state :active, :processed, :delivery, :delivered, :finished, :cancelled, :reviewed
 
@@ -35,7 +38,7 @@ class Transaction < ApplicationRecord
     end
 
     event :processing do
-      transactions from: :active, to: :processed
+      transitions from: :active, to: :processed
     end
 
     event :deliver do
@@ -60,6 +63,7 @@ class Transaction < ApplicationRecord
   end
 
 STATUS_OPTIONS = [
+  ["Pending", :pending],
     ["Active", :active],
     ["Processed", :processed],
     ["Delivery", :delivery],
@@ -68,8 +72,8 @@ STATUS_OPTIONS = [
     ["Cancelled", :cancelled]
   ]
 
-  scope :status_active, -> { where(status: "active") }
-  scope :status_ongoing, -> { where(status: ["processed", "delivery", "delivered"]) }
+  scope :status_pending, -> { where(status: "pending") }
+  scope :status_ongoing, -> { where(status: ["active", "processed", "delivery", "delivered"]) }
   scope :status_completed, -> { where(status: ["finished", "cancelled"]) }
 
   belongs_to :postal_fee

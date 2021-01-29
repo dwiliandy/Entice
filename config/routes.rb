@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     post 'change_quantity'
   end
 end 
-
+  
   resources :transactions do
     member do
       patch 'cancel'
@@ -38,6 +38,8 @@ end
 		resources :products
 
 		resources :transactions do
+      get "input_receiver" => 'transactions#input_receiver', :as => :input_receiver
+    get "input_receipt" => 'transactions#input_receipt_number', :as => :input_receipt
       member do
         patch 'transition'
       end

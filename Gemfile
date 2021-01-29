@@ -65,3 +65,4 @@ gem 'ransack'
 gem 'simple_form'
 gem 'chartkick'
 gem 'groupdate'
+

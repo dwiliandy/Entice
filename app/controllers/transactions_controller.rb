@@ -65,7 +65,9 @@ class TransactionsController < ApplicationController
   end
 
   def cancel
-    @transaction.canceling!
+    if @transaction.pending? || @transaction.active?
+      @transaction.canceling!
+    end
     redirect_to transactions_path, notice: 'Your transaction has been canceled'
   end
 
