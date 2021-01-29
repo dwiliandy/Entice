@@ -19,14 +19,14 @@
         <td><%= t.cart.cart_products.count  %></td>
         <td><%= t.status.capitalize %></td>
         <td><%if t.receiver.nil?%>
-          <%= link_to 'Add Receiver', admins_transaction_input_receiver_path(t.id),  {class: 'btn btn-info', :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', data: {id: t.id}}  %>
-          <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+          <%= link_to 'Add Receiver', input_receiver_admins_transaction_path(t.id),  {:remote => true, 'data-toggle' => "modal", :class => 'nav-item nav-link', 'data-target' => '#modal-window'}%>
+          <div id="modal-window" class="modal" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true"></div>
         <%else%>
           <%= t.receiver.titleze %>
         <%end%></td>
 
         <td><%if t.receipt_number.nil?%>
-          <%= link_to 'Add Receipt', admins_transaction_input_receipt_path(t.id),  {class: 'btn btn-info', :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-win', data: {id: t.id}}  %>
+          <%= link_to 'Add Receipt', input_receipt_admins_transaction_path(t.id),  {class: 'btn btn-info', :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-win', data: {id: t.id}}  %>
           <div id="modal-win" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
         <%else%>
           <%= t.receipt_number %>

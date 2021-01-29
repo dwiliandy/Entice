@@ -63,13 +63,13 @@ class Admins::TransactionsController < AdminsController
 
   def input_receiver
     respond_to do |format|
-      if @transaction.update(transaction_params)
-        format.html {redirect_to admins_transactions_path, notice: "Receiver on #{@transaction.cart.user.name.titleize} has been inputted"}
+      # if @transaction.update(transaction_params)
+        format.html 
         format.js
-      else
-        format.html { render :edit }
-        format.js
-      end
+      # else
+      #   format.html { render :edit }
+      #   format.js
+      # end
     end
   end
 
@@ -105,9 +105,8 @@ class Admins::TransactionsController < AdminsController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_transaction
-      @transaction = Transaction.find(params[:id])
+        @transaction = Transaction.find(params[:id])
     end
-
     # Only allow a list of trusted parameters through.
     def transaction_params
       params.require(:transaction).permit(:receiver, :receipt_number)

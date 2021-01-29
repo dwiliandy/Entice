@@ -37,10 +37,10 @@ end
 		get 'pages/index' => 'pages#index'
 		resources :products
 
-		resources :transactions do
-      get "input_receiver" => 'transactions#input_receiver', :as => :input_receiver
-    get "input_receipt" => 'transactions#input_receipt_number', :as => :input_receipt
-      member do
+    resources :transactions do
+       member do
+        get "input_receiver"
+        get "input_receipt" 
         patch 'transition'
       end
     end
