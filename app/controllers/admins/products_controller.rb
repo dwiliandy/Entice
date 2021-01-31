@@ -6,6 +6,7 @@ class Admins::ProductsController < AdminsController
     end
 
     def show
+      @comments = Comment.where(product: @product).order(created_at: :desc)
     end
 
     

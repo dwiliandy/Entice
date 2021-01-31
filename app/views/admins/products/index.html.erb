@@ -7,6 +7,7 @@
       <th class="th-sm">Price</th>
       <th class="th-sm">Stock</th>
       <th class="th-sm">Region</th>
+      <th class="th-sm">Image</th>
       <th class="th-sm"><%= link_to 'Add New Product', new_admins_product_path, class: "btn btn-sm btn-success", style: "color:white"%></th>
     </tr>
   </thead>
@@ -18,6 +19,7 @@
         <td><%= product.stock %></td>
         <td><%= product.region.name.titleize %></td>
         <td><img src=<%= product.image.thumb %> alt=""></td>
+        <td><%= link_to "Check Comment", admins_product_path(product) %></td>
       </tr>
     <% end %>
   </tbody>
