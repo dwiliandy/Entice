@@ -29,7 +29,7 @@ class ProductsController < ApplicationController
   def create_comment
     
     if params[:content][:message].present?
-      Conversation.create(content: params[:content][:message], user: current_user, product: @product)
+      Comment.create(content: params[:content][:message], user: current_user, product: @product)
       redirect_to product_path(@product), notice: "Comment has been posted"
     else
       redirect_to product_path(@product)

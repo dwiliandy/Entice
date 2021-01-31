@@ -1,5 +1,5 @@
 class Admins::ProductsController < AdminsController
-	before_action :set_product, only: [:show, :edit, :update, :destroy]
+	before_action :set_product, only: [:show, :edit, :update, :destroy, :create_comment]
 
     def index
         @products = Product.all
@@ -45,6 +45,16 @@ def destroy
     format.json { head :no_content }
   end
 end
+
+  def create_comment
+    
+    if params[:content][:message].present?
+      Comment.create(content: params[:content][:message], user: current_user, product: @product)
+      redirect_to product_path(@product), notice: "Comment has been posted"
+    else
+      redirect_to admins_product_path(@product)
+    end
+  end
 
    private
     # Use callbacks to share common setup or constraints between actions.

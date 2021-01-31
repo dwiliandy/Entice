@@ -35,7 +35,11 @@ end
 	#ADMIN
 	namespace :admins do
 		get 'pages/index' => 'pages#index'
-		resources :products
+		resources :products do
+      member do
+        post "create_comment"
+      end
+    end
 
     resources :transactions do
        member do
