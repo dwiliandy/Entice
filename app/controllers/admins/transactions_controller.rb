@@ -61,17 +61,18 @@ class Admins::TransactionsController < AdminsController
     end
   end
 
-  def input_receiver
-    respond_to do |format|
-      # if @transaction.update(transaction_params)
-        format.html 
-        format.js
-      # else
-      #   format.html { render :edit }
-      #   format.js
-      # end
-    end
-  end
+  # def input_receiver
+  #   byebug
+  #   respond_to do |format|
+  #     # if @transaction.update(transaction_params)
+  #       format.html 
+  #       format.js
+  #     # else
+  #     #   format.html { render :edit }
+  #     #   format.js
+  #     # end
+  #   end
+  # end
 
   def input_receipt
     respond_to do |format|

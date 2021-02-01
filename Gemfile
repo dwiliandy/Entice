@@ -65,4 +65,4 @@ gem 'ransack'
 gem 'simple_form'
 gem 'chartkick'
 gem 'groupdate'
-
+gem 'sassc-rails', '>= 2.1.0'

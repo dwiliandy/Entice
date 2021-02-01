@@ -1,13 +1,17 @@
-<div class="modal-header">
-   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-   <h3 id="myModalLabel">Receiver</h3>
- </div>
-   <%= simple_form_for [:admins, t] do |f| %>
-  <div class="modal-body">
-    <%= f.input :receiver%>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Input Receiver Name</h5>
+      </div>
+       <%= simple_form_for [:admins, @transaction], remote: true do |f| %>
+      <div class="modal-body">
+        <%= f.input :receiver%>
+      </div>
+      <div class="modal-footer">
+        <%= f.button :submit, :class => 'btn btn-primary' %>
+      </div>
+      <%end%>
+    </div>
   </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-    <%= f.button :submit, :class => 'btn btn-primary' %>
-  </div>
-<% end %>
+</div>

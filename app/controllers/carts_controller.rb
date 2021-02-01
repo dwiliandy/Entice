@@ -2,7 +2,7 @@ class CartsController < ApplicationController
 before_action :set_cart, only: [:create_transaction]
 
   def create_transaction
-    Transaction.create(status:'active', cart: @cart, postal_fee:PostalFee.first, coupon: Coupon.find_by_id(params["coupons"]))
+    Transaction.create(status:'active', cart: @cart, postal_fee:PostalFee.first, coupon: Coupon.find_by_id(params["coupons"]) )
     @cart.update(active:false)
     flash[:notice] = 'Berhasil menambahkan product'
       redirect_to root_path

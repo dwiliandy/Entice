@@ -19,10 +19,10 @@
         <td><%= t.cart.cart_products.count  %></td>
         <td><%= t.status.capitalize %></td>
         <td><%if t.receiver.nil?%>
-          <%= link_to 'Add Receiver', input_receiver_admins_transaction_path(t.id),  {:remote => true, 'data-toggle' => "modal", :class => 'nav-item nav-link', 'data-target' => '#modal-window'}%>
+          <%= link_to 'Add Receiver', input_receiver_admins_transaction_path(t.id), remote: true, class: "btn btn-primary"%>
           <div id="modal-window" class="modal" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true"></div>
         <%else%>
-          <%= t.receiver.titleze %>
+          <%= t.receiver.titleize %>
         <%end%></td>
 
         <td><%if t.receipt_number.nil?%>
@@ -38,9 +38,3 @@
 </table>
 </div>
 
-<script>
-$(document).ready(function () {
-$('#dtBasicExample').DataTable();
-$('.dataTables_length').addClass('bs-select');
-});
-</script>

@@ -23,7 +23,7 @@
 class User < ApplicationRecord
   has_many :carts
   has_many :comments
-
+  has_many :comment_replies
   has_one :wallet
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

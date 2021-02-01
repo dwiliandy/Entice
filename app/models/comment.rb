@@ -22,4 +22,6 @@
 class Comment < ApplicationRecord
   belongs_to :user, dependent: :destroy
   belongs_to :product, dependent: :destroy
+
+  has_many :comment_replies
 end

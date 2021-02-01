@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Entice</title>
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
-  <!-- Google Font -->
-  <meta name="turbolinks-visit-control" content="reload">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/@icon/elegant-icons/elegant-icons.css">
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-</head>
-
-<body class="container-body">
-  <% unless devise_controller? %>
-    <%= render 'shared/header' %>
-  <% end %>
-  <%= yield %>
-  <% unless devise_controller? %>
-    <%= render 'shared/footer' %>
-  <% end %>
-  <%= yield(:script) %>
-</body>
+  <head>
+    <title>Entice</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <!-- Google Font -->
+    <meta name="turbolinks-visit-control" content="reload">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/@icon/elegant-icons/elegant-icons.css">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  
+  <body class="container-body">
+    <% unless devise_controller? %>
+      <%= render 'shared/header' %>
+    <% end %>
+    <%= yield %>
+    <% unless devise_controller? %>
+      <%= render 'shared/footer' %>
+    <% end %>
+    <%= yield(:script) %>
+  </body>
 </html>

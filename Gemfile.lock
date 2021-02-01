@@ -265,6 +265,7 @@ DEPENDENCIES
   rails (~> 6.1)
   ransack
   sass-rails (>= 6)
+  sassc-rails (>= 2.1.0)
   selenium-webdriver
   simple_form
   spring
