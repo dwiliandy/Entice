@@ -74,17 +74,17 @@ class Admins::TransactionsController < AdminsController
   #   end
   # end
 
-  def input_receipt
-    respond_to do |format|
-      if @transaction.update(transaction_params)
-        format.html {redirect_to admins_transactions_path, notice: "Receipt Number has been inputted"}
-        format.js
-      else
-        format.html { render :edit }
-        format.js
-      end
-    end
-  end
+  # def input_receipt
+  #   respond_to do |format|
+  #     if @transaction.update(transaction_params)
+  #       format.html {redirect_to admins_transactions_path, notice: "Receipt Number has been inputted"}
+  #       format.js
+  #     else
+  #       format.html { render :edit }
+  #       format.js
+  #     end
+  #   end
+  # end
 
   def transition
     if @transaction.pending?

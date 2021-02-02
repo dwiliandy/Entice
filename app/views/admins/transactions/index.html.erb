@@ -26,8 +26,8 @@
         <%end%></td>
 
         <td><%if t.receipt_number.nil?%>
-          <%= link_to 'Add Receipt', input_receipt_admins_transaction_path(t.id),  {class: 'btn btn-info', :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-win', data: {id: t.id}}  %>
-          <div id="modal-win" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+          <%= link_to 'Add Receipt', input_receipt_admins_transaction_path(t.id),  class: 'btn btn-info', :remote => true  %>
+          <div id="modal-win" class="modal" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true"></div>
         <%else%>
           <%= t.receipt_number %>
         <%end%></td>

@@ -1,0 +1,17 @@
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Input Receiver Number</h5>
+      </div>
+       <%= simple_form_for [:admins, @transaction], remote: true do |f| %>
+      <div class="modal-body">
+        <%= f.input :receipt_number%>
+      </div>
+      <div class="modal-footer">
+        <%= f.button :submit, :class => 'btn btn-primary' %>
+      </div>
+      <%end%>
+    </div>
+  </div>
+</div>
