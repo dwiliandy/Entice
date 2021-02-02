@@ -18,19 +18,28 @@
         <td><%= number_to_currency(t.total_price, locale: :id) %></td>
         <td><%= t.cart.cart_products.count  %></td>
         <td><%= t.status.capitalize %></td>
-        <td><%if t.receiver.nil?%>
-          <%= link_to 'Add Receiver', input_receiver_admins_transaction_path(t.id), remote: true, class: "btn btn-primary"%>
-          <div id="modal-window" class="modal" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true"></div>
-        <%else%>
-          <%= t.receiver.titleize %>
-        <%end%></td>
+        <%if t.status != 'cancelled' %>
+          <td>
+            <%if t.receiver.nil?%>
+              <%= link_to 'Add Receiver', input_receiver_admins_transaction_path(t.id), remote: true, class: "btn btn-primary"%>
+              <div id="modal-window" class="modal" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true"></div>
+            <%else%>
+              <%= t.receiver.titleize %>
+            <%end%>
+          </td>
 
-        <td><%if t.receipt_number.nil?%>
-          <%= link_to 'Add Receipt', input_receipt_admins_transaction_path(t.id),  class: 'btn btn-info', :remote => true  %>
-          <div id="modal-win" class="modal" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true"></div>
+          <td>
+            <%if t.receipt_number.nil?%>
+              <%= link_to 'Add Receipt', input_receipt_admins_transaction_path(t.id),  class: 'btn btn-info', :remote => true  %>
+              <div id="modal-win" class="modal" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true"></div>
+            <%else%>
+              <%= t.receipt_number %>
+            <%end%>
+          </td>
         <%else%>
-          <%= t.receipt_number %>
-        <%end%></td>
+          <td>-</td>
+          <td>-</td>
+        <%end%>
 
         </tr>
     <% end %>
