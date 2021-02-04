@@ -3,8 +3,8 @@
 # Table name: transactions
 #
 #  id             :bigint           not null, primary key
-#  receipt_number :string
-#  receiver       :string
+#  receipt_number :string           default("-")
+#  receiver       :string           default("-")
 #  status         :string
 #  total_price    :float
 #  created_at     :datetime         not null
