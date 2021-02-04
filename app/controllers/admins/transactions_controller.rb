@@ -4,7 +4,8 @@ class Admins::TransactionsController < AdminsController
   # GET /transactions
   # GET /transactions.json
   def index
-    @transactions = Transaction.all.order(created_at: :desc)
+    @q = Transaction.ransack(params[:q])
+    @pagy, @transactions = pagy(@q.result, items:20)
   end
 
   # GET /transactions/1

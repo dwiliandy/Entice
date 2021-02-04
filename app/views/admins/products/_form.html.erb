@@ -1,20 +1,36 @@
 <div class="container">
-	<div class="row">
-        <div class="col-lg-6 col-md-6">
-			<%= simple_form_for [:admins, @product] do |f| %>			  
-        		
-			    <%= f.input :name %>
-			    <%= f.input :price %>
-			    <%= f.input :description %>
-			    <%= f.input :status, collection: Product.statuses.keys, label_method: lambda{|k| k.to_s.titleize}, prompt: :translate %>
-			    <%= f.input :stock %>
-			    <%= f.input :region_id, collection: Region.all.order(name: :asc), label_method: lambda{|r| r.name.titleize}, prompt: :translate%>
-			    <%= f.input :image, as: :file %>
-				</br>
-				<%= f.button :submit, class: "btn btn-info" %>
-				<%= link_to "Cancel", admins_products_path, class: "btn btn-danger" %>
+  <h1><%=params[:action].capitalize%> Product</h1>
+  <div class="row">
+    <div class="col-12">
+      <%= simple_form_for [:admins, @product] do |f| %>
+        <div class="row">
+          <div class="col-6">
+            <%= f.input :name %>
+          </div>
+          <div class="col-6">
+            <%= f.input :price %>
+          </div>
+          <div class="col-12">
+            <%= f.input :description, :input_html => { :cols => 5, :rows => 10 } %>
+          </div>
+          <div class="col-6">
+            <%= f.input :status, collection: Product.statuses.keys, label_method: lambda{|k| k.to_s.titleize}, prompt: :translate %>
+          </div>
+          <div class="col-6">
+            <%= f.input :stock %>
+          </div>
+          <div class="col-6">
+            <%= f.input :region_id, collection: Region.all.order(name: :asc), label_method: lambda{|r| r.name.titleize}, prompt: :translate%>
+          </div>
+          <div class="col-6">
+            <%= f.input :image, as: :file %>
+          </div>
+        </div>
+          <%= f.button :submit, class: "btn btn-info" %>
 
-			<% end %>
-		</div>
-	</div>
+          <%= link_to "Cancel", admins_products_path, class: "btn btn-danger" %>
+
+      <% end %>
+    </div>
+  </div>
 </div>

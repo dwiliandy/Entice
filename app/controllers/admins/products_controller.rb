@@ -1,8 +1,10 @@
 class Admins::ProductsController < AdminsController
-	before_action :set_product, only: [:show, :edit, :update, :destroy, :create_comment]
+
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :create_comment]
 
     def index
-        @products = Product.all
+      @q = Product.ransack(params[:q])
+		  @pagy, @products = pagy(@q.result(distinct: true), items:20)
     end
 
     def show

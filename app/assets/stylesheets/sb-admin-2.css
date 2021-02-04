@@ -1842,6 +1842,11 @@ pre code {
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
+.form-control.admin-search {
+  margin: 10px;
+  height: 31px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .form-control {
     transition: none;
