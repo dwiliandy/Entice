@@ -47,7 +47,7 @@
         <% end %>
         <%if t.status != 'cancelled' %>
           <td>
-            <%if t.receiver.eql? '-'%>
+            <%if t.receiver.blank?%>
               <%= link_to 'Add Receiver', input_receiver_admins_transaction_path(t.id), remote: true, class: "btn btn-primary"%>
               <div id="modal-window" class="modal" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true"></div>
             <%else%>
