@@ -5,20 +5,35 @@
     <div class="container-fluid">
       <div class="card shadow mb-4">
         <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">Product Data</h6>
+          <h2 class="m-0 font-weight-bold">Product Data</h2>
         </div>
-          <div>
-            <%= link_to 'Add New Product', new_admins_product_path, class: "btn btn-sm btn-success float-right", style: "color:white"%>
+          <div class="row">
+            <div class="col-9">
+              <%= search_form_for @q, url: admins_products_path do |f| %>               
+                <div class="row">
+                  <div class="col-6">
+                    <%= f.search_field :name_or_region_name_cont, placeholder: "Search by Name or Region", class: 'form-control admin-search' %>
+                  </div>
+                  <div class="col-3">
+                    <%= f.button :Search, class: "btn btn-sm btn-success"%>     
+                  </div>  
+                </div>
+              <%end%>
+            </div>
+            <div class="col-3">
+              <%= link_to 'Add New Product', new_admins_product_path, class: "btn btn-sm btn-success float-right"%>
+            </div>
           </div>
+        </div>
           <div class="table-responsive">
           
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <th class="th-sm">Name</th>
-                  <th class="th-sm">Price</th>
-                  <th class="th-sm">Stock</th>
-                  <th class="th-sm">Region</th>
+                  <th class="th-sm"><%= sort_link(@q, :name) %></th>
+                  <th class="th-sm"><%= sort_link(@q, :price) %></th>
+                  <th class="th-sm"><%= sort_link(@q, :stock) %></th>
+                  <th class="th-sm"><%= sort_link(@q, :regions_name, 'Region') %></th>
                   <th class="th-sm">Image</th>
                   <th class="th-sm">Check Comment</th>
                 </tr>
@@ -35,7 +50,10 @@
                 </tr>
               <% end %>
               </tbody>
+              
             </table>
+            <%== render partial: 'admins/shared/bootstrap_nav', locals: {pagy: @pagy} %>
+
           </div>
         </div>
       </div>
