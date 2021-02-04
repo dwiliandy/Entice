@@ -47,7 +47,7 @@
         <% end %>
         <%if t.status != 'cancelled' %>
           <td>
-            <%if t.receiver.nil?%>
+            <%if t.receiver.eql? '-'%>
               <%= link_to 'Add Receiver', input_receiver_admins_transaction_path(t.id), remote: true, class: "btn btn-primary"%>
               <div id="modal-window" class="modal" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true"></div>
             <%else%>
@@ -56,7 +56,7 @@
           </td>
 
           <td>
-            <%if t.receipt_number.nil?%>
+            <%if t.receipt_number.eql? '-'%>
               <%= link_to 'Add Receipt', input_receipt_admins_transaction_path(t.id),  class: 'btn btn-primary', :remote => true  %>
               <div id="modal-win" class="modal" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true"></div>
             <%else%>

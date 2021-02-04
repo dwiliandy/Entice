@@ -8,11 +8,7 @@
 			</p>
 			<p>
 			  <strong>Receipt Number:</strong>
-			  <%if @transaction.receipt_number != nil %>
 			  	<%= @transaction.receipt_number %>
-			  	<%else%>
-			  	-
-			  	<%end%>
 			</p>
 			<p>
 			  <strong>Total Price:</strong>
@@ -28,11 +24,7 @@
 			</p>
 			<p>
 			  <strong>Receiver:</strong>
-			  <%if @transaction.receiver != nil %>
 			  	<%= @transaction.receiver %>
-			  	<%else%>
-			  	-
-			  	<%end%>
 			</p>			
 			<p>
 			  <strong>Product:</strong>
