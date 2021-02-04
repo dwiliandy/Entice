@@ -95,5 +95,5 @@ STATUS_OPTIONS = [
   	def final_price
       total_price = cart.price + postal_fee.price
       self.update(total_price: total_price)
-  	end
+    end    
 end
