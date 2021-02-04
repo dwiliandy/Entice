@@ -45,7 +45,7 @@ end
        member do
         get "input_receiver"
         get "input_receipt" 
-        patch 'transition'
+        patch "transition"
       end
     end
 

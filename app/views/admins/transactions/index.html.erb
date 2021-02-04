@@ -40,10 +40,14 @@
         <td><%= link_to t.cart.user.name, admins_transaction_path(t)%></td>
         <td><%= number_to_currency(t.total_price, locale: :id) %></td>
         <td><%= t.cart.cart_products.count  %></td>
-        <td><%= t.status.capitalize %></td>
+        <%if t.status.eql? 'cancelled' || 'finished' || 'reviewed'%>
+          <td><%= t.status.capitalize%></td>
+        <%else%>
+          <td><%= link_to t.status.capitalize, transition_admins_transaction_path(t.id), method: :patch, class: 'btn btn-primary'%></td>
+        <% end %>
         <%if t.status != 'cancelled' %>
           <td>
-            <%if t.receiver.nil?%>
+            <%if t.receiver.eql? '-'%>
               <%= link_to 'Add Receiver', input_receiver_admins_transaction_path(t.id), remote: true, class: "btn btn-primary"%>
               <div id="modal-window" class="modal" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true"></div>
             <%else%>
@@ -52,8 +56,8 @@
           </td>
 
           <td>
-            <%if t.receipt_number.nil?%>
-              <%= link_to 'Add Receipt', input_receipt_admins_transaction_path(t.id),  class: 'btn btn-info', :remote => true  %>
+            <%if t.receipt_number.eql? '-'%>
+              <%= link_to 'Add Receipt', input_receipt_admins_transaction_path(t.id),  class: 'btn btn-primary', :remote => true  %>
               <div id="modal-win" class="modal" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true"></div>
             <%else%>
               <%= t.receipt_number %>
