@@ -4,7 +4,9 @@ class Admins::PostalFeesController < AdminsController
   # GET /posfees
   # GET /posfees.json
   def index
-    @posfees = PostalFee.all.order(created_at: :desc)
+    @q = PostalFee.ransack(params[:q])
+		@pagy, @postal_fees = pagy(@q.result(distinct: true), items:20)
+    
   end
 
   # GET /posfees/1
@@ -14,7 +16,7 @@ class Admins::PostalFeesController < AdminsController
 
   # GET /posfees/new
   def new
-    @posfee = PostalFee.new
+    @postal_fee = PostalFee.new
   end
 
   # GET /posfees/1/edit
@@ -24,8 +26,8 @@ class Admins::PostalFeesController < AdminsController
   # POST /posfees
   # POST /posfees.json
   def create
-    @posfee = PostalFee.new(posfee_params)
-      if @posfee.save
+    @postal_fee = PostalFee.new(posfee_params)
+      if @postal_fee.save
       	redirect_to admins_postal_fees_path, notice: 'Postal Fee was successfully created.'
       else
         render 'new'
@@ -36,7 +38,7 @@ class Admins::PostalFeesController < AdminsController
   # PATCH/PUT /posfees/1.json
   def update
     respond_to do |format|
-      if @posfee.update(posfee_params)
+      if @postal_fee.update(posfee_params)
         format.html { redirect_to admins_postal_fees_path, notice: 'Postal Fee was successfully updated.' }
         format.json { render :show, status: :ok, location: @posfee }
       else
@@ -49,7 +51,7 @@ class Admins::PostalFeesController < AdminsController
   # DELETE /posfees/1
   # DELETE /posfees/1.json
   def destroy
-    @posfee.destroy
+    @postal_fee.destroy
     respond_to do |format|
       format.html { redirect_to admins_postal_fees_path, notice: 'Postal Fee was successfully destroyed.' }
       format.json { head :no_content }
@@ -59,7 +61,7 @@ class Admins::PostalFeesController < AdminsController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_posfee
-      @posfee = PostalFee.find(params[:id])
+      @postal_fee = PostalFee.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

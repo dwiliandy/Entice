@@ -4,7 +4,9 @@ class Admins::CouponsController < AdminsController
   # GET /coupons
   # GET /coupons.json
   def index
-    @coupons = Coupon.all.order(created_at: :desc)
+    @q = Coupon.ransack(params[:q])
+		@pagy, @coupons = pagy(@q.result(distinct: true), items:20)
+    
   end
 
   # GET /coupons/1

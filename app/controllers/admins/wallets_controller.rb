@@ -4,7 +4,10 @@ class Admins::WalletsController < AdminsController
   # GET /coupons
   # GET /coupons.json
   def index
-    @wallets = Wallet.where(user: User.where(role: 0)).order(created_at: :desc)
+    @a = Wallet.where(user: User.where(role: 0)).order(created_at: :desc)
+    @q = @a.ransack(params[:q])
+    @pagy, @wallets = pagy(@q.result(distinct: true), items:20)
+    
   end
 
   # GET /coupons/1

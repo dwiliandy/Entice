@@ -1,19 +1,30 @@
 <div class="container">
-	<div class="row">
-        <div class="col-6">
-			<%= simple_form_for [:admins, @coupon] do |f| %>			  
-        		
-			    <%= f.input :name %>
-			    <%= f.input :discount %>
-			    <%= f.input :qty, label: 'Quantity' %>
-				<%= f.input :variety, collection: Coupon.varieties.keys, label_method: lambda{|k| k.to_s.titleize}, prompt: :translate %>
-			</br>
-				<%= f.input :disable %>
-				</br>
-				<%= f.button :submit, class: "btn btn-info" %>
-				<%= link_to "Cancel", admins_postal_fees_path, class: "btn btn-danger" %>
+  <h1><%=params[:action].capitalize%> Coupons</h1>
+  <div class="row">
+    <div class="col-12">
+      <%= simple_form_for [:admins, @coupon] do |f| %>
+        <div class="row">
+          <div class="col-6">
+            <%= f.input :name %>
+          </div>
+          <div class="col-6">
+            <%= f.input :discount %>
+          </div>
+          <div class="col-6">
+            <%= f.input :qty, label: 'Quantity' %>
+          </div>
+          <div class="col-6">
+            <%= f.input :variety, collection: Coupon.varieties.keys, label_method: lambda{|k| k.to_s.titleize}, prompt: :translate %>
+          </div>
+          <div class="col-6">
+            <%= f.input :disable %>
+          </div>          
+        </div>
+          <%= f.button :submit, class: "btn btn-info" %>
 
-			<% end %>
-		</div>
-	</div>
+          <%= link_to "Cancel", admins_coupons_path, class: "btn btn-danger" %>
+
+      <% end %>
+    </div>
+  </div>
 </div>
