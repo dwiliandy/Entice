@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dvy3oulbm
+  api_key: '525399853985724'
+  api_secret: dHxQtAYL9VFUd8DvNKWYsVfDbP8
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: dvy3oulbm
+  api_key: '525399853985724'
+  api_secret: dHxQtAYL9VFUd8DvNKWYsVfDbP8
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: dvy3oulbm
+  api_key: '525399853985724'
+  api_secret: dHxQtAYL9VFUd8DvNKWYsVfDbP8
+  enhance_image_tag: true
+  static_file_support: false
