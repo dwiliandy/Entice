@@ -22,13 +22,17 @@ local:
 #   bucket: your_own_bucket
 
 # Use rails credentials:edit to set the Azure Storage secret (as azure_storage:storage_access_key)
-microsoft:
-  service: AzureStorage
-  storage_account_name: "entice"
-  storage_access_key: "M7CJZbbEBchDiKF0/7G0dbj82S6PkpACFyEtt/V+ga/9MzW/EE53wTohI/RIxuxqbiTldW78+Loci8/m9appjw=="
-  container: "activestorage"
+# microsoft:
+#   service: AzureStorage
+#   storage_account_name: "entice"
+#   storage_access_key: "M7CJZbbEBchDiKF0/7G0dbj82S6PkpACFyEtt/V+ga/9MzW/EE53wTohI/RIxuxqbiTldW78+Loci8/m9appjw=="
+#   container: "activestorage"
 
 # mirror:
 #   service: Mirror
 #   primary: local
 #   mirrors: [ amazon, google, microsoft ]
+
+cloudinary:      
+  service: Cloudinary
+  # Any other settings you want, to be sent on all requests, can be included here as well.
