@@ -68,3 +68,4 @@ gem 'groupdate'
 gem 'sassc-rails', '>= 2.1.0'
 
 gem 'pagy'
+gem 'azure-storage-blob'
