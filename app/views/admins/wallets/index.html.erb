@@ -7,20 +7,6 @@
         <div class="card-header py-3">
           <h2 class="m-0 font-weight-bold">Wallet Data</h2>
         </div>
-          <div class="row">
-            <div class="col-9">
-              <%= search_form_for @q, url: admins_wallets_path do |f| %>               
-                <div class="row">
-                  <div class="col-6">
-                    <%= f.search_field :user_name_cont, placeholder: "Search by Name", class: 'form-control admin-search' %>
-                  </div>
-                  <div class="col-3">
-                    <%= f.button :Search, class: "btn btn-sm btn-success"%>     
-                  </div>  
-                </div>
-              <%end%>
-            </div>
-          </div>
         </div>
           <div class="table-responsive">
           
