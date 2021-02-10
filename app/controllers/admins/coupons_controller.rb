@@ -1,30 +1,21 @@
 class Admins::CouponsController < AdminsController
 	before_action :set_coupon, only: [:show, :edit, :update, :destroy]
 
-  # GET /coupons
-  # GET /coupons.json
   def index
     @q = Coupon.ransack(params[:q])
-		@pagy, @coupons = pagy(@q.result(distinct: true), items:20)
-    
+    @pagy, @coupons = pagy(@q.result(distinct: true), items:20)
   end
 
-  # GET /coupons/1
-  # GET /coupons/1.json
   def show
   end
 
-  # GET /coupons/new
   def new
     @coupon = Coupon.new
   end
 
-  # GET /coupons/1/edit
   def edit
   end
 
-  # POST /coupons
-  # POST /coupons.json
   def create
     @coupon = Coupon.new(coupon_params)
 
@@ -35,8 +26,6 @@ class Admins::CouponsController < AdminsController
       end
   end
 
-  # PATCH/PUT /coupons/1
-  # PATCH/PUT /coupons/1.json
   def update
     respond_to do |format|
       if @coupon.update(coupon_params)
@@ -49,8 +38,6 @@ class Admins::CouponsController < AdminsController
     end
   end
 
-  # DELETE /coupons/1
-  # DELETE /coupons/1.json
   def destroy
     @coupon.destroy
     respond_to do |format|
@@ -60,13 +47,12 @@ class Admins::CouponsController < AdminsController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+   
     def set_coupon
       @coupon = Coupon.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
-    def coupon_params
+   def coupon_params
       params.require(:coupon).permit(:name, :disable, :discount, :qty, :variety)
     end
 end
