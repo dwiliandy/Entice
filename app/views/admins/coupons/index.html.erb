@@ -8,7 +8,19 @@
           <h2 class="m-0 font-weight-bold">Coupon Data</h2>
         </div>
           <div class="row">
-            <div class="col-12">
+            <div class="col-9">
+              <%= search_form_for @q, url: admins_coupons_path do |f| %>               
+                <div class="row">
+                  <div class="col-6">
+                    <%= f.search_field :name_cont, placeholder: "Search by Name", class: 'form-control admin-search' %>
+                  </div>
+                  <div class="col-3">
+                    <%= f.button :Search, class: "btn btn-sm btn-success"%>     
+                  </div>  
+                </div>
+              <%end%>
+            </div>
+            <div class="col-3">
               <%= link_to 'Add New Coupons', new_admins_coupon_path, class: "btn btn-sm btn-success float-right"%>
             </div>
           </div>
