@@ -25,8 +25,8 @@
             </div>
           </div>
         </div>
-          <div class="table-responsive">
-          
+        <div class="table-responsive">
+          <%if @coupons.present?%> 
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
@@ -48,7 +48,11 @@
               </tbody>
             </table>
             <%== render partial: 'admins/shared/bootstrap_nav', locals: {pagy: @pagy} %>
+          <%else%>
+            <h3>No Data</h3>
+          <%end%>
           </div>
+          
         </div>
       </div>
     </div>
