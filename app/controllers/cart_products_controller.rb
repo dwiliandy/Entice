@@ -11,13 +11,13 @@ class CartProductsController < ApplicationController
   end
 
   def check
-    	@code = Coupon.where(disable: false, name: params[:code])
+    	@code = Coupon.find_by("qty > ? and disable = ? and name = ?", 0, false, params[:code])
     	if @code.present?
     		flash[:notice] = "Code Has Been Submitted"
     	else
     		flash[:notice] = "Code not Valid"
     	end
-      redirect_to cart_products_path(coupons: @code.ids)
+      redirect_to cart_products_path(coupon: @code.id)
     end
   # def create
   #   @cart_product = CartProduct.new(cart_product_params)
@@ -45,10 +45,8 @@ class CartProductsController < ApplicationController
   # Only allow a list of trusted parameters through.
    
     def set_coupon
-      if params["coupons"].present?
-        @coupons = params["coupons"].first
-      else
-        @coupons = ""
+      if params["coupon"].present?
+        @coupon = params["coupon"]
       end
     end
   
