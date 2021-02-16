@@ -107,22 +107,22 @@
                     </nav>
                 </div>
                 <div class="col-lg-3">
-                    <div class="header__cart">
-                        <% if user_signed_in? && current_user.customer? %>
-                          <ul>
-                            <li><a href="<%= orders_path%>"><i class="fas fa-receipt"></i></a></li>
-                            <li><a href="<%=cart_products_path%>"><i class="fa fa-shopping-bag"></i>
-                                <span>
-                                  <%if current_user.carts.where(active:true).exists?%>
-                                    <%=current_user.carts.where(active:true).last.cart_products.count%>
-                                  <%else%>
-                                    0
-                                  <%end%>
+                  <div class="header__cart">
+                      <% if user_signed_in? && current_user.customer? %>
+                        <ul>
+                          <li><a href="<%= orders_path%>"><i class="fas fa-receipt"></i></a></li>
+                          <li><a href="<%=cart_products_path%>"><i class="fa fa-shopping-bag"></i>
+                              <span>
+                                <%if current_user.carts.where(active:true).exists?%>
+                                  <%=current_user.carts.where(active:true).last.cart_products.count%>
+                                <%else%>
                                   0
-                                </span></a></li>
-                          </ul>
-                        <%end%>
-                    </div>
+                                <%end%>
+                                0
+                              </span></a></li>
+                        </ul>
+                      <%end%>
+                  </div>
                 </div>
             </div>
             <div class="humberger__open">

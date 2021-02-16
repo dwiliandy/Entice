@@ -580,6 +580,12 @@ input.btn.site-btn {
 .humberger__open {
 	display: none;
 }
+/*---------------------
+  Alert
+-----------------------*/
+p.alert.alert-success{
+  margin-bottom:0;
+}
 
 /*---------------------
   Hero
@@ -587,6 +593,10 @@ input.btn.site-btn {
 
 .hero {
 	padding-bottom: 50px;
+}
+
+.container{
+  padding-top: 20px;
 }
 
 .hero.hero-normal {
@@ -2930,15 +2940,22 @@ input.btn.site-btn {
 @media only screen and (min-width: 1200px) {
 	.container {
 		max-width: 1170px;
+    padding-top: 0;
 	}
 }
 
 /* Medium Device = 1200px */
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
-	.header__menu ul li {
+	.container{
+    padding-top: 0;
+  }
+  .header__menu ul li {
 		margin-right: 45px;
 	}
+  .hero{
+    margin-top:0px;
+  }
 	.hero__search__form {
 		width: 490px;
 	}
