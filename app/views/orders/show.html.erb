@@ -37,7 +37,7 @@
 					</tbody>
 				</table>
 			</p>
-			<%= link_to 'Back', transactions_path, class: 'btn btn-sm btn-success' %>
+			<%= link_to 'Back', orders_path, class: 'btn btn-sm btn-success' %>
 			<%if @order.active? %>
 				<%= link_to 'Cancel Transaction', cancel_order_path(@order), class: 'btn btn-sm btn-danger' %>
 			<%end%>
