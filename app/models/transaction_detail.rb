@@ -11,16 +11,12 @@
 #  recipient_name :string           not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  transaction_id :bigint           not null
+#  order_id       :bigint
 #
 # Indexes
 #
-#  index_transaction_details_on_transaction_id  (transaction_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (transaction_id => transactions.id)
+#  index_transaction_details_on_order_id  (order_id)
 #
 class TransactionDetail < ApplicationRecord
-  belongs_to :transaction
+  belongs_to :order
 end

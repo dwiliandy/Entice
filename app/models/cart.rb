@@ -23,8 +23,8 @@ class Cart < ApplicationRecord
 
 	has_many :products, :through => :cart_products
 
-	has_one :trans, class_name: "Transaction"
-	accepts_nested_attributes_for :trans
+	has_one :order
+	accepts_nested_attributes_for :order
 
   belongs_to :user
 

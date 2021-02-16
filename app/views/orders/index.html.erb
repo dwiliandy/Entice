@@ -2,7 +2,7 @@
 
 <h1>Transactions</h1>
 </br>
-    <%= search_form_for @q, url: transactions_path do |f| %> 
+    <%= search_form_for @q, url: orders_path do |f| %> 
     <div class="row" style="padding-left: 780px">
       <div class="col-md-4">
         <%= f.select :status_eq, options_for_select([["All", ""], ["Active", "active"], ["Processed", "processed"],["Delivery", "delivery"],["Delivered", "delivered"], ["Finished", "finished"], ["Cancelled", "cancelled"]], selected: @q.status_eq), {}, { :class => "form-control" }%>
@@ -27,13 +27,13 @@
   </thead>
 
   <tbody>
-   <% @transactions.each do |transaction| %>
+   <% @orders.each do |order| %>
       <tr>
-       <td><%= transaction.created_at.strftime("%A, %d-%m-%Y") %></td>
-        <td><%= transaction.cart.products.count %></td>
-        <td><%= number_to_currency(transaction.total_price, locale: :id)%></td>
-        <td><%= transaction.status.titleize %></td>
-        <td><%= link_to 'Detail', transaction_path(transaction), class: 'btn btn-secondary'%></td>
+       <td><%= order.created_at.strftime("%A, %d-%m-%Y") %></td>
+        <td><%= order.cart.products.count %></td>
+        <td><%= number_to_currency(order.total_price, locale: :id)%></td>
+        <td><%= order.status.titleize %></td>
+        <td><%= link_to 'Detail', order_path(order), class: 'btn btn-secondary'%></td>
       </tr>
     <% end %>
   </tbody>

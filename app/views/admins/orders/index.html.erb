@@ -9,7 +9,7 @@
         </div>
           <div class="row">
             <div class="col-9">
-              <%= search_form_for @q, url: admins_transactions_path do |f| %>               
+              <%= search_form_for @q, url: admins_orders_path do |f| %>               
                 <div class="row">
                   <div class="col-6">
                     <%= f.search_field :cart_user_name_or_status_cont, placeholder: "Search by Username or Status", class: 'form-control admin-search' %>
@@ -35,20 +35,20 @@
                 </tr>
               </thead>
               <tbody>
-    <% @transactions.each do |t| %>
+    <% @orders.each do |t| %>
       <tr>
-        <td><%= link_to t.cart.user.name, admins_transaction_path(t)%></td>
+        <td><%= link_to t.cart.user.name, admins_orders_path(t)%></td>
         <td><%= number_to_currency(t.total_price, locale: :id) %></td>
         <td><%= t.cart.cart_products.count  %></td>
         <%if t.status.eql? 'cancelled' || 'finished' || 'reviewed'%>
           <td><%= t.status.capitalize%></td>
         <%else%>
-          <td><%= link_to t.status.capitalize, transition_admins_transaction_path(t.id), method: :patch, class: 'btn btn-primary'%></td>
+          <td><%= link_to t.status.capitalize, transition_admins_order_path(t.id), method: :patch, class: 'btn btn-primary'%></td>
         <% end %>
         <%if t.status != 'cancelled' %>
           <td>
             <%if t.receiver.blank?%>
-              <%= link_to 'Add Receiver', input_receiver_admins_transaction_path(t.id), remote: true, class: "btn btn-primary"%>
+              <%= link_to 'Add Receiver', input_receiver_admins_order_path(t.id), remote: true, class: "btn btn-primary"%>
               <div id="modal-window" class="modal" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true"></div>
             <%else%>
               <%= t.receiver.titleize %>
@@ -57,7 +57,7 @@
 
           <td>
             <%if t.receipt_number.eql? '-'%>
-              <%= link_to 'Add Receipt', input_receipt_admins_transaction_path(t.id),  class: 'btn btn-primary', :remote => true  %>
+              <%= link_to 'Add Receipt', input_receipt_admins_order_path(t.id),  class: 'btn btn-primary', :remote => true  %>
               <div id="modal-win" class="modal" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true"></div>
             <%else%>
               <%= t.receipt_number %>

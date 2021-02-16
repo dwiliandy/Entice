@@ -10,7 +10,7 @@
 		<h3>Transaction</h3>
 		<div class="row">
 			<div class="col-lg-12 col-md-11 col-sm-11">
-				<%= area_chart Transaction.group_by_day(:created_at, range: 2.weeks.ago.midnight..Time.now).count %>
+				<%= area_chart Order.group_by_day(:created_at, range: 2.weeks.ago.midnight..Time.now).count %>
 			</div>
 		</div>
 	</div>

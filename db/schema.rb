@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_16_015243) do
+ActiveRecord::Schema.define(version: 2021_02_16_081515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,10 +46,10 @@ ActiveRecord::Schema.define(version: 2021_02_16_015243) do
 
   create_table "comments", force: :cascade do |t|
     t.string "content"
-    t.bigint "user_id", null: false
     t.bigint "product_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
     t.index ["product_id"], name: "index_comments_on_product_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
@@ -62,6 +62,22 @@ ActiveRecord::Schema.define(version: 2021_02_16_015243) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.float "total_price"
+    t.string "status"
+    t.bigint "postal_fee_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "cart_id"
+    t.bigint "coupon_id"
+    t.string "receiver", default: "-"
+    t.string "receipt_number", default: "-"
+    t.text "note"
+    t.index ["cart_id"], name: "index_orders_on_cart_id"
+    t.index ["coupon_id"], name: "index_orders_on_coupon_id"
+    t.index ["postal_fee_id"], name: "index_orders_on_postal_fee_id"
   end
 
   create_table "postal_fees", force: :cascade do |t|
@@ -97,26 +113,10 @@ ActiveRecord::Schema.define(version: 2021_02_16_015243) do
     t.string "city", null: false
     t.string "postcode", null: false
     t.string "phone_number", null: false
-    t.bigint "transaction_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["transaction_id"], name: "index_transaction_details_on_transaction_id"
-  end
-
-  create_table "transactions", force: :cascade do |t|
-    t.float "total_price"
-    t.string "status"
-    t.bigint "postal_fee_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "cart_id"
-    t.bigint "coupon_id"
-    t.string "receiver", default: "-"
-    t.string "receipt_number", default: "-"
-    t.text "note"
-    t.index ["cart_id"], name: "index_transactions_on_cart_id"
-    t.index ["coupon_id"], name: "index_transactions_on_coupon_id"
-    t.index ["postal_fee_id"], name: "index_transactions_on_postal_fee_id"
+    t.bigint "order_id"
+    t.index ["order_id"], name: "index_transaction_details_on_order_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -150,9 +150,8 @@ ActiveRecord::Schema.define(version: 2021_02_16_015243) do
   add_foreign_key "comment_replies", "users"
   add_foreign_key "comments", "products"
   add_foreign_key "comments", "users"
-  add_foreign_key "transaction_details", "transactions"
-  add_foreign_key "transactions", "carts"
-  add_foreign_key "transactions", "coupons"
-  add_foreign_key "transactions", "postal_fees"
+  add_foreign_key "orders", "carts"
+  add_foreign_key "orders", "coupons"
+  add_foreign_key "orders", "postal_fees"
   add_foreign_key "wallets", "users"
 end

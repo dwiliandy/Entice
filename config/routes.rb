@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 end 
   
-  resources :transactions do
+  resources :orders do
     member do
       patch 'cancel'
     end
@@ -41,7 +41,7 @@ end
       end
     end
 
-    resources :transactions do
+    resources :orders do
        member do
         get "input_receiver"
         get "input_receipt" 

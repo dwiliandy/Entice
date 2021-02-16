@@ -13,7 +13,7 @@
 #
 class Coupon < ApplicationRecord
 
-	has_many :transactions
+	has_many :orders
 
 	enum variety: {postal: 0, price: 1}
 

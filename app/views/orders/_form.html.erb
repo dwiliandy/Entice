@@ -1,4 +1,4 @@
-<%= simple_form_for @transaction do |f| %>
+<%= simple_form_for @order do |f| %>
     <div class="row">
       <%= f.simple_fields_for :transaction_detail do |p| %>
         <div class="col-lg-8 col-md-6">
@@ -52,12 +52,12 @@
                 <h4>Your Order</h4>
                 <div class="checkout__order__products">Products <span>Total</span></div>
                   <ul>
-                  <%@transaction.cart.cart_products.each do |product|%>
+                  <%@order.cart.cart_products.each do |product|%>
                     <li><%=product.product.name.capitalize%><span><%=number_to_currency(product.quantity * product.product.price , :locale => :id)%></span></li>
                   <%end%>
                   </ul>
-                  <div class="postal_fee">Postal Fee <span><%=number_to_currency(@transaction.postal_fee.price, :locale => :id)%></span></div>
-                <div class="checkout__order__subtotal">Subtotal <span><%=number_to_currency(@transaction.total_price, :locale => :id)%></span></div>
+                  <div class="postal_fee">Postal Fee <span><%=number_to_currency(@order.postal_fee.price, :locale => :id)%></span></div>
+                <div class="checkout__order__subtotal">Subtotal <span><%=number_to_currency(@order.total_price, :locale => :id)%></span></div>
                   
                 <div class="checkout__input__checkbox">
                 <button type="submit" class="site-btn">PLACE ORDER</button>

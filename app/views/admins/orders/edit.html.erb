@@ -2,13 +2,13 @@
 <div class="container">
 	<div class="row">
         <div class="col-lg-6 col-md-6">
-			<%= simple_form_for [:admins, @transaction] do |f| %>			  
+			<%= simple_form_for [:admins, @order] do |f| %>			  
         		
 			    <%= f.input :receiver %>
 			    <%= f.input :receipt_number %>
 				</br>
 				<%= f.button :submit, class: "btn btn-info" %>
-				<%= link_to "Cancel", admins_transactions_path, class: "btn btn-danger" %>
+				<%= link_to "Cancel", admins_orders_path, class: "btn btn-danger" %>
 
 			<% end %>
 		</div>

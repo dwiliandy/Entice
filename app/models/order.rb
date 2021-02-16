@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: transactions
+# Table name: orders
 #
 #  id             :bigint           not null, primary key
 #  note           :text
@@ -16,9 +16,9 @@
 #
 # Indexes
 #
-#  index_transactions_on_cart_id        (cart_id)
-#  index_transactions_on_coupon_id      (coupon_id)
-#  index_transactions_on_postal_fee_id  (postal_fee_id)
+#  index_orders_on_cart_id        (cart_id)
+#  index_orders_on_coupon_id      (coupon_id)
+#  index_orders_on_postal_fee_id  (postal_fee_id)
 #
 # Foreign Keys
 #
@@ -26,7 +26,7 @@
 #  fk_rails_...  (coupon_id => coupons.id)
 #  fk_rails_...  (postal_fee_id => postal_fees.id)
 #
-class Transaction < ApplicationRecord
+class Order < ApplicationRecord
 	include AASM
 
   aasm column: :status do

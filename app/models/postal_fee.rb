@@ -9,5 +9,5 @@
 #  updated_at :datetime         not null
 #
 class PostalFee < ApplicationRecord
-	has_many :transactions
+	has_many :orders
 end
