@@ -37,8 +37,7 @@
                   <div class="postal_fee">Postal Fee <span><%=number_to_currency(@order.postal_fee.price, :locale => :id)%></span></div>
                 <div class="checkout__order__subtotal">Subtotal <span><%=number_to_currency(@order.total_price, :locale => :id)%></span></div>
                   
-                <div class="checkout__input__checkbox">
-                <button type="submit" class="site-btn">PLACE ORDER</button>
+                <%=f.button :submit, 'PLACE ORDER', class: 'site-btn'%>
             </div>
         </div>
     </div>

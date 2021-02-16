@@ -27,10 +27,11 @@ require("css/application")
 import 'bootstrap/dist/js/bootstrap'
 import 'bootstrap/dist/css/bootstrap'
 import "@fortawesome/fontawesome-free/js/all"
-require('./owl.carousel.min')
 require('./jquery.nice-select')
 require('./jquery-ui.min')
 require('./jquery.slicknav')
+require('./mixitup.min')
+require('./owl.carousel.min')
 require('./main')
 require("chartkick")
 require("chart.js")
