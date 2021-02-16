@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_04_162710) do
+ActiveRecord::Schema.define(version: 2021_02_16_015243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,6 +90,19 @@ ActiveRecord::Schema.define(version: 2021_02_04_162710) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "transaction_details", force: :cascade do |t|
+    t.string "recipient_name", null: false
+    t.text "address", null: false
+    t.text "address_detail"
+    t.string "city", null: false
+    t.string "postcode", null: false
+    t.string "phone_number", null: false
+    t.bigint "transaction_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["transaction_id"], name: "index_transaction_details_on_transaction_id"
+  end
+
   create_table "transactions", force: :cascade do |t|
     t.float "total_price"
     t.string "status"
@@ -100,6 +113,7 @@ ActiveRecord::Schema.define(version: 2021_02_04_162710) do
     t.bigint "coupon_id"
     t.string "receiver", default: "-"
     t.string "receipt_number", default: "-"
+    t.text "note"
     t.index ["cart_id"], name: "index_transactions_on_cart_id"
     t.index ["coupon_id"], name: "index_transactions_on_coupon_id"
     t.index ["postal_fee_id"], name: "index_transactions_on_postal_fee_id"
@@ -136,6 +150,7 @@ ActiveRecord::Schema.define(version: 2021_02_04_162710) do
   add_foreign_key "comment_replies", "users"
   add_foreign_key "comments", "products"
   add_foreign_key "comments", "users"
+  add_foreign_key "transaction_details", "transactions"
   add_foreign_key "transactions", "carts"
   add_foreign_key "transactions", "coupons"
   add_foreign_key "transactions", "postal_fees"

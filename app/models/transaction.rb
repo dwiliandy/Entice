@@ -3,6 +3,7 @@
 # Table name: transactions
 #
 #  id             :bigint           not null, primary key
+#  note           :text
 #  receipt_number :string           default("-")
 #  receiver       :string           default("-")
 #  status         :string
@@ -78,7 +79,8 @@ STATUS_OPTIONS = [
 
   belongs_to :postal_fee
   belongs_to :cart, dependent: :destroy
-
+  has_one :transaction_detail
+  accepts_nested_attributes_for :transaction_detail
   # after_create :retracted_from_wallet
     after_create :final_price
   belongs_to :coupon, optional: true

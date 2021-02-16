@@ -107,6 +107,20 @@ ol {
 	margin: 0;
 }
 
+.postal_fee{
+  font-size: 16px;
+    color: #6f6f6f;
+  border-bottom: 1px solid #e1e1e1;
+	border-top: 1px solid #e1e1e1;
+	padding-bottom: 15px;
+	margin-top: 15px;
+	padding-top: 15px;
+}
+
+.postal_fee span{
+  float: right;
+}
+
 /*---------------------
   Helper CSS
 -----------------------*/
