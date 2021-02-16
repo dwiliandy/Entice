@@ -3,12 +3,12 @@
 # Table name: transaction_details
 #
 #  id             :bigint           not null, primary key
-#  address        :text             not null
+#  address        :string
 #  address_detail :text
-#  city           :string           not null
-#  phone_number   :string           not null
-#  postcode       :string           not null
-#  recipient_name :string           not null
+#  city           :string
+#  phone_number   :string
+#  postcode       :string
+#  recipient_name :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  order_id       :bigint

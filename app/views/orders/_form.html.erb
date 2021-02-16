@@ -4,43 +4,21 @@
         <div class="col-lg-8 col-md-6">
             <div class="row">
                 <div class="col-lg-12">
-                  <%= f.input :recipient_name %>
+                  <%= p.input :recipient_name, required: true %>
                 </div>
             </div>
             <div class="checkout__input">
-                <p>Country<span>*</span></p>
-                <input type="text">
+                <%= p.input :address, placeholder: 'Street Address', required: true %>
+                <%= p.input :address_detail,label: false, placeholder: 'Apartment, Suite, Home Number, etc (Optional)' %>
             </div>
             <div class="checkout__input">
-                <p>Address<span>*</span></p>
-                <input type="text" placeholder="Street Address" class="checkout__input__add">
-                <input type="text" placeholder="Apartment, suite, unite ect (optinal)">
+                <%= p.input :city, label:'Town/City', required: true %>
             </div>
             <div class="checkout__input">
-                <p>Town/City<span>*</span></p>
-                <input type="text">
+                <%= p.input :postcode, label:'Postcode/ZIP Code', required: true %>
             </div>
             <div class="checkout__input">
-                <p>Country/State<span>*</span></p>
-                <input type="text">
-            </div>
-            <div class="checkout__input">
-                <p>Postcode / ZIP<span>*</span></p>
-                <input type="text">
-            </div>
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="checkout__input">
-                        <p>Phone<span>*</span></p>
-                        <input type="text">
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="checkout__input">
-                        <p>Email<span>*</span></p>
-                        <input type="text">
-                    </div>
-                </div>
+                <%= p.input :phone_number, label:'Phone Number', required: true %>
             </div>
             <div class="checkout__input">
               <%= f.input :note, label: 'Order Notes', placeholder: "Notes about your order, e.g. special notes for delivery.s" %>

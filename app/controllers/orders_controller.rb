@@ -44,8 +44,9 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1.json
   def update
     respond_to do |format|
+      
       if @order.update(order_params)
-        format.html { redirect_to @order, notice: 'Transaction was successfully updated.' }
+        format.html { redirect_to root_path, notice: 'Transaction was successfully updated.' }
         format.json { render :show, status: :ok, location: @order }
       else
         format.html { render :edit }
@@ -79,9 +80,10 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:total_price, :status, :postal_fee_id, 
-        :cart_id, transaction_detail_attributes:[
-          :address, :address_detail, :city, :postcode, :phone_number, :recipient_name
+      params.require(:order).permit(:total_price, :status, :postal_fee_id,:note, 
+        :cart_id, transaction_detail_attributes:[:id,
+          :address, :address_detail, :city, :postcode, 
+          :phone_number, :recipient_name, :order_id
         ])
     end
 

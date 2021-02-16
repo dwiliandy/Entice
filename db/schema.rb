@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_16_081515) do
+ActiveRecord::Schema.define(version: 2021_02_16_104147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,10 +46,10 @@ ActiveRecord::Schema.define(version: 2021_02_16_081515) do
 
   create_table "comments", force: :cascade do |t|
     t.string "content"
+    t.bigint "user_id", null: false
     t.bigint "product_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id"
     t.index ["product_id"], name: "index_comments_on_product_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
@@ -107,12 +107,12 @@ ActiveRecord::Schema.define(version: 2021_02_16_081515) do
   end
 
   create_table "transaction_details", force: :cascade do |t|
-    t.string "recipient_name", null: false
-    t.text "address", null: false
+    t.string "recipient_name"
+    t.string "address"
     t.text "address_detail"
-    t.string "city", null: false
-    t.string "postcode", null: false
-    t.string "phone_number", null: false
+    t.string "city"
+    t.string "postcode"
+    t.string "phone_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "order_id"

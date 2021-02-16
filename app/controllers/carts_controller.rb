@@ -3,6 +3,7 @@ before_action :set_cart, only: [:create_transaction]
 
   def create_transaction
     @trans = Order.create(status:'pending', cart: @cart, postal_fee:PostalFee.first, coupon: Coupon.find_by_id(params["coupon"]))
+    TransactionDetail.create(order:@trans)
     @cart.update(active:false)
     if params[:coupon].present?
       Coupon.find(params[:coupon]).decrement!(:qty)
