@@ -20,4 +20,5 @@
 #
 class WalletStatus < ApplicationRecord
   belongs_to :wallet
+  mount_uploader :proof_of_payment, ProofOfPaymentUploader
 end
