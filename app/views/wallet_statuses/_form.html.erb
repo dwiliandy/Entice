@@ -1,0 +1,12 @@
+<%= simple_form_for @wallet_status do |f| %>
+  <div class="row">
+    <div class="col-12">
+      <%= f.input :nominal %>
+    </div>
+    <div class="col-12">
+      <%= f.input :proof_of_payment, as: :file %>
+    </div>
+    <%= f.button :submit, class: "btn btn-info" %>
+      <%= link_to "Cancel", root_path, class: "btn btn-danger" %>
+  </div>
+<%end%>

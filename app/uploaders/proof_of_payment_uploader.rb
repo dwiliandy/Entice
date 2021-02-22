@@ -1,4 +1,4 @@
-class ProofOfPaymnetUploader < CarrierWave::Uploader::Base
+class ProofOfPaymentUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
