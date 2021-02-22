@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
 end 
   
+  resources :wallet_statuses
   resources :orders do
     member do
       patch 'cancel'
