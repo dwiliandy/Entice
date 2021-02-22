@@ -19,6 +19,32 @@
 #  fk_rails_...  (wallet_id => wallets.id)
 #
 class WalletStatus < ApplicationRecord
+  include AASM
+
+  aasm column: :status do
+    
+    state :pending, initial: true
+    state :success, :failed
+
+    event :verified do
+      transitions from: :pending, to: :success
+    end
+
+    event :fail do
+      transitions from: :pending, to: :fail
+    end
+  end
   belongs_to :wallet
   mount_uploader :proof_of_payment, ProofOfPaymentUploader
+
+  after_create :check_proof
+
+  def check_proof
+  	if 1.hour.from_now && self.proof_of_payment.nil?
+  		self.fail!
+  	else
+  		self.verified!
+  	end
+  end
+
 end
