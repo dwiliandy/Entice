@@ -108,7 +108,9 @@ STATUS_OPTIONS = [
 
   	def final_price
       total_price = cart.price + postal_fee.price
-      total_price = total_price - self.check_discount
+      if self.coupon.present?
+        total_price = total_price - self.check_discount
+      end
       self.update(total_price: total_price)
     end    
 
