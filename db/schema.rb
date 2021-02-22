@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_16_104147) do
+ActiveRecord::Schema.define(version: 2021_02_22_100850) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,10 +46,10 @@ ActiveRecord::Schema.define(version: 2021_02_16_104147) do
 
   create_table "comments", force: :cascade do |t|
     t.string "content"
+    t.bigint "user_id", null: false
     t.bigint "product_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id"
     t.index ["product_id"], name: "index_comments_on_product_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
@@ -135,6 +135,16 @@ ActiveRecord::Schema.define(version: 2021_02_16_104147) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "wallet_statuses", force: :cascade do |t|
+    t.float "nominal"
+    t.string "proof_of_payment"
+    t.string "status"
+    t.bigint "wallet_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["wallet_id"], name: "index_wallet_statuses_on_wallet_id"
+  end
+
   create_table "wallets", force: :cascade do |t|
     t.float "nominal"
     t.bigint "user_id", null: false
@@ -153,5 +163,6 @@ ActiveRecord::Schema.define(version: 2021_02_16_104147) do
   add_foreign_key "orders", "carts"
   add_foreign_key "orders", "coupons"
   add_foreign_key "orders", "postal_fees"
+  add_foreign_key "wallet_statuses", "wallets"
   add_foreign_key "wallets", "users"
 end
