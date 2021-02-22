@@ -94,8 +94,23 @@ STATUS_OPTIONS = [
   #   wallet.update(nominal: wallet.nominal - self.total_price)
   # end
   
+    def check_discount
+      coupon = self.coupon
+      if coupon.present?
+        if coupon.postal?
+          disc = cart.price * (coupon.discount/100.to_f)
+        else
+          disc = postal_fee.price * (coupon.discount/100.to_f)
+        end
+      end
+    end
+
+
   	def final_price
       total_price = cart.price + postal_fee.price
+      total_price = total_price - self.check_discount
       self.update(total_price: total_price)
     end    
+
+
 end
