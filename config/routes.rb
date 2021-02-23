@@ -8,7 +8,14 @@ Rails.application.routes.draw do
   post 'cekstatus', to: 'cart_products#check'
 
   resource :comments
-  resources :users, only: [:edit, :update]
+  # resources :users, only: [:edit, :update]
+  resources :users, only: :index do
+    collection do
+      get 'profile'
+      put 'update'
+    end
+  end
+
   resources :wallet_statuses
   resources :carts do
     member do

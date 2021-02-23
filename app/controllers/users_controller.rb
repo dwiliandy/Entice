@@ -8,16 +8,16 @@ class UsersController < ApplicationController
   def show
   end
   
-  def edit
-  end
+  # def edit
+  # end
 
 
   def update
     if @user.update(user_params)
       sign_in(current_user, :bypass => true)
-      redirect_to profile_path, notice: 'Profile has been updated.'
+      redirect_to root_path, notice: 'Profile has been updated.'
     else
-      render 'edit'
+      render 'profile'
     end
   end
 

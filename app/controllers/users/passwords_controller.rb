@@ -13,6 +13,7 @@ class Users::PasswordsController < Devise::PasswordsController
 
   # GET /resource/password/edit?reset_password_token=abcdef
   # def edit
+  #   byebug
   #   super
   # end
 
