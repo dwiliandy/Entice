@@ -30,8 +30,8 @@ class WalletStatus < ApplicationRecord
       transitions from: :pending, to: :success
     end
 
-    event :fail do
-      transitions from: :pending, to: :fail
+    event :exprire do
+      transitions from: :pending, to: :failed
     end
   end
   belongs_to :wallet
@@ -40,9 +40,9 @@ class WalletStatus < ApplicationRecord
   after_create :check_proof
 
   def check_proof
-  	if 1.hour.from_now && self.proof_of_payment.nil?
-  		self.fail!
-  	else
+  	if (Time.now == self.created_at + 1.hour) && (self.proof_of_payment.nil?)
+  		self.expire!
+  	elsif self.proof_of_payment != nil)
   		self.verified!
   	end
   end
