@@ -37,14 +37,14 @@ class WalletStatus < ApplicationRecord
   belongs_to :wallet
   mount_uploader :proof_of_payment, ProofOfPaymentUploader
 
-  after_create :check_proof
+  # after_create :check_proof
 
-  def check_proof
-  	if (Time.now == self.created_at + 1.hour) && (self.proof_of_payment.nil?)
-  		self.expire!
-  	elsif self.proof_of_payment != nil)
-  		self.verified!
-  	end
-  end
+  # def check_proof
+  # 	if (Time.now == self.created_at + 1.hour) && (self.proof_of_payment.nil?)
+  # 		self.expire!
+  # 	elsif self.proof_of_payment != nil)
+  # 		self.verified!
+  # 	end
+  # end
 
 end
