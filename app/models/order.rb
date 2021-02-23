@@ -29,6 +29,15 @@
 class Order < ApplicationRecord
 	include AASM
 
+  belongs_to :postal_fee
+  belongs_to :cart, dependent: :destroy
+  belongs_to :coupon, optional: true
+  has_one :transaction_detail
+  accepts_nested_attributes_for :transaction_detail
+  # after_create :retracted_from_wallet
+  after_create :final_price
+
+
   aasm column: :status do
     
     state :pending, initial: true
@@ -77,13 +86,7 @@ STATUS_OPTIONS = [
   scope :status_ongoing, -> { where(status: ["active", "processed", "delivery", "delivered"]) }
   scope :status_completed, -> { where(status: ["finished", "cancelled"]) }
 
-  belongs_to :postal_fee
-  belongs_to :cart, dependent: :destroy
-  has_one :transaction_detail
-  accepts_nested_attributes_for :transaction_detail
-  # after_create :retracted_from_wallet
-    after_create :final_price
-  belongs_to :coupon, optional: true
+  
   
 
   # def retracted_from_wallet

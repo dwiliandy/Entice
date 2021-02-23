@@ -1,21 +1,31 @@
 Rails.application.routes.draw do
 
+  
+#Customer
   root to: 'pages#index'
   get 'about', to: 'pages#about'
   get 'coupons/checking/:code', action: :checking, controller: 'coupons'
+  post 'cekstatus', to: 'cart_products#check'
 
+  resource :comments
   resources :users, only: [:edit, :update]
-  resources :carts do
-  member do
-    post 'create_transaction'
-    post 'change_quantity'
-  end
-end 
-  
   resources :wallet_statuses
+  resources :carts do
+    member do
+      post 'create_transaction'
+      post 'change_quantity'
+    end
+  end 
+  
   resources :orders do
     member do
       patch 'cancel'
+    end
+  end
+
+  resources :cart_products do
+    member do
+      post :change_quantity
     end
   end
   
@@ -26,13 +36,10 @@ end
         post 'create_comment'
       end
     end
-  resources :cart_products do
-    member do
-      post :change_quantity
-    end
-  end
-  post 'cekstatus', to: 'cart_products#check'
-  resource :comments
+  
+  
+
+
 	#ADMIN
 	namespace :admins do
 		get 'pages/index' => 'pages#index'
@@ -42,7 +49,7 @@ end
       end
     end
 
-    resources :orders do
+    resources :orders, except: [:new, :destroy] do
        member do
         get "input_receiver"
         get "input_receipt" 
@@ -51,8 +58,7 @@ end
     end
 
 		resources :coupons
-    resources :postal_fees
-    resources :wallets
+    resources :postal_fees 
+    resources :wallet_statuses, except: [:new, :destroy, :show]
 	end
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-end
+  end

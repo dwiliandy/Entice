@@ -2,9 +2,8 @@ class WalletStatusesController < ApplicationController
   before_action :set_wallet_status, only: [:show, :edit, :update]
   
     def index
-      order = current_user.carts.where(active: false).map {|c| c.order.id}
-      @q = Order.where(id: order ).ransack(params[:q])
-      @orders = @q.result(distinct: true)
+      @q = current_user.wallet.wallet_statuses.ransack(params[:q])
+      @pagy, @coupons = pagy(@q.result(distinct: true), items:20)
     end
   
     def show
@@ -17,7 +16,6 @@ class WalletStatusesController < ApplicationController
     end
   
     def create
-      
       @wallet_status = current_user.wallet.wallet_statuses.new(wallet_status_params)
       respond_to do |format|
         if @wallet_status.save

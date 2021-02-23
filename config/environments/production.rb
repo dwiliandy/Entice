@@ -117,4 +117,21 @@ Rails.application.configure do
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
 
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default :charset => "utf-8"
+
+  config.action_mailer.smtp_settings = {
+    :authentication => :plain,
+    :address => "smtp.mailgun.org",
+    :port => 587,
+    :domain => "sandboxde571f76603b4fe490d0a84907c82d5b.mailgun.org",
+    :user_name => "postmaster@sandboxde571f76603b4fe490d0a84907c82d5b.mailgun.org",
+    :password => "a1c4de90881812d4d38b0ffe8d6d8f43-6e0fd3a4-e73c9400",
+    enable_starttls_auto: true
+
+  }
+
 end
