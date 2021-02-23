@@ -129,9 +129,7 @@ Rails.application.configure do
     :port => 587,
     :domain => "entice1.herokuapp.com",
     :user_name => "postmaster@sandboxde571f76603b4fe490d0a84907c82d5b.mailgun.org",
-    :password => "a1c4de90881812d4d38b0ffe8d6d8f43-6e0fd3a4-e73c9400",
-    enable_starttls_auto: true
-
+    :password => "a1c4de90881812d4d38b0ffe8d6d8f43-6e0fd3a4-e73c9400"
   }
 
 end

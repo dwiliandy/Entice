@@ -32,8 +32,13 @@ class User < ApplicationRecord
   enum role: {customer: 0, admin: 1}
 
   after_create :made_wallet
+  after_create :send_welcome_letter
 
   def made_wallet
   	Wallet.create(nominal: 0, user: self)
+  end 
+
+  def send_welcome_letter
+    ModelMailer.welcome_email(self).deliver
   end
 end

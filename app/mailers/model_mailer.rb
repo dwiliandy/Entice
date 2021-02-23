@@ -9,6 +9,11 @@ class ModelMailer < ApplicationMailer
     @user = user
     mail to: @user.email, subject: 'Halo'
   end
+  
+  def welcome_email(user)
+    @user = user
+    mail(to: @user.email, subject: "Welcome!")
+  end
 
   # def reset_password_instruction(user)
   #   @user = user
