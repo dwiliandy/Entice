@@ -121,7 +121,7 @@ Rails.application.configure do
   
 
   #MailGun
-  config.action_mailer.default_url_options = { host: RailsConfig.host }
+  # config.action_mailer.default_url_options = { host: RailsConfig.host }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :authentication => :plain,
