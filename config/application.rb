@@ -34,5 +34,7 @@ module Entice
 
      # config.load_defaults 6.0
      config.autoload = :classic
+    
+     config.assets.precompile += ['styles.css']
   end
 end
