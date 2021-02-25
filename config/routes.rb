@@ -66,6 +66,6 @@ Rails.application.routes.draw do
 
 		resources :coupons
     resources :postal_fees 
-    resources :wallet_statuses, except: [:new, :destroy, :show]
+    resources :wallets, except: [:new, :destroy]
 	end
   end
