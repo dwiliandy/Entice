@@ -37,7 +37,7 @@
               <tbody>
     <% @orders.each do |t| %>
       <tr>
-        <td><%= link_to t.cart.user.name, admins_orders_path(t)%></td>
+        <td><%= link_to t.cart.user.name, admins_order_path(t.id)%></td>
         <td><%= number_to_currency(t.total_price, locale: :id) %></td>
         <td><%= t.cart.cart_products.count  %></td>
         <%if t.status.eql? 'cancelled' || 'finished' || 'reviewed'%>
