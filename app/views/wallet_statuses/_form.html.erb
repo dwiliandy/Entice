@@ -1,12 +1,17 @@
-<%= simple_form_for @wallet_status do |f| %>
-  <div class="row">
-    <div class="col-12">
-      <%= f.input :nominal %>
+<div class="container col-md-4">
+  <%= simple_form_for @wallet_status do |f| %>
+    <div class="row">
+      <div class="col-12">
+        <%= f.input :nominal %>
+      </div>
+      <div class="col-12">
+        <%= f.input :proof_of_payment, as: :file %>
+      </div>
     </div>
-    <div class="col-12">
-      <%= f.input :proof_of_payment, as: :file %>
+    <div class="row button">
+          <%= f.button :submit, class: "btn btn-info col-12" %>
+          <%= link_to "Cancel", root_path, class: "btn btn-danger col-12" %>
+      </div>
     </div>
-    <%= f.button :submit, class: "btn btn-info" %>
-      <%= link_to "Cancel", root_path, class: "btn btn-danger" %>
-  </div>
-<%end%>
+  <%end%>
+</div>

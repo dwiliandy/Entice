@@ -1,0 +1,46 @@
+<div id="content-wrapper" class="d-flex flex-column">
+  <!-- Main Content -->
+  <div id="content">
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h2 class="m-0 font-weight-bold">Wallet Data</h2>
+        </div>
+          <div class="row">
+            <div class="col-9">
+              <!-- Search Here -->
+            </div>
+          </div>
+        </div>
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Nominal</th>
+                  <th>Time Request</th>
+                  <th>Proof of Payment</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @wallet_statuses.each do |wallet| %>
+                  <tr>
+                    <td><%=wallet.wallet.user.name.capitalize%></td>
+                    <td><%=number_to_currency(wallet.nominal, locale: :id)%></td>
+                    <td><%=wallet.created_at.strftime('%d %b %Y - %H:%M')%></td>
+                    <td><img src=<%= wallet.proof_of_payment.thumb%> alt=""></td>
+                    <td><%=wallet.status.capitalize%></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+            <%== render partial: 'admins/shared/bootstrap_nav', locals: {pagy: @pagy} %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

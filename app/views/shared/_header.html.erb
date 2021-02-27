@@ -120,6 +120,8 @@
                                 <%end%>
                                 0
                               </span></a></li>
+                          <li><%=number_to_currency(current_user.wallet.nominal, :locale => :id)%></li>
+                          <li><a href="<%= new_wallet_status_path%>"><i class="fas fa-plus"></i></a></li>
                         </ul>
                       <%end%>
                   </div>
