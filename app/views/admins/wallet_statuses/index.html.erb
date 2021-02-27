@@ -32,6 +32,12 @@
                     <td><%=wallet.created_at.strftime('%d %b %Y - %H:%M')%></td>
                     <td><img src=<%= wallet.proof_of_payment.thumb%> alt=""></td>
                     <td><%=wallet.status.capitalize%></td>
+                    <td>
+                      <% if wallet.status.eql?('pending') %>
+                        <%= link_to 'success',success_admins_wallet_status_path(wallet.id), method: :patch%>
+                        <%= link_to 'failed',failed_admins_wallet_status_path(wallet.id), method: :patch%>
+                      <% end %>
+                    </td>
                   </tr>
                 <% end %>
               </tbody>

@@ -19,6 +19,18 @@ class Admins::WalletStatusesController < AdminsController
 	  end
   end
 
+  def failed
+    @wallet_status = WalletStatus.find(params[:id])
+    @wallet_status.update(status:'failed') 
+    redirect_to admins_wallet_statuses_path
+  end
+
+  def success
+    @wallet_status = WalletStatus.find(params[:id])
+    @wallet_status.update(status:'success')
+    redirect_to admins_wallet_statuses_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_wallet

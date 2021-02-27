@@ -67,6 +67,11 @@ Rails.application.routes.draw do
 		resources :coupons
     resources :postal_fees 
     # resources :wallets, except: [:new, :destroy]
-    resources :wallet_statuses, only: [:index, :edit, :update]
+    resources :wallet_statuses, only: [:index, :edit, :update] do
+      member do 
+        patch 'success'
+        patch 'failed'
+      end
+    end
 	end
   end
