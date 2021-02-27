@@ -94,12 +94,12 @@ textarea:focus {
 	outline: none;
 }
 
-a:hover,
+/* a:hover,
 a:focus {
 	text-decoration: none;
 	outline: none;
 	color: #ffffff;
-}
+} */
 
 ul,
 ol {
@@ -115,6 +115,13 @@ ol {
 	padding-bottom: 15px;
 	margin-top: 15px;
 	padding-top: 15px;
+}
+
+.lock:hover .wallet, .lock .plus {
+    display: none;
+}
+.lock:hover .plus {
+    display: inline;
 }
 
 .postal_fee span{
