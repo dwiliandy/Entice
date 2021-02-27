@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="shoping__cart__table">
+          <table>
+              <thead>
+                <tr>
+                  <th class="shoping__product">Proof of Payment</th>  
+                  <th>Nominal</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <%@wallet_statuses.each do |wallstat|%>
+                <td class="shoping__cart__item">
+                  <img src=<%= wallstat.proof_of_payment.thumb %> alt="">
+                </td>
+                <td>
+                  <h5><%=number_to_currency(wallstat.nominal, locale: :id)%></h5>
+                </td>
+                    <td>
+                      <%=wallstat.created_at.strftime('%d %b %Y - %H:%M')%>
+                    </td>
+                  </tr>
+                <%end%>
+              </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -138,7 +138,13 @@ ol {
   padding-top: 20px;
 }
 
+a.wallet-nominal{
+  color: black;
+}
 
+a.wallet-nominal:hover{
+  text-decoration: none;
+}
 
 /*---------------------
   Helper CSS

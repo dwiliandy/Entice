@@ -1,12 +1,9 @@
 class WalletStatusesController < ApplicationController
-  before_action :set_wallet_status, only: [:show, :edit, :update]
+  # before_action :set_wallet_status, only: [:show, :edit, :update]
   
     def index
-      @q = current_user.wallet.wallet_statuses.ransack(params[:q])
-      @pagy, @coupons = pagy(@q.result(distinct: true), items:20)
-    end
-  
-    def show
+      @wallet_statuses = current_user.wallet.wallet_statuses.all.order(created_at: :desc)
+      # @pagy, @wallet_statuses = pagy(@q.result(distinct: true), items:20)
     end
   
     def new
@@ -27,28 +24,18 @@ class WalletStatusesController < ApplicationController
       end
     end
 
-    def update
-      respond_to do |format|
+    # def update
+    #   respond_to do |format|
         
-        if @wallet_status.update(wallet_status_params)
-          format.html { redirect_to root_path, notice: 'Wallet Request is being processed' }
-        else
-          format.html { render :edit }
-          format.json { render json: @wallet_status.errors, status: :unprocessable_entity }
-        end
-      end
-    end
-  
-   
-    def destroy
-      @order.destroy
-      respond_to do |format|
-        format.html { redirect_to orders_url, notice: 'Transaction was successfully destroyed.' }
-        format.json { head :no_content }
-      end
-    end
-  
-  
+    #     if @wallet_status.update(wallet_status_params)
+    #       format.html { redirect_to root_path, notice: 'Wallet Request is being processed' }
+    #     else
+    #       format.html { render :edit }
+    #       format.json { render json: @wallet_status.errors, status: :unprocessable_entity }
+    #     end
+    #   end
+    # end
+
     private
       def set_wallet_status
         @wallet_status = WalletStatus.find(params[:id])

@@ -94,15 +94,8 @@
                     <nav class="header__menu">
                         <ul class="nav">
                             <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "Home", root_path %></li>
-                            <li><a href="#">Pages</a>
-                              <ul class="header__menu__dropdown">
-                                <li><a href="/cart_products">Shopping Cart</a></li>
-                                <li><a href="./checkout.html">Check Out</a></li>
-                                <li><a href="<%=orders_path%>">Order History</a></li>
-                              </ul>
-                            </li>
-                            <li class="<%= 'active' if current_page?(about_path) %>"><%= link_to "About", about_path %></li>
-                            
+                            <li class="<%= 'active' if current_page?(cart_products_path) %>"><%= link_to "Shopping Cart", cart_products_path %></li>
+                            <li class="<%= 'active' if current_page?(orders_path) %>"><%= link_to "Order History", orders_path %></li>
                         </ul>
                     </nav>
                 </div>
@@ -120,7 +113,7 @@
                                 <%end%>
                                 0
                               </span></a></li>
-                          <li><%=number_to_currency(current_user.wallet.nominal, :locale => :id)%></li>
+                          <li><a class="wallet-nominal" href="<%= wallet_statuses_path%>"><%=number_to_currency(current_user.wallet.nominal, :locale => :id)%></a></li>
                           <li><a href="<%= new_wallet_status_path%>"><i class="fas fa-plus"></i></a></li>
                         </ul>
                       <%end%>
