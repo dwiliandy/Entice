@@ -151,6 +151,7 @@ a.wallet-nominal{
 
 a.wallet-nominal:hover{
   text-decoration: none;
+  text-decoration-color: blue; 
 }
 
 /*---------------------
