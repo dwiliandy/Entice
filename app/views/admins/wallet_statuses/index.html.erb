@@ -34,8 +34,8 @@
                     <td><%=wallet.status.capitalize%></td>
                     <td>
                       <% if wallet.status.eql?('pending') %>
-                        <%= link_to 'success',success_admins_wallet_status_path(wallet.id), method: :patch%>
-                        <%= link_to 'failed',failed_admins_wallet_status_path(wallet.id), method: :patch%>
+                        <%= link_to 'success',success_admins_wallet_status_path(wallet.id), method: :patch, class: "btn btn-success"%>
+                        <%= link_to 'failed',failed_admins_wallet_status_path(wallet.id), method: :patch, class: "btn btn-danger"%>
                       <% end %>
                     </td>
                   </tr>

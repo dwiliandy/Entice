@@ -94,6 +94,7 @@ textarea:focus {
 	outline: none;
 }
 
+
 /* a:hover,
 a:focus {
 	text-decoration: none;
@@ -152,6 +153,14 @@ a.wallet-nominal{
 a.wallet-nominal:hover{
   text-decoration: none;
   text-decoration-color: blue; 
+}
+
+.success-wallet{
+  color: green;
+}
+
+.failed-wallet{
+  color: red;
 }
 
 /*---------------------
@@ -1990,7 +1999,6 @@ p.alert.alert-success{
 }
 
 .shoping__cart__table table tbody tr td.shoping__cart__item h5 {
-	color: #1c1c1c;
 	display: inline-block;
 }
 

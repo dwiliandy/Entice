@@ -14,6 +14,7 @@
                 <%@wallet_statuses.each do |wallstat|%>
                 <td class="shoping__cart__item">
                   <img src=<%= wallstat.proof_of_payment.thumb %> alt="">
+                  <h5 class="<%=wallstat.status%>-wallet"><%=wallstat.status.capitalize%></h5>
                 </td>
                 <td>
                   <h5><%=number_to_currency(wallstat.nominal, locale: :id)%></h5>
