@@ -53,6 +53,7 @@ class OrdersController < ApplicationController
       if @order.status.eql?"pending" and (current_user.wallet.nominal - @order.total_price < 0)
         flash[:alert] = "Wallet is not enough"
         format.html { render :edit }
+        @order.cart.update(active:true)
       else
         if @order.update(order_params)
           wallet = current_user.wallet.nominal - @order.total_price

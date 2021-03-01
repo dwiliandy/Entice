@@ -2,14 +2,18 @@ class CartsController < ApplicationController
 before_action :set_cart, only: [:create_transaction]
 
   def create_transaction
-    @trans = Order.create(status:'pending', cart: @cart, postal_fee:PostalFee.first, coupon: Coupon.find_by_id(params["coupon"]))
-    TransactionDetail.create(order:@trans)
-    @cart.update(active:false)
-    if params[:coupon].present?
-      Coupon.find(params[:coupon]).decrement!(:qty)
+    if @cart.order.present?
+      @trans = @cart.order
+    else
+      @trans = Order.create(status:'pending', cart: @cart, postal_fee:PostalFee.first, coupon: Coupon.find_by_id(params["coupon"]))
+      TransactionDetail.create(order:@trans)
+      if params[:coupon].present?
+        Coupon.find(params[:coupon]).decrement!(:qty)
+      end
     end
+    @cart.update(active:false)
     flash[:notice] = 'Berhasil menambahkan product'
-      redirect_to edit_order_path(@trans)
+    redirect_to edit_order_path(@trans)
   end
 
 
