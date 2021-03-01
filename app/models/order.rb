@@ -96,7 +96,7 @@ STATUS_OPTIONS = [
 
   #   wallet.update(nominal: wallet.nominal - self.total_price)
   # end
-  
+
     def check_discount
       coupon = self.coupon
       if coupon.present?

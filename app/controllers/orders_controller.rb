@@ -26,17 +26,22 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-
     @order = Order.new
-
     respond_to do |format|
-      if @order.save
-        format.html { redirect_to @order, notice: 'Ttransaction was successfully created.' }
-        format.json { render :show, status: :created, location: @order }
-      else
-        format.html { render :new }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+        if current_user.wallet.nominal - @order.total_price < 0
+          flash[:alert] = "Wallet is not enough"
+          redirect_to root_path
+        else
+        if @order.save
+          wallet = @order.user.wallet.nominal - @order.total_price
+          @order.user.wallet.update(nominal: wallet)
+          format.html { redirect_to @order, notice: 'Ttransaction was successfully created.' }
+        else
+          format.html { render :new }
+        end
       end
+
+      
     end
   end
 
@@ -45,12 +50,19 @@ class OrdersController < ApplicationController
   def update
     respond_to do |format|
       
-      if @order.update(order_params)
-        format.html { redirect_to root_path, notice: 'Transaction was successfully updated.' }
-        format.json { render :show, status: :ok, location: @order }
-      else
+      if @order.status.eql?"pending" and (current_user.wallet.nominal - @order.total_price < 0)
+        flash[:alert] = "Wallet is not enough"
         format.html { render :edit }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+      else
+        if @order.update(order_params)
+          wallet = current_user.wallet.nominal - @order.total_price
+          current_user.wallet.update(nominal: wallet)
+          format.html { redirect_to root_path, notice: 'Transaction was successfully updated.' }
+          format.json { render :show, status: :ok, location: @order }
+        else
+          format.html { render :edit }
+          format.json { render json: @order.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
