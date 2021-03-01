@@ -34,14 +34,8 @@
         <nav class="humberger__menu__nav mobile-menu">
             <ul class="nav">
               <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "Home", root_path %></li>
-              <li><a href="#">Pages</a>
-                <ul class="header__menu__dropdown">
-                  <li><a href="/cart_products">Shopping Cart</a></li>
-                  <li><a href="./checkout.html">Check Out</a></li>
-                  <li><a href="<%=orders_path%>">Order History</a></li>
-                </ul>
-              </li>
-              <li class="<%= 'active' if current_page?(about_path) %>"><%= link_to "About", about_path %></li>
+              <li class="<%= 'active' if current_page?(cart_products_path) %>"><%= link_to "Shopping Cart", cart_products_path %></li>
+              <li class="<%= 'active' if current_page?(orders_path) %>"><%= link_to "Order History", orders_path %></li>
           </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
@@ -88,9 +82,7 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-lg-3">
-                </div>
-                <div class="col-lg-6">
+                <div class="col-lg-8">
                     <nav class="header__menu">
                         <ul class="nav">
                             <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "Home", root_path %></li>
@@ -99,11 +91,10 @@
                         </ul>
                     </nav>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                   <div class="header__cart">
                       <% if user_signed_in? && current_user.customer? %>
                         <ul>
-                          <li><a href="<%= orders_path%>"><i class="fas fa-receipt"></i></a></li>
                           <li><a href="<%=cart_products_path%>"><i class="fa fa-shopping-bag"></i>
                               <span>
                                 <%if current_user.carts.where(active:true).exists?%>
