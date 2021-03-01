@@ -4,6 +4,7 @@ before_action :set_cart, only: [:create_transaction]
   def create_transaction
     if @cart.order.present?
       @trans = @cart.order
+      @trans.final_price
     else
       @trans = Order.create(status:'pending', cart: @cart, postal_fee:PostalFee.first, coupon: Coupon.find_by_id(params["coupon"]))
       TransactionDetail.create(order:@trans)
