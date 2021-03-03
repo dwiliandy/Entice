@@ -43,7 +43,7 @@ window.$ = window.jQuery = jQuery;
 
 $(function() {
   setTimeout(function(){
-    $('.alert').slideUp(500);
-  }, 1000);
+    $('.alert').slideUp(1000);
+  }, 2000);
 });
 

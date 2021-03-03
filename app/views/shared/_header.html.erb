@@ -1,28 +1,12 @@
 <!-- Humberger Begin -->
 <div class="humberger__menu__overlay"></div>
 <div class="humberger__menu__wrapper">
-  <div class="humberger__menu__cart">
-    <% if user_signed_in? && current_user.customer? %>
-      <ul>
-        <li><a href="<%= orders_path%>"><i class="fas fa-receipt"></i></a></li>
-        <li><a href="<%=cart_products_path%>"><i class="fa fa-shopping-bag"></i>
-            <span>
-              <%if current_user.carts.where(active:true).exists?%>
-                <%=current_user.carts.where(active:true).last.cart_products.count%>
-              <%else%>
-                0
-              <%end%>
-              0
-            </span></a></li>
-      </ul>
-    <%end%>
-  </div>
   <div class="humberger__menu__widget">
-    <div class="header__top__right__auth">
+    <div>
       <% if user_signed_in? %>
-        <%= link_to destroy_user_session_path, method: :delete do %>
-          <i class="fas fa-sign-out-alt text-danger"></i> Logout
-        <% end %>
+          <%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="fas fa-sign-out-alt text-danger"></i> Logout
+          <% end %>
       <% else %>
         <%= link_to new_user_session_path do %>
           <i class="fa fa-user"></i> Login
@@ -32,9 +16,33 @@
   </div>
   <nav class="humberger__menu__nav mobile-menu">
     <ul class="nav">
-      <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "Home", root_path %></li>
-      <li class="<%= 'active' if current_page?(cart_products_path) %>"><%= link_to "Shopping Cart", cart_products_path %></li>
-      <li class="<%= 'active' if current_page?(orders_path) %>"><%= link_to "Order History", orders_path %></li>
+      <li><%= link_to "Home", root_path %></li>
+      <% if current_user.present? %>
+        <li><%= link_to "Shopping Cart", cart_products_path %></li>
+        <li><%= link_to "Order History", orders_path %></li>
+      <% end %>
+       <li><%= link_to "About", about_path %></li>
+      <br>
+      <br>
+      <% if current_user.present? %>
+      <li>
+        <%= link_to new_wallet_status_path do %>
+          <i class="fas fa-plus text-danger"></i> Top Up
+        <% end %>
+      </li>
+
+      <li>
+        <%= link_to wallet_statuses_path do %>
+          <i class="fas fa-history text-danger"></i> Top Up History
+        <% end %>
+      </li>
+
+      <li>
+        <%= link_to profile_users_path do %>
+          <i class="fas fa-user-edit text-danger"></i> Edit User
+        <% end %>
+      </li>
+      <% end %>
     </ul>
   </nav>
   <div id="mobile-menu-wrap"></div>
