@@ -21,7 +21,7 @@
               <div class="featured__item__text">
                 <h6><%= link_to product.name.capitalize, product_path(product.id)%></h6>
                 <h6><%=product.region.name%></h6>
-                <h5><%=product.price%></h5>
+                <h5><%=number_to_currency(product.price, locale: :id)%></h5>
               </div>
             </div>
           </div>

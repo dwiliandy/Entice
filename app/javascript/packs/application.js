@@ -41,3 +41,9 @@ var jQuery = require('jquery')
 global.$ = global.jQuery = jQuery;
 window.$ = window.jQuery = jQuery;
 
+$(function() {
+  setTimeout(function(){
+    $('.alert').slideUp(500);
+  }, 1000);
+});
+
