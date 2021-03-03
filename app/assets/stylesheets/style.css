@@ -380,7 +380,7 @@ input.btn.site-btn {
 
 .header__top__left ul li a:hover {
 	text-decoration: none;
-  color: #fff;
+  color: #d7f6a8;
 }
 
 .header__top__right {
@@ -432,6 +432,10 @@ input.btn.site-btn {
 
 a.nav-link{
   padding: 0;
+}
+
+a.dropdown-item:hover{
+  background-color: #7fad39;
 }
 
 /* ul.nav a{
@@ -491,8 +495,8 @@ a.nav-link{
 	padding: 5px 15px;
 }
 
-.header__menu ul li.active a {
-	color: #7fad39;
+ul li.active a {
+	color: #fff;
 }
 
 .header__menu ul li:hover .header__menu__dropdown {
