@@ -442,6 +442,19 @@ a.dropdown-item:hover{
   color: black;
 } */
 
+ul.nav{
+  justify-content: flex-start;
+}
+
+.nav-bar{
+  display: flex;
+  flex-wrap: wrap;
+  padding-right: 10px;
+  margin-bottom: 0;
+  list-style: none;
+  justify-content: flex-end;
+}
+
 .header__logo {
 	padding: 15px 0;
 }

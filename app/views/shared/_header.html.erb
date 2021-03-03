@@ -55,7 +55,7 @@
 <!-- Header Section Begin -->
 <header class="header">
   <div class="header__top">
-    <div class="container-fluid">
+    <div class="container">
       <div class="row">
         <div class="col-lg-6 col-md-6">
           <div class="header__top__left">
@@ -71,7 +71,7 @@
         </div>
         <div class="col-lg-6 col-md-6">
           <div class="header__top__right">
-            <ul class="nav">
+            <ul class="nav-bar">
               <%if current_user.present?%>
                 <li><%=number_to_currency(current_user.wallet.nominal, :locale => :id)%></li>
                 <li class="nav-item dropdown">
