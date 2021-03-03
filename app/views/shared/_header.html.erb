@@ -11,6 +11,10 @@
         <%= link_to new_user_session_path do %>
           <i class="fa fa-user"></i> Login
         <% end %>
+        <br>
+          <%=link_to new_user_registration_path do %>
+            <i class="fa fa-user-plus"></i> Register
+          <% end %>
       <% end %>
     </div>
   </div>
@@ -95,6 +99,11 @@
                   </div>
                 </li>
               <%else%>
+              <li>
+                <%= link_to new_user_registration_path do %>
+                  <i class="fa fa-user-plus"></i> Register
+                <% end %>
+              </li>
               <li>
                 <%= link_to new_user_session_path do %>
                   <i class="fa fa-user"></i> Login
