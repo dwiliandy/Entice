@@ -6,7 +6,7 @@
 			    <%= f.input :name %>
 			    <%= f.input :email %>
 				  <%= f.input :phone_number %>
-				  <%= f.input :address %>
+				  <%= f.input :address, as: :text, input_html: {rows: 5, cols: 10}%>
 				</br>
 				<%= f.button :submit, 'Update', class: "btn btn-info" %>
 				<%= link_to "Cancel", root_path, class: "btn btn-danger" %>
