@@ -34,7 +34,6 @@ class Order < ApplicationRecord
   belongs_to :coupon, optional: true
   has_one :transaction_detail
   accepts_nested_attributes_for :transaction_detail
-  # after_create :retracted_from_wallet
   after_create :final_price
 
 
@@ -73,7 +72,7 @@ class Order < ApplicationRecord
   end
 
 STATUS_OPTIONS = [
-  ["Pending", :pending],
+    ["Pending", :pending],
     ["Active", :active],
     ["Processed", :processed],
     ["Delivery", :delivery],
@@ -86,16 +85,6 @@ STATUS_OPTIONS = [
   scope :status_ongoing, -> { where(status: ["active", "processed", "delivery", "delivered"]) }
   scope :status_completed, -> { where(status: ["finished", "cancelled"]) }
 
-  
-  
-
-  # def retracted_from_wallet
-  #   current_user = self.cart.user
-
-  #   wallet = Wallet.find_by(user_id: current_user.id)
-
-  #   wallet.update(nominal: wallet.nominal - self.total_price)
-  # end
 
     def check_discount
       coupon = self.coupon

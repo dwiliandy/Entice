@@ -39,14 +39,6 @@ class WalletStatus < ApplicationRecord
 
   after_update :update_wallet
 
-  # def check_proof
-  # 	if (Time.now == self.created_at + 1.hour) && (self.proof_of_payment.nil?)
-  # 		self.expire!
-  # 	elsif self.proof_of_payment != nil)
-  # 		self.verified!
-  # 	end
-  # end
-
   def update_wallet
     if self.status == 'success'
       wallet_nominal = self.wallet.nominal + nominal

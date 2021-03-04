@@ -48,13 +48,8 @@ class User < ApplicationRecord
   #end validate collumn
 
   after_create :made_wallet
-  # after_create :send_welcome_letter
 
   def made_wallet
   	Wallet.create(nominal: 0, user: self)
   end 
-
-  # def send_welcome_letter
-  #   ModelMailer.welcome_email(self).deliver
-  # end
 end

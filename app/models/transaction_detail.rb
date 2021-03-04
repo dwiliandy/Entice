@@ -20,7 +20,6 @@
 class TransactionDetail < ApplicationRecord
   belongs_to :order
 
-
   #validate
   validates :recipient_name, :presence => true,
    :on => :update
