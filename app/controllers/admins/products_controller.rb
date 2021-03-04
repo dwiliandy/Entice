@@ -3,7 +3,7 @@ class Admins::ProductsController < AdminsController
   before_action :set_product, only: [:show, :edit, :update, :destroy, :create_comment]
 
     def index
-      @q = Product.ransack(params[:q])
+      @q = Product.order(created_at: :desc).ransack(params[:q])
 		  @pagy, @products = pagy(@q.result(distinct: true), items:20)
     end
 

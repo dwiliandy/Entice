@@ -11,8 +11,7 @@ before_action :set_cart, only: [:create_transaction]
       if params[:coupon].present?
         Coupon.find(params[:coupon]).decrement!(:qty)
       end
-    end
-    @cart.update(active:false)
+    end    
     flash[:notice] = 'Berhasil menambahkan product'
     redirect_to edit_order_path(@trans)
   end

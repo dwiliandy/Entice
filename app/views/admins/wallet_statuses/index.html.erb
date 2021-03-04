@@ -9,7 +9,16 @@
         </div>
           <div class="row">
             <div class="col-9">
-              <!-- Search Here -->
+              <%= search_form_for @q, url: admins_wallet_statuses_path do |f| %>               
+                <div class="row">
+                  <div class="col-6">
+                    <%= f.search_field :wallet_user_name_cont, placeholder: "Search by Name", class: 'form-control admin-search' %>
+                  </div>
+                  <div class="col-3">
+                    <%= f.button :Search, class: "btn btn-sm btn-success"%>     
+                  </div>  
+                </div>
+              <%end%>
             </div>
           </div>
         </div>
@@ -17,11 +26,12 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>Nominal</th>
-                  <th>Time Request</th>
+                  <th class="th-sm"><%= sort_link(@q, :wallet_user_name) %></th>
+                  <th class="th-sm"><%= sort_link(@q, :nominal) %></th>
+                  <th class="th-sm"><%= sort_link(@q, :created_at, 'Request at') %></th>
                   <th>Proof of Payment</th>
-                  <th>Status</th>
+                  <th class="th-sm"><%= sort_link(@q, :status) %></th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -31,7 +41,7 @@
                     <td><%=number_to_currency(wallet.nominal, locale: :id)%></td>
                     <td><%=wallet.created_at.strftime('%d %b %Y - %H:%M')%></td>
                     <td><img src=<%= wallet.proof_of_payment.thumb%> alt=""></td>
-                    <td><%=wallet.status.capitalize%></td>
+                    <td><%=wallet.status%></td>
                     <td>
                       <% if wallet.status.eql?('pending') %>
                         <%= link_to 'success',success_admins_wallet_status_path(wallet.id), method: :patch, class: "btn btn-success"%>

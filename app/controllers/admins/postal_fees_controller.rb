@@ -4,7 +4,7 @@ class Admins::PostalFeesController < AdminsController
   # GET /posfees
   # GET /posfees.json
   def index
-    @q = PostalFee.ransack(params[:q])
+    @q = PostalFee.order(created_at: :desc).ransack(params[:q])
 		@pagy, @postal_fees = pagy(@q.result(distinct: true), items:20)
     
   end

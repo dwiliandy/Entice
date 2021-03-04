@@ -19,4 +19,17 @@
 #
 class TransactionDetail < ApplicationRecord
   belongs_to :order
+
+
+  #validate
+  validates :recipient_name, :presence => true,
+   :on => :update
+  validates :address, :presence => true,
+   :on => :update
+  validates :city, :presence => true,
+   :on => :update
+  validates :postcode, :presence => true,
+   :on => :update
+  validates :phone_number, :presence => true,
+   :on => :update
 end

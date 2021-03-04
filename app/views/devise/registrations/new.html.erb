@@ -7,24 +7,23 @@
             <div class="card-body">
             <h5 class="card-title text-center">Sign Up</h5>
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
         <div class="form-group">
-          <%= f.input :name, required: true, autofocus: true, label: false, placeholder: 'Your Name', input_html: {class: "form-control form-control-user"}%>
+          <%= f.input :name, autofocus: true,require: true, label: false, placeholder: 'Your Name', input_html: {class: "form-control form-control-user"}%>
         </div>
 
         <div class="form-group">
           <%= f.input :email, required: true, label: false, placeholder: 'Your Email', input_html: {class: "form-control form-control-user"} %>
         </div>
-        <div class="form-group">
-          <%= f.input :password, required: true, label: false, placeholder: 'Password', input_html:{maxlength: 50, size:20, class: "form-control form-control-user"}%>
-          <i>(Minimum 6 Characters)</i>
-        </div>
-        <div class="form-group">
-          <%= f.input :password_confirmation, required: true, label: false, placeholder: 'Password Confirmation', input_html: {class: "form-control form-control-user"}%>
-        </div>
           <%= f.input :phone_number, required: true, label: false, placeholder: 'Your Phone Number', input_html: {class: "form-control form-control-user"} %>
         <div class="form-group">
           <%= f.input :address, as: :text, required: true, label: false, placeholder: 'Your Address', input_html: {size: "24x2"}, input_html: {class: "form-control form-control-user"} %>
+        </div>
+        <br>
+        <div class="form-group">
+          <%= f.input :password, required: true, label: false, placeholder: 'Password', input_html:{maxlength: 50, size:20, class: "form-control form-control-user"}%>
+        </div>
+        <div class="form-group">
+          <%= f.input :password_confirmation, required: true, label: false, placeholder: 'Password Confirmation', input_html: {class: "form-control form-control-user"}%>
         </div>
           <%= f.button :submit, "Sign Up", class: 'btn btn-success btn-user btn-block' %>
      <%= render "devise/shared/links" %>

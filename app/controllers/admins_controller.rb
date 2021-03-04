@@ -1,5 +1,5 @@
 class AdminsController < ApplicationController
-  include Pagy::Backend
+  
   layout 'admins/layouts/application'
   
   before_action :authenticate_user!

@@ -56,6 +56,7 @@ class OrdersController < ApplicationController
         @order.cart.update(active:true)
       else
         if @order.update(order_params)
+          @order.cart.update(active:false)
           wallet = current_user.wallet.nominal - @order.total_price
           current_user.wallet.update(nominal: wallet)
           format.html { redirect_to root_path, notice: 'Transaction was successfully updated.' }

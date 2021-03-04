@@ -2,10 +2,8 @@ class Admins::WalletStatusesController < AdminsController
 	before_action :set_wallet_statuses, only: [:edit, :update]
 
   def index
-    @a = WalletStatus.all.order(created_at: :desc)
-    @q = @a.ransack(params[:q])
-    @pagy, @wallet_statuses = pagy(@q.result(distinct: true), items:20)
-    
+    @q = WalletStatus.order(created_at: :desc).ransack(params[:q])
+    @pagy, @wallet_statuses = pagy(@q.result, items:20)
   end
 
   def edit

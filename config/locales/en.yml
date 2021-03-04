@@ -35,17 +35,21 @@ en:
       models:
         user:
           attributes:
-            first_name:
-              blank: "Your First Name is Required"
-            last_name:
-              blank: "Your Last Name is Required"
+            name:
+              blank: "is Required"
             email:
-              blank: "Please enter an email address"
-              taken: "That email is already taken"
-              invalid: "Please enter a valid email address"
+              blank: "cannot be blank"
+              taken: "is already taken"
+              invalid: "not valid"
             password:
-              blank: "Please Specify a Password"
-              too_short: "Password must be at least %{count} characters long"
+              blank: "cannot be blank"
+              too_short: "must be at least %{count} characters long"
+            phone_number:
+              blank: "cannot be blank"
+              taken: "is already taken"
+              invalid: "not valid"
+              numericality: "must number"
+              too_short: "must be at least %{count} number long"
             country:
               blank: "Please Select Your Country of Residence"
             gender:

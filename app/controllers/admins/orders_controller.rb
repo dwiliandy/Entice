@@ -4,7 +4,7 @@ class Admins::OrdersController < AdminsController
   # GET /orders
   # GET /orders.json
   def index
-    @q = Order.ransack(params[:q])
+    @q = Order.order(created_at: :desc).ransack(params[:q])
     @pagy, @orders = pagy(@q.result, items:20)
   end
 

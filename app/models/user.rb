@@ -31,6 +31,22 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   enum role: {customer: 0, admin: 1}
 
+  #validate collumn
+  validates :password, :presence => true,
+    :confirmation => true,
+    :length => {:within => 6..40},
+    :on => :create
+  validates :password, :confirmation => true,
+    :length => {:within => 6..40},
+    :allow_blank => true,
+    :on => :update
+  validates :name, presence: true
+  validates :phone_number, presence: true,
+    :numericality => true,
+    :length => { :minimum => 10, :maximum => 15 }
+  validates :address, presence: true
+  #end validate collumn
+
   after_create :made_wallet
   # after_create :send_welcome_letter
 

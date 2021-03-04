@@ -2,7 +2,7 @@ class Admins::CouponsController < AdminsController
 	before_action :set_coupon, only: [:show, :edit, :update, :destroy]
 
   def index
-    @q = Coupon.ransack(params[:q])
+    @q = Coupon.order(created_at: :desc).ransack(params[:q])
     @pagy, @coupons = pagy(@q.result(distinct: true), items:20)
   end
 
