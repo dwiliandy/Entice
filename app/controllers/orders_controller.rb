@@ -1,30 +1,23 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy, :cancel]
 
-  # GET /orders
-  # GET /orders.json
   def index
     order = current_user.carts.where(active: false).map {|c| c.order.id}
     @q = Order.where(id: order ).ransack(params[:q])
     @orders = @q.result(distinct: true)
   end
 
-  # GET /orders/1
-  # GET /orders/1.json
+
   def show
   end
 
-  # GET /orders/new
   def new
     @order = Order.new
   end
 
-  # GET /orders/1/edit
   def edit
   end
-
-  # POST /orders
-  # POST /orders.json
+  
   def create
     @order = Order.new
     respond_to do |format|
@@ -32,9 +25,9 @@ class OrdersController < ApplicationController
           flash[:alert] = "Wallet is not enough"
           redirect_to root_path
         else
-        if @order.save
+          if @order.save
           wallet = @order.user.wallet.nominal - @order.total_price
-          @order.user.wallet.update(nominal: wallet)
+          @order.user.wallet.update(nominal: wallet)       
           format.html { redirect_to @order, notice: 'Ttransaction was successfully created.' }
         else
           format.html { render :new }
@@ -45,8 +38,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /orders/1
-  # PATCH/PUT /orders/1.json
   def update
     respond_to do |format|
       
@@ -59,6 +50,10 @@ class OrdersController < ApplicationController
           @order.cart.update(active:false)
           wallet = current_user.wallet.nominal - @order.total_price
           current_user.wallet.update(nominal: wallet)
+          @order.cart.cart_products.each do |product|
+            decrement_prod_qty = product.product.stock - product.quantity 
+              product.product.update(stock: decrement_prod_qty)
+          end
           format.html { redirect_to root_path, notice: 'Transaction was successfully updated.' }
           format.json { render :show, status: :ok, location: @order }
         else
@@ -69,8 +64,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  # DELETE /orders/1
-  # DELETE /orders/1.json
   def destroy
     @order.destroy
     respond_to do |format|
@@ -87,12 +80,10 @@ class OrdersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_order
       @order = Order.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def order_params
       params.require(:order).permit(:total_price, :status, :postal_fee_id,:note, 
         :cart_id, transaction_detail_attributes:[:id,

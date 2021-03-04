@@ -19,14 +19,8 @@ class CartProductsController < ApplicationController
     	end
       redirect_to cart_products_path(coupon: @code.id)
     end
-  # def create
-  #   @cart_product = CartProduct.new(cart_product_params)
-  #   if @cart_product.save
-  #     redirect_to carts_path, notice: "successfully created."
-  #   end
-  # end
-
-  def destroy
+ 
+    def destroy
     @cart_product.destroy
     respond_to do |format|
       format.html { redirect_to cart_products_path, notice: "Product was successfully destroyed." }
