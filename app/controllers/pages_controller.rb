@@ -1,7 +1,8 @@
 class PagesController < ApplicationController
 before_action :authenticate_user!, except: [:index, :about]
   def index
-    @q = Product.ransack(params[:q])
+  	@lp = Product.all.order(created_at: :desc)
+    @q = @lp.ransack(params[:q])
 		@products = @q.result(distinct: true)
   end
   
