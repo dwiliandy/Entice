@@ -4,7 +4,8 @@
     <%= search_form_for @q, url: root_url do |f| %> 
     <div class="row">
       <div class="col-6">
-        <%= f.select :region_id_eq, options_from_collection_for_select(Region.all, "id", "name"), prompt: 'All Region'%>
+      <%id = params[:q][:region_id_eq].to_i if params[:q].present?%>
+        <%= f.select :region_id_eq, options_from_collection_for_select(Region.all, "id", "name",id), include_blank: 'All Region'%>
       </div>
       <div class="col-6">
         <div class="hero__search">
