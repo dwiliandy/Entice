@@ -1,10 +1,20 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy, :cancel]
+  before_action :set_order, only: [:show, :edit, :update, :destroy, :cancel, :transition]
 
   def index
     order = current_user.carts.where(active: false).map {|c| c.order.id}
     @q = Order.where(id: order).order(created_at: :desc).ransack(params[:q])
     @orders = @q.result(distinct: true)
+  end
+
+  def transition
+
+  if @order.delivered_confirmed?
+    @order.completion!
+  # elsif @order.finished?
+  #   @order.review!
+  end
+    redirect_to orders_path, notice: 'order Has Been Updated'
   end
 
 

@@ -924,6 +924,7 @@ p.alert.alert-success{
 	position: relative;
 	overflow: hidden;
 	background-position: center center;
+  border-radius: 3px;
 }
 
 .featured__item__pic__hover {

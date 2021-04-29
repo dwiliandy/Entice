@@ -40,8 +40,10 @@
         <td><%= link_to t.cart.user.name, admins_order_path(t.id)%></td>
         <td><%= number_to_currency(t.total_price, locale: :id) %></td>
         <td><%= t.cart.cart_products.count  %></td>
-        <%if t.status.eql? 'cancelled' || 'finished' || 'reviewed'%>
+        <%if ['cancelled','finished','reviewed'].include? t.status%>
           <td><%= t.status.capitalize%></td>
+          <% elsif t.status.eql? 'delivered_confirmed' %>
+          <td>Waiting Confirmation</td>
         <% elsif t.status.eql? 'processed' and t.receipt_number.eql? '-'%>
           <td>
             <%= link_to 'Add Receipt', input_receipt_admins_order_path(t.id),  class: 'btn btn-primary', :remote => true  %>

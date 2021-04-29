@@ -21,6 +21,11 @@
                     <td><%= number_to_currency(order.total_price, locale: :id)%></td>
                     <td><%= order.status.titleize %></td>
                     <td><%= link_to 'Detail', order_path(order), class: 'btn btn-secondary'%></td>
+                    <td>
+                      <%if order.status.eql? 'delivered_confirmed'%>
+                        <%= link_to "Confirmation Order", transition_order_path(order.id), method: :patch, class: 'btn btn-primary'%>
+                      <% end %>
+                    </td>
                   </tr>
                 <% end %>
               </tbody>

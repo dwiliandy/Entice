@@ -40,7 +40,7 @@ class Order < ApplicationRecord
   aasm column: :status do
     
     state :pending, initial: true
-    state :active, :processed, :delivery, :delivered, :finished, :cancelled, :reviewed
+    state :active, :processed, :delivery, :delivered,:delivered_confirmed, :finished, :cancelled, :reviewed
 
     event :verified do
       transitions from: :pending, to: :active
@@ -58,8 +58,12 @@ class Order < ApplicationRecord
       transitions from: :delivery, to: :delivered
     end
 
+    event :confirmation do
+      transitions from: :delivered, to: :delivered_confirmed
+    end
+
     event :completion do
-      transitions from: :delivered, to: :finished
+      transitions from: :delivered_confirmed, to: :finished
     end
 
     event :canceling do
@@ -77,6 +81,7 @@ STATUS_OPTIONS = [
     ["Processed", :processed],
     ["Delivery", :delivery],
     ["Delivered", :delivered],
+    ["Delivered Confirmed", :delivered_confirmed],
     ["Finished", :finished],
     ["Cancelled", :cancelled]
   ]

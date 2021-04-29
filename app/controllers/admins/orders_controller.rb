@@ -97,9 +97,11 @@ class Admins::OrdersController < AdminsController
     elsif @order.delivery?
       @order.arrived!
     elsif @order.delivered?
-      @order.completion!
-    elsif @order.finished?
-      @order.review!
+      @order.confirmation!
+    # elsif @order.delivered_confirmed?
+    #   @order.completion!
+    # elsif @order.finished?
+    #   @order.review!
     end
     redirect_to admins_orders_path, notice: 'order Has Been Updated'
   end
