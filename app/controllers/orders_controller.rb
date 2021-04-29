@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
 
   def index
     order = current_user.carts.where(active: false).map {|c| c.order.id}
-    @q = Order.where(id: order ).ransack(params[:q])
+    @q = Order.where(id: order).order(created_at: :desc).ransack(params[:q])
     @orders = @q.result(distinct: true)
   end
 
