@@ -8,7 +8,6 @@
 #  name        :string
 #  price       :float
 #  status      :integer
-#  stock       :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  region_id   :bigint

@@ -32,7 +32,6 @@
                 <tr>
                   <th class="th-sm"><%= sort_link(@q, :name) %></th>
                   <th class="th-sm"><%= sort_link(@q, :price) %></th>
-                  <th class="th-sm"><%= sort_link(@q, :stock) %></th>
                   <th class="th-sm"><%= sort_link(@q, :regions_name, 'Region') %></th>
                   <th class="th-sm">Image</th>
                   <th class="th-sm">Check Comment</th>
@@ -43,7 +42,6 @@
                 <tr>
                   <td><%= link_to product.name.titleize, edit_admins_product_path(product)%></td>
                   <td><%= number_to_currency(product.price, :locale => :id) %></td>
-                  <td><%= product.stock %></td>
                   <td><%= product.region.name.titleize %></td>
                   <td><img src=<%= product.image.thumb %> alt=""></td>
                   <td><%= link_to "Check Comment", admins_product_path(product) %></td>

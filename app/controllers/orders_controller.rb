@@ -60,10 +60,6 @@ class OrdersController < ApplicationController
           @order.cart.update(active:false)
           wallet = current_user.wallet.nominal - @order.total_price
           current_user.wallet.update(nominal: wallet)
-          @order.cart.cart_products.each do |product|
-            decrement_prod_qty = product.product.stock - product.quantity 
-              product.product.update(stock: decrement_prod_qty)
-          end
           format.html { redirect_to root_path, notice: 'Transaction was successfully updated.' }
           format.json { render :show, status: :ok, location: @order }
         else
