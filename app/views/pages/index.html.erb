@@ -6,20 +6,27 @@
       <div class="col-lg-12 col-md-12">
                     <div class="latest-product__text">
                         <h4>Ready Today</h4>
-                        <div class="latest-product__slider owl-carousel">
-                          <%@products.each do |product|%>
-                              <div class="latest-prdouct__slider__item">
-                                  <a href="<%= product_path(product)%>" class="latest-product__item">
-                                      <div class="latest-product__item__pic">
-                                          <img src=<%= product.image.thumb %> alt="">
-                                      </div>
-                                      <div class="latest-product__item__text">
-                                          <h6><%= product.name %></h6>
-                                          <span><%=number_to_currency(product.price, locale: :id)%></span>
-                                      </div>
-                                  </a>
-                              </div>
-                            <%end%>
+                        <div class="row">
+                            <div class="product__discount__slider owl-carousel">
+                                <%@products.each do |product|%>
+                                <div class="col-lg-4">
+                                    <div class="product__discount__item">
+                                        <div class="product__discount__item__pic set-bg"
+                                            data-setbg="<%=product.image.thumb%>">
+                                            <%# <div class="product__discount__percent">-20%</div> %>
+                                            <ul class="product__item__pic__hover">
+                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="product__discount__item__text">
+                                            <h5><a href="#"><%=product.name%></a></h5>
+                                            <div class="product__item__price"><%=number_to_currency(product.price, locale: :id)%></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <%end%>
+                         
+                            </div>
                         </div>
                     </div>
                 </div>
