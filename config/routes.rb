@@ -54,6 +54,8 @@ Rails.application.routes.draw do
 		resources :products do
       member do
         post "create_comment"
+        patch 'set_active'
+        patch 'set_deactive'
       end
     end
 

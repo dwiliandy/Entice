@@ -35,6 +35,7 @@
                   <th class="th-sm"><%= sort_link(@q, :regions_name, 'Region') %></th>
                   <th class="th-sm">Image</th>
                   <th class="th-sm">Check Comment</th>
+                  <th class="th-sm"><%= sort_link(@q, :status) %></th>
                 </tr>
               </thead>
               <tbody>
@@ -45,6 +46,14 @@
                   <td><%= product.region.name.titleize %></td>
                   <td><img src=<%= product.image.thumb %> alt=""></td>
                   <td><%= link_to "Check Comment", admins_product_path(product) %></td>
+                  <td>
+                    <%if product.ready?%>
+                      <%= link_to 'Set to Deactive',set_deactive_admins_product_path(product.id), method: :patch, class: "btn btn-danger"%>
+                    <% else %>
+                      <%= link_to 'Set to Active',set_active_admins_product_path(product.id), method: :patch, class: "btn btn-success"%>  
+                    <% end %>
+                    
+                  </td>
                 </tr>
               <% end %>
               </tbody>

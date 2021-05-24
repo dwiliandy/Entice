@@ -1,9 +1,9 @@
 class Admins::ProductsController < AdminsController
 
-  before_action :set_product, only: [:show, :edit, :update, :destroy, :create_comment]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :set_active, :set_deactive, :create_comment]
 
     def index
-      @q = Product.order(created_at: :desc).ransack(params[:q])
+      @q = Product.order(status: :asc).ransack(params[:q])
 		  @pagy, @products = pagy(@q.result(distinct: true), items:20)
     end
 
@@ -56,6 +56,16 @@ end
     else
       redirect_to admins_product_path(@product)
     end
+  end
+
+  def set_active
+   @product.ready!
+    redirect_to admins_products_path
+  end
+
+  def set_deactive
+    @product.not_ready!
+    redirect_to admins_products_path
   end
 
    private
