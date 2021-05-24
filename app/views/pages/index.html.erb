@@ -8,14 +8,17 @@
                         <h4>Ready Today</h4>
                         <div class="row">
                             <div class="product__discount__slider owl-carousel">
-                                <%@products.each do |product|%>
+                                <%@active_products.each do |product|%>
                                 <div class="col-lg-4">
                                     <div class="product__discount__item">
                                         <div class="product__discount__item__pic set-bg"
                                             data-setbg="<%=product.image.thumb%>">
-                                            <%# <div class="product__discount__percent">-20%</div> %>
+                                            
                                             <ul class="product__item__pic__hover">
-                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                            <li><%= link_to add_cart_product_product_path(product), method: :post do%>
+                                              <i class="fa fa-shopping-cart"></i> 
+                                            <%end%>
+                                            </li>
                                             </ul>
                                         </div>
                                         <div class="product__discount__item__text">
@@ -38,6 +41,7 @@
             <div class="featured__item">
               <%if product.image.present?%>
                 <div class="featured__item__pic set-bg" data-setbg="<%= product.image.thumb %>">
+                <%# <div class="product_status">Ready</div> %>
               <%else%>
                 <div class="featured__item__pic set-bg" data-setbg="<%= asset_url('no_image.jpeg') %>">
               <%end%>
@@ -51,6 +55,7 @@
               <div class="featured__item__text">
                 <h6><%= link_to product.name.capitalize, product_path(product.id)%></h6>
                 <h6><%=product.region.name%></h6>
+                <h7 class="<%=product.status%>"><%=product.status.humanize%></h7>
                 <h5><%=number_to_currency(product.price, locale: :id)%></h5>
               </div>
             </div>

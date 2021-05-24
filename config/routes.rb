@@ -65,6 +65,8 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :extra_charges, only: [:edit, :update]
+
 		resources :coupons
     resources :postal_fees 
     resources :wallet_statuses, only: [:index, :edit, :update] do

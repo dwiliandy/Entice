@@ -1363,6 +1363,25 @@ p.alert.alert-success{
 	top: 15px;
 }
 
+.product_status {
+  height: 45px;
+	width: 45px;
+	background: #dd2222;
+	border-radius: 50%;
+	font-size: 14px;
+	color: #ffffff;
+	line-height: 45px;
+	text-align: center;
+	position: absolute;
+	left: 15px;
+	top: 15px;
+}
+
+.featured__filter{
+  border-top: solid 3px #7fad39;
+  padding-top: 20px;
+}
+
 .product__item__pic__hover {
 	position: absolute;
 	left: 0;
@@ -1455,6 +1474,19 @@ p.alert.alert-success{
 	font-weight: 400;
 	text-decoration: line-through;
 	margin-left: 10px;
+}
+
+.not_ready{
+  color: red;
+}
+
+.ready{
+  color: green;
+}
+
+.product__discount__slider {
+	max-width: 100%;
+  padding: 20px;
 }
 
 .product__discount__slider .col-lg-4 {

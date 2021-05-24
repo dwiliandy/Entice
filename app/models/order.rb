@@ -102,9 +102,22 @@ STATUS_OPTIONS = [
       end
     end
 
+    def check_extra_charge
+      extra_charge_check = self.cart.products.pluck(:status)
+
+      if extra_charge_check.include? "not_ready"
+        extra_charge = ExtraCharge.first.amount
+      end
+    end
+
 
   	def final_price
       total_price = cart.price + postal_fee.price
+
+      if self.check_extra_charge.present?
+        total_price = total_price + self.check_extra_charge
+      end
+
       if self.coupon.present?
         total_price = total_price - self.check_discount
       end

@@ -25,10 +25,10 @@ class Product < ApplicationRecord
     has_many :comments
     mount_uploader :image, ImageUploader
 
-    enum status: {available: 0, out_of_stock: 1}
+    enum status: {ready: 0, not_ready: 1}
 
     STATUS_OPTIONS=[
-    	["Available", 0],
-    	["Out of Stock", 1]
+    	["Ready", 0],
+    	["Not Ready", 1]
     ]
 end

@@ -32,6 +32,11 @@
                   <ul>
                   <%@order.cart.cart_products.each do |product|%>
                     <li><%=product.product.name.capitalize%><span><%=number_to_currency(product.quantity * product.product.price , :locale => :id)%></span></li>
+                    <li>
+                      <%if @order.check_extra_charge.present?%>
+                        Extra Charge<span><%=number_to_currency(@order.check_extra_charge , :locale => :id)%>
+                      <%end%>
+                    </li>
                   <%end%>
                   </ul>
                   <div class="postal_fee">Postal Fee <span><%=number_to_currency(@order.postal_fee.price, :locale => :id)%></span></div>
