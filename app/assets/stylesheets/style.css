@@ -252,7 +252,7 @@ a.wallet-nominal:hover{
 	border: none;
 }
 
-input.btn.site-btn {
+input.btn.site-btn, a.btn.site-btn {
 	font-size: 14px;
 	color: #ffffff;
 	font-weight: 800;

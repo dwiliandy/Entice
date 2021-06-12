@@ -1,8 +1,11 @@
- <section class="checkout spad">
-        <div class="container">
-            <div class="checkout__form">
-                <h4>Billing Details</h4>
-                <%=render 'form'%>
-            </div>
-        </div>
-    </section>
+ 
+<section class="checkout spad">
+  <div class="container">
+    <%= link_to 'back', cart_products_path, class: 'btn site-btn' %>
+    <div class="checkout__form">
+      <br>
+      <h4>Billing Details</h4>
+      <%=render 'form'%>
+    </div>
+  </div>
+</section>

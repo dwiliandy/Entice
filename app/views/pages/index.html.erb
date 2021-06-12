@@ -1,53 +1,50 @@
 <!-- Featured Section Begin -->
-  <section class="featured spad">
-    <div class="container">
-
-      <div class="col-lg-12 col-md-12">
-                    <div class="latest-product__text">
-                        <h4>Ready Today</h4>
-                        <div class="row">
-                            <div class="product__discount__slider owl-carousel">
-                                <%@active_products.each do |product|%>
-                                <div class="col-lg-4">
-                                    <div class="product__discount__item">
-                                        <div class="product__discount__item__pic set-bg"
-                                            data-setbg="<%=product.image%>">
-                                            
-                                            <ul class="product__item__pic__hover">
-                                            <li><%= link_to add_cart_product_product_path(product), method: :post do%>
-                                              <i class="fa fa-shopping-cart"></i> 
-                                            <%end%>
-                                            </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product__discount__item__text">
-                                            <h5><a href="#"><%=product.name%></a></h5>
-                                            <div class="product__item__price"><%=number_to_currency(product.price, locale: :id)%></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <%end%>
-                         
-                            </div>
-                        </div>
-                    </div>
+<section class="featured spad">
+  <div class="container">
+    <div class="col-lg-12 col-md-12">
+      <div class="latest-product__text">
+        <h4>Ready Today</h4>
+        <div class="row">
+          <div class="product__discount__slider owl-carousel">
+            <%@active_products.each do |product|%>
+              <div class="col-lg-4">
+                <div class="product__discount__item">
+                  <div class="product__discount__item__pic set-bg"
+                                data-setbg="<%=product.image%>">
+                    <ul class="product__item__pic__hover">
+                      <li><%= link_to add_cart_product_product_path(product), method: :post do%>
+                          <i class="fa fa-shopping-cart"></i>
+                        <%end%>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="product__discount__item__text">
+                    <h5><a href="#"><%=product.name%></a></h5>
+                    <div class="product__item__price"><%=number_to_currency(product.price, locale: :id)%></div>
+                  </div>
                 </div>
-<br>
-<%=render 'pages/menu'%>
-      <div class="row featured__filter">
-        <%@products.each do |product|%>
-          <div class="col-lg-2 col-md-4 col-sm-6">
-            <div class="featured__item">
-              <%if product.image.present?%>
-                <div class="featured__item__pic set-bg" data-setbg="<%= product.image.thumb %>">
+              </div>
+            <%end%>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <%=render 'pages/menu'%>
+    <div class="row featured__filter">
+      <%@products.each do |product|%>
+        <div class="col-lg-2 col-md-4 col-sm-6">
+          <div class="featured__item">
+            <%if product.image.present?%>
+              <div class="featured__item__pic set-bg" data-setbg="<%= product.image.thumb %>">
                 <%# <div class="product_status">Ready</div> %>
               <%else%>
                 <div class="featured__item__pic set-bg" data-setbg="<%= asset_url('no_image.jpeg') %>">
-              <%end%>
+                <%end%>
                 <ul class="featured__item__pic__hover">
                   <li><%= link_to add_cart_product_product_path(product), method: :post do%>
-                    <i class="fa fa-shopping-cart"></i> 
-                  <%end%>
+                      <i class="fa fa-shopping-cart"></i>
+                    <%end%>
                   </li>
                 </ul>
               </div>
@@ -63,4 +60,4 @@
       </div>
     </div>
   </div>
-  </section>
+</section>
