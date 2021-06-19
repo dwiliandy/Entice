@@ -19,7 +19,7 @@
                     </ul>
                   </div>
                   <div class="product__discount__item__text">
-                    <h5><a href="#"><%=product.name%></a></h5>
+                    <h5><%= link_to product.name.capitalize, product_path(product.id)%></a></h5>
                     <div class="product__item__price"><%=number_to_currency(product.price, locale: :id)%></div>
                   </div>
                 </div>
