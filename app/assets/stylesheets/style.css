@@ -3077,10 +3077,10 @@ p.alert.alert-success{
 		position: relative;
 	}
 	.humberger__menu__wrapper {
-		width: 300px;
+		width: 600px;
 		background: #ffffff;
 		position: fixed;
-		left: -300px;
+		left: -600px;
 		top: 0;
 		height: 100%;
 		overflow-y: auto;
@@ -3099,6 +3099,12 @@ p.alert.alert-success{
 		opacity: 1;
 		left: 0;
 	}
+
+  .humberger__menu__wrapper a{
+    display: block;
+    font-size: 25px;
+  }
+
 	.humberger__menu__logo {
 		margin-bottom: 30px;
 	}
@@ -3198,7 +3204,7 @@ p.alert.alert-success{
 	}
 	.humberger__menu__wrapper .slicknav_nav a {
 		color: #1c1c1c;
-		font-size: 16px;
+		font-size: 25px;
 		font-weight: 600;
 		margin: 0;
 		border-bottom: 1px solid #e1e1e1;
