@@ -10,7 +10,7 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Welcome</h1>
                             </div>
-                            <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "user"}) do |f| %>
+                            <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
                               <%= render "devise/shared/error_messages", resource: resource %>
                                 <div class="form-group">
                                   <%= f.input :email, autofocus: true, placeholder: "Email", label: false, input_html: {class: "form-control form-control-user"} %>
