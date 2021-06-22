@@ -18,10 +18,10 @@
         </div>
         <div class="row">
           <div class="col-lg-6 col-md-12">
-            <%= f.input :status, collection: Product.statuses.keys, label_method: lambda{|k| k.to_s.titleize}, prompt: :translate %>
+            <%= f.input :status, collection: Product.statuses.keys, label_method: lambda{|k| k.to_s.titleize}, prompt: :translate, html_input: {class:"col-12"} %>
           </div>
           <div class="col-lg-6 col-md-12">
-            <%= f.input :region_id, collection: Region.all.order(name: :asc), label_method: lambda{|r| r.name.titleize}, prompt: :translate%>
+            <%= f.input :region_id, collection: Region.all.order(name: :asc), label_method: lambda{|r| r.name.titleize}, prompt: :translate, html_input: {class:"col-12"}%>
           </div>
         </div>
         <div class="row">  
