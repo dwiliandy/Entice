@@ -1534,7 +1534,7 @@ p.alert.alert-success{
 }
 
 .filter__sort .nice-select span {
-	color: #1c1c1c;
+	color: #e20505;
 }
 
 .filter__sort .nice-select:after {
@@ -1564,6 +1564,10 @@ p.alert.alert-success{
 .filter__sort .nice-select .option {
 	line-height: 30px;
 	min-height: 30px;
+}
+
+.nice-select.form-control{
+  width: 100%;
 }
 
 .filter__found {
@@ -1620,6 +1624,8 @@ p.alert.alert-success{
 	position: relative;
 	overflow: hidden;
 }
+
+
 
 .product__item__pic__hover {
 	position: absolute;
