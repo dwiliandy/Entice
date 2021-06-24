@@ -40,7 +40,7 @@
                 <% @coupons.each do |coupon| %>
                   <tr>
                     <td><%= link_to coupon.name, edit_admins_coupon_path(coupon)%></td>
-                    <td><%= number_to_currency(coupon.discount, unit: "Rp", delimiter: ".", separator: ",") %></td>
+                    <td><%= number_to_currency(coupon.discount, locale: :id) %></td>
                     <td><%= coupon.qty %></td>
                     <td><%= coupon.status %></td>
                     </tr>

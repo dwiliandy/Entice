@@ -12,7 +12,7 @@
 			</p>
 			<p>
 			  <strong>Total Price:</strong>
-			  <%= number_to_currency(@order.total_price, unit: "Rp", delimiter: ".", separator: ",") %>
+			  <%= number_to_currency(@order.total_price, locale: :id) %>
 			</p>
 			<p>
 			  <strong>Status:</strong>
@@ -41,7 +41,7 @@
 					  	<% @order.cart.products.group_by(&:itself).uniq.each do |tp,v| %>
 					  	<tr>
 					  		<td><%= tp.name %></td>
-					  		<td><%= number_to_currency(tp.price, unit: "Rp", delimiter: ".", separator: ",") %></td>
+					  		<td><%= number_to_currency(tp.price, locale: :id) %></td>
 					  		<td><%= v.count %></td>
 					  		<td><%= image_tag tp.image_url %></td>
 					  	</tr>
