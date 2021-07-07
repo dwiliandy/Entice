@@ -20,7 +20,7 @@
 #
 class WalletStatus < ApplicationRecord
   include AASM
-
+  validates :nominal, numericality: { greater_than: 10000 }
   aasm column: :status do
     
     state :pending, initial: true
