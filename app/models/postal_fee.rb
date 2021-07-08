@@ -10,4 +10,8 @@
 #
 class PostalFee < ApplicationRecord
 	has_many :orders
+	validates :name, :presence => true,
+    :on => [:update, :create]
+    validates :price, :presence => true,
+    :on => [:update, :create]
 end

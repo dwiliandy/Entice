@@ -25,6 +25,17 @@ class Product < ApplicationRecord
     has_many :comments
     mount_uploader :image, ImageUploader
 
+    validates :name, :presence => true,
+    :on => [:update, :create]
+    validates :price, :presence => true,
+    :on => [:update, :create]
+    validates :status, :presence => true,
+    :on => [:update, :create]
+    validates :description, :presence => true,
+    :on => [:update, :create]
+    validates :region_id, :presence => true,
+    :on => [:update, :create]
+
     enum status: {ready: 0, not_ready: 1}
 
     STATUS_OPTIONS=[

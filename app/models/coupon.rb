@@ -15,6 +15,15 @@ class Coupon < ApplicationRecord
 
 	has_many :orders
 
+	validates :name, :presence => true,
+    :on => [:update, :create]
+    validates :discount, :presence => true,
+    :on => [:update, :create]
+    validates :qty, :presence => true,
+    :on => [:update, :create]
+    validates :variety, :presence => true,
+    :on => [:update, :create]
+
 	enum variety: {postal: 0, price: 1}
 
 		def status

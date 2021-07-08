@@ -10,4 +10,7 @@
 class ExtraCharge < ApplicationRecord
   has_many :orders
 
+  validates :amount, :presence => true,
+    :on => [:update, :create]
+
 end
