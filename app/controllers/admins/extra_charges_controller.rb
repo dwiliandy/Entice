@@ -8,7 +8,7 @@ class Admins::ExtraChargesController < AdminsController
   def update
     respond_to do |format|
       if @extra_charge.update(extra_charge_params)
-        format.html { redirect_to root_path, notice: 'Extra Charge Succesfully Set.' }
+        format.html { redirect_to admins_pages_index_path, notice: 'Extra Charge Succesfully Set.' }
        
       else
         format.html { render :edit }
