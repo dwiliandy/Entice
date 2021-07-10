@@ -16,6 +16,13 @@
 </head>
 
 <body class="container-body">
+  <% if notice %>
+      <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
+    <%= yield(:script) %>
   <div id="wrapper">
         <%= render'admins/shared/admins_navbar'%>
         <div id="content-wrapper" class="d-flex flex-column">
