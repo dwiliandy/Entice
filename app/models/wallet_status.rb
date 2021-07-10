@@ -21,6 +21,7 @@
 class WalletStatus < ApplicationRecord
   include AASM
   validates :nominal, numericality: { greater_than: 10000 }
+  validates :proof_of_payment, presence: true
   aasm column: :status do
     
     state :pending, initial: true
