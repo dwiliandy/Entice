@@ -108,6 +108,11 @@ ol {
 	margin: 0;
 }
 
+.accordion .card-header {
+  background: white;
+  border: none;
+}
+
 .navbar{
   margin-bottom: 20px;
 }
