@@ -28,7 +28,7 @@ class Admins::PostalFeesController < AdminsController
   def create
     @postal_fee = PostalFee.new(posfee_params)
       if @postal_fee.save
-      	redirect_to admins_postal_fees_path, notice: 'Postal Fee was successfully created.'
+      	redirect_to admins_pages_index_path, notice: 'Postal Fee was successfully created.'
       else
         render 'new'
       end
@@ -39,7 +39,7 @@ class Admins::PostalFeesController < AdminsController
   def update
     respond_to do |format|
       if @postal_fee.update(posfee_params)
-        format.html { redirect_to admins_postal_fees_path, notice: 'Postal Fee was successfully updated.' }
+        format.html { redirect_to admins_pages_index_path, notice: 'Postal Fee was successfully updated.' }
         format.json { render :show, status: :ok, location: @posfee }
       else
         format.html { render :edit }

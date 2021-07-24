@@ -52,7 +52,7 @@ end
     
     if params[:content][:message].present?
       Comment.create(content: params[:content][:message], user: current_user, product: @product)
-      redirect_to product_path(@product), notice: "Comment has been posted"
+      redirect_to admins_product_path(@product), notice: "Comment has been posted"
     else
       redirect_to admins_product_path(@product)
     end
