@@ -2,34 +2,33 @@
 #
 # Table name: orders
 #
-#  id             :bigint           not null, primary key
-#  note           :text
-#  receipt_number :string           default("-")
-#  receiver       :string           default("-")
-#  status         :string
-#  total_price    :float
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  cart_id        :bigint
-#  coupon_id      :bigint
-#  postal_fee_id  :bigint           not null
+#  id                :bigint           not null, primary key
+#  note              :text
+#  receipt_number    :string           default("-")
+#  receiver          :string           default("-")
+#  status            :string
+#  total_price       :float
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  cart_id           :bigint
+#  coupon_id         :bigint
+#  service_charge_id :bigint
 #
 # Indexes
 #
-#  index_orders_on_cart_id        (cart_id)
-#  index_orders_on_coupon_id      (coupon_id)
-#  index_orders_on_postal_fee_id  (postal_fee_id)
+#  index_orders_on_cart_id            (cart_id)
+#  index_orders_on_coupon_id          (coupon_id)
+#  index_orders_on_service_charge_id  (service_charge_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (cart_id => carts.id)
 #  fk_rails_...  (coupon_id => coupons.id)
-#  fk_rails_...  (postal_fee_id => postal_fees.id)
 #
 class Order < ApplicationRecord
 	include AASM
 
-  belongs_to :postal_fee
+  belongs_to :service_charge
   belongs_to :cart, dependent: :destroy
   belongs_to :coupon, optional: true
   has_one :transaction_detail

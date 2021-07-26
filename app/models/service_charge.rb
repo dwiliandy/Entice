@@ -8,7 +8,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-class PostalFee < ApplicationRecord
+class ServiceCharge < ApplicationRecord
 	has_many :orders
 	validates :name, :presence => true,
     :on => [:update, :create]

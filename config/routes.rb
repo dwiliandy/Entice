@@ -70,7 +70,7 @@ Rails.application.routes.draw do
     resources :extra_charges, only: [:edit, :update]
 
 		resources :coupons
-    resources :postal_fees 
+    resources :service_charges 
     resources :wallet_statuses, only: [:index, :edit, :update] do
       member do 
         patch 'success'

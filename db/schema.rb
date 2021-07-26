@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_24_070919) do
+ActiveRecord::Schema.define(version: 2021_07_26_215643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,7 +73,6 @@ ActiveRecord::Schema.define(version: 2021_05_24_070919) do
   create_table "orders", force: :cascade do |t|
     t.float "total_price"
     t.string "status"
-    t.bigint "postal_fee_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "cart_id"
@@ -81,16 +80,10 @@ ActiveRecord::Schema.define(version: 2021_05_24_070919) do
     t.string "receiver", default: "-"
     t.string "receipt_number", default: "-"
     t.text "note"
+    t.bigint "service_charge_id"
     t.index ["cart_id"], name: "index_orders_on_cart_id"
     t.index ["coupon_id"], name: "index_orders_on_coupon_id"
-    t.index ["postal_fee_id"], name: "index_orders_on_postal_fee_id"
-  end
-
-  create_table "postal_fees", force: :cascade do |t|
-    t.string "name"
-    t.float "price"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.index ["service_charge_id"], name: "index_orders_on_service_charge_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -107,6 +100,13 @@ ActiveRecord::Schema.define(version: 2021_05_24_070919) do
 
   create_table "regions", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "service_charges", force: :cascade do |t|
+    t.string "name"
+    t.float "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -167,7 +167,6 @@ ActiveRecord::Schema.define(version: 2021_05_24_070919) do
   add_foreign_key "comments", "users"
   add_foreign_key "orders", "carts"
   add_foreign_key "orders", "coupons"
-  add_foreign_key "orders", "postal_fees"
   add_foreign_key "wallet_statuses", "wallets"
   add_foreign_key "wallets", "users"
 end
