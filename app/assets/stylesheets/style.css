@@ -115,6 +115,14 @@ span.badge{
   right: .25rem;
   margin-top: -.10rem;
 }
+span.badge.mobile{
+  position: absolute;
+  transform: scale(.6);
+  transform-origin: top left;
+  left: 2rem;
+  width: 25px;
+  height: 25px;
+}
 
 div.mr-3 {
   padding-top: 15px;

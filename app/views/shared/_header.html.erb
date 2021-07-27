@@ -29,6 +29,14 @@
       <br>
       <br>
       <% if current_user.present? %>
+
+      <li>
+        <%= link_to notifications_path do %>
+          <i class="fas fa-bell fa-fw"></i> Notification
+          <!-- Counter - Alerts -->
+          <span class="badge mobile badge-danger badge-counter"><%= current_user.notifications.count%></span>
+        <% end %>
+      </li>
       <li>
         <%= link_to new_wallet_status_path do %>
           <i class="fas fa-plus text-danger"></i> Top Up
