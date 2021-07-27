@@ -73,7 +73,7 @@
           <div class="header__top__right">
             <ul class="nav-bar">
               <%if current_user.present?%>
-                <li class="nav-item dropdown no-arrow mx-1">
+                <li class="nav-item dropdown no-arrow">
                   <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-bell fa-fw"></i>
@@ -86,16 +86,18 @@
                       <h6 class="dropdown-header">
                           Notifications Center
                       </h6>
-                      <% current_user.notifications.each do |notification| %>
+                      <% current_user.notifications.order(created_at: :desc).take(3).each do |notification| %>
                       <a class="dropdown-item d-flex align-items-center" href="#">
-                          <div class="mr-4">
-                            <%if notification.read == false%>
-                              <div class="icon-circle bg-primary"></div>
-                            <%end%>
-                          </div>
-                          <div>
-                              <div class="small text-gray-500"><%= notification.created_at.strftime("%b %d, %Y %H:%M")%></div>
-                              <span class="font-weight-bold"><%= notification.message%></span>
+                          <div class="notification-index">
+                            <div class="mr-3">
+                              <%if notification.read == false%>
+                                <div class="icon-circle bg-primary"></div>
+                              <%end%>
+                            </div>
+                            <div>
+                                <div class="small text-gray-500"><%= notification.created_at.strftime("%b %d, %Y %H:%M")%></div>
+                                <span><%= notification.message%></span>
+                            </div>
                           </div>
                       </a>
                       <%end%>

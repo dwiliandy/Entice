@@ -13,21 +13,23 @@
           <h6 class="dropdown-header">
               Notifications Center
           </h6>
-          <% current_user.notifications.each do |notification| %>
-          <a class="dropdown-item d-flex align-items-center" href="#">
-              <div class="mr-4">
-                <%if notification.read == false%>
-                  <div class="icon-circle bg-primary"></div>
-                <%end%>
-              </div>
-              <div>
-                  <div class="small text-gray-500"><%= notification.created_at.strftime("%b %d, %Y %H:%M")%></div>
-                  <span class="font-weight-bold"><%= notification.message%></span>
+          <% current_user.notifications.order(created_at: :desc).take(3).each do |notification| %>
+          <a class="dropdown-item admin d-flex align-items-center" href="#">
+              <div class="notification-index">
+                <div class="mr-3">
+                  <%if notification.read == false%>
+                    <div class="icon-circle bg-primary"></div>
+                  <%end%>
+                </div>
+                <div>
+                    <div class="small text-gray-500"><%= notification.created_at.strftime("%b %d, %Y %H:%M")%></div>
+                    <span class="font-weight-bold"><%= notification.message%></span>
+                </div>
               </div>
           </a>
           <%end%>
           </a>
-          <a class="dropdown-item text-center small text-gray-500" href="<%=admins_notifications_path%>">Show All Notification</a>
+          <a class="dropdown-item admin text-center small text-gray-500" href="<%=admins_notifications_path%>">Show All Notification</a>
       </div>
   </li>
         <li class="nav-item dropdown no-arrow">
@@ -39,11 +41,11 @@
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                 aria-labelledby="userDropdown">
-                 <a class="dropdown-item" href="<%=edit_admins_extra_charge_path(ExtraCharge.first)%>">
+                 <a class="dropdown-item admin" href="<%=edit_admins_extra_charge_path(ExtraCharge.first)%>">
                       <i class="fas fa-plus fa-sm fa-fw mr-2 text-gray-400"></i>
                         Change Extra Charge
                     </a>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item admin" href="#" data-toggle="modal" data-target="#logoutModal">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Logout
                 </a>

@@ -108,6 +108,19 @@ div.notification-index{
   margin-bottom: 10px;
 }
 
+span.badge{
+  position: absolute;
+  transform: scale(.8);
+  transform-origin: top right;
+  right: .25rem;
+  margin-top: -.10rem;
+}
+
+div.mr-3 {
+  padding-top: 15px;
+  width: 2%;
+}
+
 div.notification-index div.mr-3{
   padding-top: 15px;
   width: 2%;
@@ -452,6 +465,10 @@ a.nav-link{
 
 a.dropdown-item:hover{
   background-color: #7fad39;
+}
+
+a.dropdown-item.admin:hover{
+  background-color: #4e73df;
 }
 
 /* ul.nav a{
