@@ -13,14 +13,14 @@ before_action :set_cart, only: [:create_transaction]
     else
       @status = 'pending'
       @service_charge_id = ServiceCharge.first.id
-      @coupon_id = Coupon.find(params[:coupon]).id
+      @coupon_id = @coupon_id = Coupon.find(params[:coupon]).id if params[:coupon].present?
       @trans = Order.create(status:@status, cart: @cart, service_charge_id:@service_charge_id, coupon_id: @coupon_id)
       TransactionDetail.create(order:@trans)
     end   
     flash[:notice] = 'Berhasil menambahkan product'
-    if @trans.coupon.present?
-      Coupon.find(@trans.coupon.id).decrement!(:qty)
-    end
+     if @trans.coupon.present?
+       Coupon.find(@trans.coupon.id).decrement!(:qty)
+     end
     redirect_to edit_order_path(@trans)
   end
 
