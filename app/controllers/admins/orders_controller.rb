@@ -43,7 +43,7 @@ class Admins::OrdersController < AdminsController
   def update
     respond_to do |format|
       if @order.update(order_params)
-        format.html { redirect_to admins_orders_path, notice: 'Order was successfully updated.' }
+        format.html { redirect_to admins_order_path(@order.id), notice: 'Order was successfully updated.' }
         format.json { render :show, status: :ok, location: @order }
       else
         format.html { render :edit }
@@ -89,6 +89,7 @@ class Admins::OrdersController < AdminsController
 
   def transition
     if @order.pending?
+      @order.notifications.find_by(user: current_user).update(read:true)
       @order.verified!
     elsif @order.active?
       @order.processing!
@@ -104,7 +105,7 @@ class Admins::OrdersController < AdminsController
     # elsif @order.finished?
     #   @order.review!
     end
-    redirect_to admins_orders_path, notice: 'order Has Been Updated'
+    redirect_to admins_order_path(@order.id), notice: 'Order Has Been Updated'
   end
 
   private

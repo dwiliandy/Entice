@@ -34,7 +34,7 @@ class Order < ApplicationRecord
   has_one :transaction_detail
   accepts_nested_attributes_for :transaction_detail
   after_create :final_price
-  # has_many :notifications
+  has_many :notifications
 
   aasm column: :status do
     

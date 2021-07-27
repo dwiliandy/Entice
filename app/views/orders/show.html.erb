@@ -37,7 +37,11 @@
       </div>
     </div>
     <%end%>
-
+    <%if @order.status.eql? 'delivered_confirmed'%>
+      <div class="button-order">
+        <%= link_to "Confirmation Order", transition_order_path(@order.id), method: :patch, class: 'site-btn'%>
+      </div>
+    <% end %>
     <div class="row">
       <div class="col-12">
         <div class="shoping__cart__table">

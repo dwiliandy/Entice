@@ -108,6 +108,10 @@ div.notification-index{
   margin-bottom: 10px;
 }
 
+div.button-order{
+  text-align: center;
+}
+
 span.badge{
   position: absolute;
   transform: scale(.8);

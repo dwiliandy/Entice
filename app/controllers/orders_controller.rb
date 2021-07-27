@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
   # elsif @order.finished?
   #   @order.review!
   end
-    redirect_to orders_path, notice: 'order Has Been Updated'
+    redirect_to order_path(@order.id), notice: 'Order Has Been Updated'
   end
 
 

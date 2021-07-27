@@ -5,7 +5,7 @@
           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-bell fa-fw"></i>
           <!-- Counter - Alerts -->
-          <span class="badge badge-danger badge-counter"><%= current_user.notifications.count%></span>
+          <span class="badge badge-danger badge-counter"><%= current_user.notifications.where(read: false).count%></span>
       </a>
       <!-- Dropdown - Alerts -->
       <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
