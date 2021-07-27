@@ -34,7 +34,7 @@ class Order < ApplicationRecord
   has_one :transaction_detail
   accepts_nested_attributes_for :transaction_detail
   after_create :final_price
-
+  # has_many :notifications
 
   aasm column: :status do
     
@@ -93,10 +93,10 @@ STATUS_OPTIONS = [
     def check_discount
       coupon = self.coupon
       if coupon.present?
-        if coupon.postal?
+        if coupon.service_charge?
           disc = cart.price * (coupon.discount/100.to_f)
         else
-          disc = postal_fee.price * (coupon.discount/100.to_f)
+          disc = service_charge.price
         end
       end
     end
@@ -111,13 +111,12 @@ STATUS_OPTIONS = [
 
 
   	def final_price
-      total_price = cart.price + postal_fee.price
+      total_price = cart.price + service_charge.price
 
       if self.check_extra_charge.present?
         total_price = total_price + self.check_extra_charge
       end
-
-      if self.coupon.present?
+      if coupon.present? 
         total_price = total_price - self.check_discount
       end
       self.update(total_price: total_price)
