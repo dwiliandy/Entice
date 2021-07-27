@@ -102,6 +102,17 @@ a:focus {
 	color: #ffffff;
 } */
 
+div.notification-index{
+  display: flex;
+  flex: 1;
+  margin-bottom: 10px;
+}
+
+div.notification-index div.mr-3{
+  padding-top: 15px;
+  width: 2%;
+}
+
 ul,
 ol {
 	padding: 0;

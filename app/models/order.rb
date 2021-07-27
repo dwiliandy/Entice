@@ -111,6 +111,7 @@ STATUS_OPTIONS = [
 
 
   	def final_price
+      
       total_price = cart.price + service_charge.price
 
       if self.check_extra_charge.present?
@@ -119,8 +120,8 @@ STATUS_OPTIONS = [
       if coupon.present? 
         total_price = total_price - self.check_discount
       end
-      self.update(total_price: total_price)
+      self.total_price = total_price
+      self.save!
     end    
-
 
 end

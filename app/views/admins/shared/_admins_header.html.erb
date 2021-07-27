@@ -1,5 +1,35 @@
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
     <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown no-arrow mx-1">
+      <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-bell fa-fw"></i>
+          <!-- Counter - Alerts -->
+          <span class="badge badge-danger badge-counter"><%= current_user.notifications.count%></span>
+      </a>
+      <!-- Dropdown - Alerts -->
+      <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+          aria-labelledby="alertsDropdown">
+          <h6 class="dropdown-header">
+              Notifications Center
+          </h6>
+          <% current_user.notifications.each do |notification| %>
+          <a class="dropdown-item d-flex align-items-center" href="#">
+              <div class="mr-4">
+                <%if notification.read == false%>
+                  <div class="icon-circle bg-primary"></div>
+                <%end%>
+              </div>
+              <div>
+                  <div class="small text-gray-500"><%= notification.created_at.strftime("%b %d, %Y %H:%M")%></div>
+                  <span class="font-weight-bold"><%= notification.message%></span>
+              </div>
+          </a>
+          <%end%>
+          </a>
+          <a class="dropdown-item text-center small text-gray-500" href="<%=admins_notifications_path%>">Show All Notification</a>
+      </div>
+  </li>
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -23,3 +53,7 @@
     </ul>
 
 </nav>
+
+
+
+	

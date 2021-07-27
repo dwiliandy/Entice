@@ -1,0 +1,40 @@
+<div id="content-wrapper" class="d-flex flex-column">
+  <!-- Main Content -->
+  <div id="content">
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h2 class="m-0 font-weight-bold">Notification Data</h2>
+        </div>
+        </div>
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <tbody>
+                <%@notifications.each do |notif|%>
+                <tr>
+                  <td>
+                  <%= link_to admins_orders_path do %>
+                    <div class="notification-index">
+                      <div class="mr-3">
+                        <%if notif.read == false%>
+                          <div class="icon-circle bg-primary"></div>
+                        <%end%>
+                      </div>
+                      <div>
+                          <div class="small text-gray-500"><%= notif.created_at.strftime("%b %d, %Y %H:%M")%></div>
+                          <span class="font-weight-bold"><%= notif.message%></span>
+                      </div>
+                    </div>
+                    <%end%>
+                  </td>
+                </tr>
+                <%end%>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

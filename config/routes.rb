@@ -37,6 +37,8 @@ Rails.application.routes.draw do
     end
   end
   
+  resources :notifications, only: [:index]
+
   devise_for :users
   resources :products do
     member do
@@ -66,7 +68,7 @@ Rails.application.routes.draw do
         patch "transition"
       end
     end
-
+    resources :notifications, only: [:index, :show]
     resources :extra_charges, only: [:edit, :update]
 
 		resources :coupons

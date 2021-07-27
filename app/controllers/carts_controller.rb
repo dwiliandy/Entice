@@ -4,7 +4,6 @@ before_action :set_cart, only: [:create_transaction]
   def create_transaction
     if @cart.order.present?
       @trans = @cart.order
-      @trans.final_price
       if params[:coupon].present?
         @trans.update(coupon_id: params[:coupon].to_i)
       else params[:coupon].blank?
@@ -18,9 +17,7 @@ before_action :set_cart, only: [:create_transaction]
       TransactionDetail.create(order:@trans)
     end   
     flash[:notice] = 'Berhasil menambahkan product'
-     if @trans.coupon.present?
-       Coupon.find(@trans.coupon.id).decrement!(:qty)
-     end
+     @trans.final_price
     redirect_to edit_order_path(@trans)
   end
 

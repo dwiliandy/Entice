@@ -38,7 +38,7 @@ class OrdersController < ApplicationController
           if @order.save
           wallet = @order.user.wallet.nominal - @order.total_price
           @order.user.wallet.update(nominal: wallet)       
-          format.html { redirect_to @order, notice: 'Ttransaction was successfully created.' }
+          format.html { redirect_to @order, notice: 'Transaction was successfully created.' }
         else
           format.html { render :new }
         end
@@ -66,6 +66,9 @@ class OrdersController < ApplicationController
           format.html { render :edit }
           format.json { render json: @order.errors, status: :unprocessable_entity }
         end
+      end
+      if @order.coupon.present?
+        Coupon.find(@order.coupon.id).decrement!(:qty)
       end
     end
   end
