@@ -10030,8 +10030,8 @@ a:focus {
 }
 
 .icon-circle {
-  height: 2.5rem;
-  width: 2.5rem;
+  height: 1rem;
+  width: 1rem;
   border-radius: 100%;
   display: flex;
   align-items: center;

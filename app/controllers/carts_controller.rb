@@ -11,7 +11,10 @@ before_action :set_cart, only: [:create_transaction]
         @trans.update(coupon_id: nil)
       end
     else
-      @trans = Order.create(status:'pending', cart: @cart, service_charge:ServiceCharge.first, coupon: Coupon.find(params[:coupon]))
+      @status = 'pending'
+      @service_charge_id = ServiceCharge.first.id
+      @coupon_id = Coupon.find(params[:coupon]).id
+      @trans = Order.create(status:@status, cart: @cart, service_charge_id:@service_charge_id, coupon_id: @coupon_id)
       TransactionDetail.create(order:@trans)
     end   
     flash[:notice] = 'Berhasil menambahkan product'
