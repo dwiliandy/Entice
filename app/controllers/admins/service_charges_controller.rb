@@ -1,4 +1,4 @@
-class Admins::Service_ChargesController < AdminsController
+class Admins::ServiceChargesController < AdminsController
 	before_action :set_posfee, only: [:show, :edit, :update, :destroy]
 
   # GET /posfees
@@ -53,7 +53,7 @@ class Admins::Service_ChargesController < AdminsController
   def destroy
     @service_charge.destroy
     respond_to do |format|
-      format.html { redirect_to admins_service_charges_path, notice: 'Postal Fee was successfully destroyed.' }
+      format.html { redirect_to admins_service_charges_path, notice: 'Service Charge was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

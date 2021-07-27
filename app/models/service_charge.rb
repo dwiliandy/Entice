@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: postal_fees
+# Table name: service_charges
 #
 #  id         :bigint           not null, primary key
 #  name       :string

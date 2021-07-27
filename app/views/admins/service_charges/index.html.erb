@@ -5,23 +5,20 @@
     <div class="container-fluid">
       <div class="card shadow mb-4">
         <div class="card-header py-3">
-          <h2 class="m-0 font-weight-bold">Postal Fee Data</h2>
+          <h2 class="m-0 font-weight-bold">Service Charge Data</h2>
         </div>
           <div class="row">
             <div class="col-9">
-              <%= search_form_for @q, url: admins_postal_fees_path do |f| %>               
+              <%= search_form_for @q, url: admins_service_charges_path do |f| %>               
                 <div class="row">
                   <div class="col-6">
-                    <%= f.search_field :name_cont, placeholder: "Search by Postal Fee Name", class: 'form-control admin-search' %>
+                    <%= f.search_field :name_cont, placeholder: "Search by Service Charge Name", class: 'form-control admin-search' %>
                   </div>
                   <div class="col-3">
                     <%= f.button :Search, class: "btn btn-sm btn-success"%>     
                   </div>  
                 </div>
               <%end%>
-            </div>
-            <div class="col-3">
-              <%= link_to 'Add New Postal Fee', new_admins_postal_fee_path, class: "btn btn-sm btn-success float-right"%>
             </div>
           </div>
         </div>
@@ -35,9 +32,9 @@
                 </tr>
               </thead>
               <tbody>
-              <% @postal_fees.each do |postal_fee| %>
+              <% @service_charges.each do |postal_fee| %>
                 <tr>
-                  <td><%= link_to postal_fee.name.titleize, edit_admins_postal_fee_path(postal_fee)%></td>
+                  <td><%= link_to postal_fee.name.titleize, edit_admins_service_charge_path(postal_fee)%></td>
                   <td><%= number_to_currency(postal_fee.price, :locale => :id) %></td>
                 </tr>
               <% end %>

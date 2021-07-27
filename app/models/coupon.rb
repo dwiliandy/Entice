@@ -24,7 +24,7 @@ class Coupon < ApplicationRecord
     validates :variety, :presence => true,
     :on => [:update, :create]
 
-	enum variety: {postal: 0, price: 1}
+	enum variety: {service_charge: 0, price: 1}
 
 		def status
 			if disable == true

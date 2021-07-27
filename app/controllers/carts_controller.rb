@@ -5,14 +5,19 @@ before_action :set_cart, only: [:create_transaction]
     if @cart.order.present?
       @trans = @cart.order
       @trans.final_price
-    else
-      @trans = Order.create(status:'pending', cart: @cart, postal_fee:PostalFee.first, coupon: Coupon.find_by_id(params["coupon"]))
-      TransactionDetail.create(order:@trans)
       if params[:coupon].present?
-        Coupon.find(params[:coupon]).decrement!(:qty)
+        @trans.update(coupon_id: params[:coupon].to_i)
+      else params[:coupon].blank?
+        @trans.update(coupon_id: nil)
       end
-    end    
+    else
+      @trans = Order.create(status:'pending', cart: @cart, service_charge:ServiceCharge.first, coupon: Coupon.find(params[:coupon]))
+      TransactionDetail.create(order:@trans)
+    end   
     flash[:notice] = 'Berhasil menambahkan product'
+    if @trans.coupon.present?
+      Coupon.find(@trans.coupon.id).decrement!(:qty)
+    end
     redirect_to edit_order_path(@trans)
   end
 

@@ -31,7 +31,7 @@ class WalletStatus < ApplicationRecord
       transitions from: :pending, to: :success
     end
 
-    event :exprire do
+    event :expire do
       transitions from: :pending, to: :failed
     end
   end
