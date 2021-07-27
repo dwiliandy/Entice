@@ -37,8 +37,8 @@ class OrdersController < ApplicationController
         else
           if @order.save
           wallet = @order.user.wallet.nominal - @order.total_price
-          @order.user.wallet.update(nominal: wallet)       
-          format.html { redirect_to @order, notice: 'Transaction was successfully created.' }
+          @order.user.wallet.update(nominal: wallet)
+          format.html { redirect_to @order, notice: 'Trrransaction was successfully created.' }
         else
           format.html { render :new }
         end
@@ -60,6 +60,7 @@ class OrdersController < ApplicationController
           @order.cart.update(active:false)
           wallet = current_user.wallet.nominal - @order.total_price
           current_user.wallet.update(nominal: wallet)
+          Notification.create(message: 'You Have New Order', user: User.find_by_email('admin@admin.com'), order: @order, read: false)
           format.html { redirect_to root_path, notice: 'Transaction was successfully updated.' }
           format.json { render :show, status: :ok, location: @order }
         else

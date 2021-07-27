@@ -14,7 +14,7 @@
               Notifications Center
           </h6>
           <% current_user.notifications.order(created_at: :desc).take(3).each do |notification| %>
-          <a class="dropdown-item admin d-flex align-items-center" href="#">
+          <a class="dropdown-item admin d-flex align-items-center" href="<%=admins_order_path(notification.order)%>">
               <div class="notification-index">
                 <div class="mr-3">
                   <%if notification.read == false%>

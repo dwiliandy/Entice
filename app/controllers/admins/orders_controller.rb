@@ -98,6 +98,7 @@ class Admins::OrdersController < AdminsController
       @order.arrived!
     elsif @order.delivered?
       @order.confirmation!
+      Notification.create(message: 'Your Package is Arrive, Confirmation Now', user: @order.cart.user, order: @order, read: false)
     # elsif @order.delivered_confirmed?
     #   @order.completion!
     # elsif @order.finished?
