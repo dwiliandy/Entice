@@ -7,7 +7,7 @@ before_action :set_cart, only: [:create_transaction]
       @region = @cart.products.pluck(:region_id).max
       if (1..282).include? (@region)
         @service_charge_id = ServiceCharge.first.id
-      elsif (283..451)
+      elsif (283..451).include? (@region)
         @service_charge_id = ServiceCharge.second.id
       else
         @service_charge_id = ServiceCharge.last.id
@@ -23,7 +23,7 @@ before_action :set_cart, only: [:create_transaction]
       @region = @cart.products.pluck(:region_id).max
       if (1..282).include? (@region)
         @service_charge_id = ServiceCharge.first.id
-      elsif (452..514)
+      elsif (452..514).include? (@region)
         @service_charge_id = ServiceCharge.last.id
       else
         @service_charge_id = ServiceCharge.second.id

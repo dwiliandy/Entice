@@ -11,6 +11,7 @@ class OrdersController < ApplicationController
 
   if @order.delivered_confirmed?
     @order.completion!
+    @order.notifications.find_by(user: current_user).update(read:true)
   # elsif @order.finished?
   #   @order.review!
   end
